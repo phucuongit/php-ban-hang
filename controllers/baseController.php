@@ -18,7 +18,7 @@
             $request =  $_SERVER['REQUEST_URI'];
             // check request all cac trang khac /dang-nhap /dang-ky dieu huong ve dang nhap (tru /admin.+)
             $regexAdmin = "/admin(\/.+)?/";
-            if(!$_SESSION['userLogin'] && 
+            if(!isset($_SESSION['userLogin']) && 
             $request != '/dang-nhap' && 
             $request != '/dang-nhap?action=login' && 
             $request != '/dang-ky' &&

@@ -7,7 +7,7 @@
     }
 
     function isLogin(){
-        if(!$_SESSION['userLogin']){
+        if(!isset($_SESSION['userLogin'])){
             return false;
         }
         return true;

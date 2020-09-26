@@ -8,14 +8,14 @@
                         <div class="lSSlideOuter vertical" style="padding-right: 105px;">
                             <div class="lSSlideWrapper usingCss" style="height: 450px;">
                                 <div id="vertical" class="lightSlider lsGrab lSSlide" style="height: 1800px; transform: translate3d(0px, 0px, 0px);">
-                                    <div data-thumb="/assets/img/product/single-product/product_1.png" class="lslide active" style="height: 450px; margin-bottom: 0px;">
-                                        <img src="/assets/img/product/single-product/product_1.png" />
+                                    <div class="lslide active" style="height: 450px; margin-bottom: 0px;">
+                                        <img src="<?= $product->image_url ?>" alt="image_thumb"/>
                                     </div>
                       
                                 </div>
                                 <div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div>
                             </div>
-                            <ul class="lSPager lSGallery" style="margin-left: 5px; width: 100px; transition-duration: 600ms; height: 607.167px; transform: translate3d(0px, 0px, 0px);">
+                            <!-- <ul class="lSPager lSGallery" style="margin-left: 5px; width: 100px; transition-duration: 600ms; height: 607.167px; transform: translate3d(0px, 0px, 0px);">
                                 <li style="width: 100%; height: 146.66666666666666px; margin-bottom: 5px;" class="active">
                                     <a href="#"><img src="/assets/img/product/single-product/product_1.png" /></a>
                                 </li>
@@ -28,7 +28,7 @@
                                 <li style="width: 100%; height: 146.66666666666666px; margin-bottom: 5px;">
                                     <a href="#"><img src="/assets/img/product/single-product/product_1.png" /></a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </div>

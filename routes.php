@@ -9,7 +9,8 @@
         'dang-nhap' => 'login',
         'gio-hang' => 'cart',
         'dang-ky' => 'register',
-        'admin' => ['product']
+        'admin' => ['product'],
+   
     );
     // get router
     $routerString = $_SERVER['REQUEST_URI'];
@@ -29,9 +30,8 @@
         $nameController = 'error';
     }
 
-    $nameController = $controllers[preg_replace("/\?(.+)/", '', $router[1])];
-    
-    // get param pass
+    $nameController = $controllers[preg_replace("/\?(.+)/", '', $router[1] ?? '')];
+
     $arguments = array();
     foreach($router as $key => $val){
         if($key != 0 && $key != 1){
@@ -52,11 +52,11 @@
         );
         $removeAction = preg_replace("/\?(.+)/", '', $router[2] ?? '');
         $nameController = $controllerAdmin[$removeAction];
-        // var_dump($removeAction);
+
         if(!array_key_exists($removeAction, $controllers)){
             $nameController = 'error';
         }
-          // get action to call
+            // get action to call
         $pattern = "/action=(\w+)/";
         preg_match($pattern, $routerString, $matches);
         if(isset($matches[1])){
@@ -65,9 +65,10 @@
             $action = 'indexAdmin';
         }
     }
-  
+    
     include_once('controllers/' . $nameController . 'Controller.php');
     $class = ucwords($nameController) . 'Controller';
     $classController = new $class($router);
-    // var_dump($class, $action);
     $classController->$action($arguments);
+
+   

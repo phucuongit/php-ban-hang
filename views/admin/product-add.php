@@ -1,5 +1,5 @@
 <section class="content">
-<form action="/admin/san-pham/them-moi?action=add" method="post">
+<form action="/admin/san-pham/them-moi?action=add" method="post" enctype="multipart/form-data">
     <div class="row">
       
             <div class="col-md-6">

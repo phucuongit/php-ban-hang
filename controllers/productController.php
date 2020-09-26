@@ -76,7 +76,7 @@ class ProductController extends baseController implements ICartController{
         $inStock = (int)$_POST['in_stock'];
         $price = (int)$_POST['price'];
         $cateId = $_POST['category_id'] ?? NULL;
-        $img = $_POST['image_url'];
+      
         $des = htmlspecialchars($_POST['description']);
         $error = '';
      
@@ -91,7 +91,7 @@ class ProductController extends baseController implements ICartController{
         if(empty($des)){
             $error .= 'Vui lòng nhập mô tả dai<br>';
         }
-        if(empty($img)){
+        if(empty($_FILES['image_url'])){
             $error .= 'Vui lòng upload hình ảnh<br>';
         }
         if(!isset($inStock)  || !is_int($inStock) || $inStock <= 0){
@@ -110,25 +110,26 @@ class ProductController extends baseController implements ICartController{
             return $this->render('product-add', $data, 'adminLayout');  
         }
 
-        $name = $_FILES['image_url']['name'];
-        $target_dir = "assets/img";
+        $name =  time() . '.' . $_FILES['image_url']['name'];
+        $target_dir = "assets/img/upload/";
         $target_file = $target_dir . basename($name);
-                // Select file type
+        
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
         $extensions_arr = array("jpg","jpeg","png","gif");
 
-        // Check extension
+      
         if( in_array($imageFileType,$extensions_arr) ){
             move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
         }
+  
         $productInfo = array(
             'title' =>  $title,
             'description'   =>  $des,
             'price' => $price,
             'category_id'   => $cateId,
             'in_stock' => $inStock,
-            'image_url' =>  $target_dir.$name,
+            'image_url' =>  "/" .$target_dir.$name,
             'slug'  => str_slug($title),
             'short_des' => $shortDes
         );

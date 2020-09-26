@@ -45,11 +45,7 @@
                             <?= $product->id ?>
                         </td>
                         <td>
-                            <img src="/assets/img/<?= $product->image_url ?>" alt="">
-                            <br/>
-                            <small>
-                                Created 01.01.2019
-                            </small>
+                            <img src="<?= $product->image_url ?>" alt="" style="max-width: 100%">
                         </td>
                 
                         <td>
