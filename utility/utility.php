@@ -26,6 +26,7 @@
     }
     function str_slug($text)
     {
+        $text = preg_replace("/[^\w]/","", $text);
         $text = preg_replace('/\s/', '-', trim($text));
 
         $text = strtolower($text);

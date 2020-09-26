@@ -134,7 +134,6 @@
 
     <?= @$content ?>
   </div>
- 
     <?php require_once('footerAdmin.php')?>
   <aside class="control-sidebar control-sidebar-dark">
   </aside>

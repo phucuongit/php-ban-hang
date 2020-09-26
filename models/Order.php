@@ -8,7 +8,7 @@ class Order {
         $this->user_id = $user_id;
     }
 
-    public function all(){
+    public static function all(){
         $db = DB::getInstance();
         try{
             $req = $db->prepare('select * from order_item');

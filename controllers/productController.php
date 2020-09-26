@@ -1,6 +1,7 @@
 <?php
 require_once('baseController.php');
 require_once('models/Product.php');
+require_once('models/Category.php');
 require_once('ICartController.php');
 
 class ProductController extends baseController implements ICartController{
@@ -42,7 +43,10 @@ class ProductController extends baseController implements ICartController{
     // admin 
     public function indexAdmin(){
         $data = array();
-        if($this->router[3] === 'them-moi'){
+        if(isset($this->router[3]) && $this->router[3]  === 'them-moi'){
+            $data = array(
+                'categories' => Category::all(),
+            );
             $this->render('product-add', $data, 'adminLayout');
         }else{
             $products = Product::all();
@@ -66,20 +70,75 @@ class ProductController extends baseController implements ICartController{
         }
     }
     public function add(){
-        $productInfo = array(
-            'title' =>  $_POST['title'],
-            'description'   =>     $_POST['description'],
-            'price' => $_POST['price'],
-            'category_id'   => $_POST['category_id'],
-            'in_stock' => $_POST['in_stock'],
-            'image_url' =>  $_POST['image_url'],
-            'slug'  => str_slug($_POST['title']),
-            'short_des' => $_POST['short_des']
-        );
-        $product = new Product($productInfo);
+        $data = array();
+        $title = htmlspecialchars($_POST['title']);
+        $shortDes = htmlspecialchars($_POST['short_des']);
+        $inStock = (int)$_POST['in_stock'];
+        $price = (int)$_POST['price'];
+        $cateId = $_POST['category_id'] ?? NULL;
+        $img = $_POST['image_url'];
+        $des = htmlspecialchars($_POST['description']);
+        $error = '';
+     
+        if(empty($title)){
+            $error .= 'Vui lòng nhập tiêu đề<br>';
+        }
 
-        echo '<pre>';
-        var_dump($product);
-        return;
+        if(empty($shortDes)){
+            $error .= 'Vui lòng nhập mô tả ngắn<br>';
+        }
+        
+        if(empty($des)){
+            $error .= 'Vui lòng nhập mô tả dai<br>';
+        }
+        if(empty($img)){
+            $error .= 'Vui lòng upload hình ảnh<br>';
+        }
+        if(!isset($inStock)  || !is_int($inStock) || $inStock <= 0){
+            $error .= 'Vui lòng nhập số lượng trong kho đúng định dạng<br>';
+        }
+
+        if(!isset($price) && !is_int($price) || $price <= 0){
+            $error .= 'Vui lòng nhập đúng định dạng giá sản phẩm<br>';
+        }
+       
+        if(!isset($cateId) && !is_int($cateId)){
+            $error .= 'Vui lòng chọn danh mục sản phẩm<br>';
+        }
+        if($error != ''){
+            $data = array('error' => $error, 'categories' => Category::all());
+            return $this->render('product-add', $data, 'adminLayout');  
+        }
+
+        $name = $_FILES['image_url']['name'];
+        $target_dir = "assets/img";
+        $target_file = $target_dir . basename($name);
+                // Select file type
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        $extensions_arr = array("jpg","jpeg","png","gif");
+
+        // Check extension
+        if( in_array($imageFileType,$extensions_arr) ){
+            move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
+        }
+        $productInfo = array(
+            'title' =>  $title,
+            'description'   =>  $des,
+            'price' => $price,
+            'category_id'   => $cateId,
+            'in_stock' => $inStock,
+            'image_url' =>  $target_dir.$name,
+            'slug'  => str_slug($title),
+            'short_des' => $shortDes
+        );
+
+        $product = new Product($productInfo);
+    
+        $response = $product->save();
+
+        $products = Product::all();
+        $data = array('products' => $products, 'error' => $response['message']);
+        $this->render('product', $data, 'adminLayout');   
     }
 }

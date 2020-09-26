@@ -12,18 +12,18 @@
         'admin' => ['product']
     );
     // get router
-    $router = $_SERVER['REQUEST_URI'];
+    $routerString = $_SERVER['REQUEST_URI'];
     // get action to call
     $pattern = "/action=(\w+)/";
-    preg_match($pattern, $router, $matches);
-    if($matches[1]){
+    preg_match($pattern, $routerString, $matches);
+    if(isset($matches[1])){
         $action = $matches[1];
     }else{
         $action = 'index';
     }
    
     // check not exist controller return nameController error
-    $router = explode('/', $router);
+    $router = explode('/', $routerString);
 
     if(!array_key_exists($router[1], $controllers)){
         $nameController = 'error';
@@ -50,7 +50,7 @@
             'san-pham' => 'product',
             'dang-nhap' => 'login',
         );
-        $removeAction = preg_replace("/\?(.+)/", '', $router[2]);
+        $removeAction = preg_replace("/\?(.+)/", '', $router[2] ?? '');
         $nameController = $controllerAdmin[$removeAction];
         // var_dump($removeAction);
         if(!array_key_exists($removeAction, $controllers)){
@@ -58,8 +58,8 @@
         }
           // get action to call
         $pattern = "/action=(\w+)/";
-        preg_match($pattern, $router, $matches);
-        if($matches[1]){
+        preg_match($pattern, $routerString, $matches);
+        if(isset($matches[1])){
             $action = $matches[1];
         }else{
             $action = 'indexAdmin';

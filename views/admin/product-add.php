@@ -44,7 +44,12 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="inputName">Danh sách danh mục</label>
-                            <input type="text" class="form-control" />
+                            <?php foreach($categories as $category) { ?>
+                                <div class="custom-control custom-radio">
+                                    <input class="custom-control-input" type="radio" name="category_id" id="category<?= $category->id ?>" value="<?= $category->id ?>" />
+                                    <label for="category<?= $category->id ?>" class="custom-control-label"><?= $category->name ?></label>
+                                </div>
+                            <?php } ?>
                         </div>
                         <div class="form-group">
                             <label for="inputClientCompany">Giá</label>
@@ -52,13 +57,16 @@
                         </div>
                         <div class="form-group">
                             <label for="inputClientCompany">Hình ảnh</label>
-                            <input type="file" class="form-control" />
+                            <input type="file" name="image_url" class="form-control" />
                         </div>
                     </div>
                 </div>
             </div>
       
     </div>
+    <?php if(isset($error)){ ?>
+        <p class="bg-danger ui-draggable ui-draggable-handle" style="padding: 15px;"><?= @$error ?></p>
+    <?php }?>
     <button type="submit" class="form-control submit_product btn-primary">Save</button>
     </form>
 </section>

@@ -9,6 +9,7 @@ class Product {
     private $in_stock;
     private $image_url;
     private $slug;
+    private $is_deleted = 0;
 
     public function __construct($product){
         if (is_array($product)){
@@ -16,15 +17,25 @@ class Product {
                 $this->$k = $v;
             }
          }
-        // $this->id = $data['id'];
-        // $this->title = $data['title'];
-        // $this->description = $data['description'];
-        // $this->price = $data['price'];
-        // $this->category_id = $data['category_id'];
-        // $this->in_stock = $data['in_stock'];
-        // $this->image_url = $data['image_url'];
-        // $this->slug = $data['slug'];
-        // $this->short_des = $data['short_des'];
+    }
+
+    function save(){
+        $db = DB::getInstance();
+        $req = $db->prepare('insert into product  (title, short_des, description, price, category_id, in_stock,image_url, slug, is_deleted) values (:title, :short_des, :description, :price, :category_id, :in_stock, :image_url, :slug, :is_deleted)');
+      
+        $vars = array_keys(get_class_vars(get_class($this)));
+    
+        foreach($vars as $v){ 
+            if($v != 'id'){
+                $req->bindParam(':'.$v, $this->$v);
+            }
+        }
+      
+        $req->execute();
+   
+        if($req->errorCode() == 0) {
+            header('Location: /admin/san-pham');
+        }
     }
 
     static function all(){

@@ -87,6 +87,6 @@
 <?php } ?>
 <style>
     .main_menu .cart i:after{
-        content: "<?= count($_SESSION['item']); ?>"!important
+        content: "<?= count((array)(isset($_SESSION['item']) ? $_SESSION['item'] : [])); ?>"!important
     }
 </style>

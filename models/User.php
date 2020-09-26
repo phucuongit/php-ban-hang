@@ -11,7 +11,7 @@ class User {
         $this->fullname = $fullname;
     }
 
-    public function all(){
+    public static function all(){
         $db = DB::getInstance();
         try{
             $req = $db->prepare('select * from user');

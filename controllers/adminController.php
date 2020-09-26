@@ -15,5 +15,5 @@ class AdminController extends baseController {
 
     public function error(){
         $this->render('error');
-      }
+    }
 }

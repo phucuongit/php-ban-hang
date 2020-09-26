@@ -84,6 +84,7 @@
                         </td>
                 </tr>
             <?php } ?>
+            <p><?= @$error ?></p>
         </tbody>
     </table>
   </div>
