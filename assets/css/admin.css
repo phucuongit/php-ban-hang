@@ -4,3 +4,9 @@
   text-align: center;
   color: white !important;
 }
+.update_status {
+  display: none;
+}
+.show_status {
+  display: block;
+}

@@ -50,7 +50,8 @@
             ''     => 'admin',
             'san-pham' => 'product',
             'dang-nhap' => 'login',
-            'don-hang'  => 'cart'
+            'don-hang'  => 'cart',
+            'user'  => 'login'
         );
         $removeAction = preg_replace("/\?(.+)/", '', $router[2] ?? '');
         $nameController = $controllerAdmin[$removeAction];

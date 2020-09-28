@@ -50,7 +50,7 @@
                                     <a class="nav-link" href="/dang-nhap">Đăng nhập</a>
                                 </li>
                             <?php } ?>
-                            <?php if(isLogin() && isAdmin() ){  ?>
+                            <?php if(isLogin()) {  ?>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/admin">Quản trị</a>
                                 </li>

@@ -23,6 +23,19 @@ class Order {
             return $e->getMessage();
         }
     }
+
+    public static function myOrder($userId){
+        $db = DB::getInstance();
+        try{
+            $req = $db->prepare('select p.id, p.user_id, p.status, p.total, p.created_at, u.fullname from order_item as p join user as u on p.user_id = u.id where p.user_id = :userId and p.is_deleted = 0');
+            $req->bindParam(':userId', $userId);
+            $req->execute();
+            return $req->fetchAll();
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+
     public static function findById(int $id){
         $db = DB::getInstance();
 
@@ -44,6 +57,16 @@ class Order {
         $req->execute();
 
         return $req->fetchAll();
+    }
+    public static function updateOne($id, $status){
+        $db = DB::getInstance();
+
+        $req = $db->prepare('UPDATE order_item as prd SET prd.status = :status where prd.id = :id');
+        $req->bindParam(':id', $id);
+        $req->bindParam(':status', $status);
+        $req->execute();
+
+        return true;
     }
     public static function delete($id){
         $order = Order::findById($id);

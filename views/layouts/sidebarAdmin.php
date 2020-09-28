@@ -31,24 +31,42 @@
                                 </a>
                                 
                             </li>
-                            <li class="nav-item">
-                                <a href="/admin/san-pham" class="nav-link <?= isCurrentPage('/admin/san-pham') ? 'active' : ''?>">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        Quản lý sản phẩm
-                                    </p>
-                                </a>
-                            </li>
+                           
                             <li class="nav-item">
                                 <a href="/admin/don-hang" class="nav-link <?= isCurrentPage('/admin/don-hang') ? 'active' : ''?>">
-                                    <i class="nav-icon fas fa-th"></i>
+                                <i class="far fa-chart-bar"></i>
                                     <p>
                                         Đơn hàng của tôi
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-header">EXAMPLES</li>
-                         
+                            <?php if(isAdmin()) {?>
+                                <li class="nav-header">Quản trị</li>
+                                <li class="nav-item">
+                                    <a href="/admin/san-pham" class="nav-link <?= isCurrentPage('/admin/san-pham') ? 'active' : ''?>">
+                                        <i class="nav-icon fas fa-th"></i>
+                                        <p>
+                                            Quản lý sản phẩm
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/danh-muc" class="nav-link <?= isCurrentPage('/admin/danh-muc') ? 'active' : ''?>">
+                                        <i class="nav-icon fas fa-th"></i>
+                                        <p>
+                                            Quản lý danh mục
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/user" class="nav-link <?= isCurrentPage('/admin/user') ? 'active' : ''?>">
+                                        <i class="fas fa-users"></i>
+                                        <p>
+                                            Quản lý người dùng
+                                        </p>
+                                    </a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </nav>
                 </div>

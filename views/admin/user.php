@@ -2,26 +2,20 @@
 
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Danh sách đơn hàng</h3>
+    <h3 class="card-title">Danh sách người dùng</h3>
   </div>
   <div class="card-body p-0">
     <table class="table table-striped projects">
         <thead>
             <tr>
                 <th style="width: 10%">
-                    Đơn hàng
+                    ID
                 </th>
                 <th style="width: 20%">
-                    Người đặt hàng
+                    Người dùng
                 </th>
                 <th style="width: 20%">
-                    Tổng tiền
-                </th>
-                <th style="width: 20%" class="text-center">
-                    Ngày đặt hàng
-                </th>
-                <th style="width: 10%" class="text-center">
-                    Trạng thái
+                    Họ tên
                 </th>
                 <th style="width: 20%">
                     Hành động
@@ -30,44 +24,35 @@
         </thead>
         <tbody>
             <?php 
-                if(count($orders) === 0){ ?>
-                    <tr><td colspan="6" style="text-align: center">Không tìm thấy đơn hàng</td></tr>
+                if(count($users) === 0){ ?>
+                    <tr><td colspan="6" style="text-align: center">Không có bất kì user nào</td></tr>
                 <?php } ?>
-            <?php foreach($orders as $order) {?>
+            <?php foreach($users as $user) {?>
                 <tr>
                 
                         <td>
-                            <?= $order['id'] ?>
+                            <?= $user['id'] ?>
                         </td>
                         <td>
-                            <p><?= $order['fullname'] ?></p>
+                            <p><?= $user['username'] ?> VND</p>
                         </td>
                         <td>
-                            <p><?= $order['total'] ?> VND</p>
+                            <p><?= $user['fullname'] ?></p>
                         </td>
-                        <td>
-                            <p><?= $order['created_at'] ?></p>
-                        </td>
-                        <td>
-                            <p><span class="badge badge-success"> <?= getStatusOrder($order['status']) ?></span></p>
-                        </td>
-             
                         <td class="project-actions text-right">
                             <a class="btn btn-primary btn-sm" target="_blank" href="/admin/don-hang?action=detail&id=<?= $order['id'] ?>">
                                 <i class="fas fa-folder">
                                 </i>
-                                Xem
+                                Sửa
                             </a>
                           
-                            <?php if(isAdmin()) {?>
+              
                             <a class="btn btn-danger btn-sm order-del" style="color: white">
                                 <i class="fas fa-trash">
                                 </i>
                                 <input type="hidden" name="id" value="<?= $order['id'] ?>"/>
                                 Xóa
-                            </a>
-                            <?php } ?>
-                           
+                            </a> 
                         </td>
                 </tr>
             <?php } ?>

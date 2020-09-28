@@ -91,7 +91,7 @@ class ProductController extends baseController implements ICartController{
         if(empty($des)){
             $error .= 'Vui lòng nhập mô tả dai<br>';
         }
-        if(isset($_FILES['image_url'])){
+        if(!isset($_FILES['image_url'])){
             $error .= 'Vui lòng upload hình ảnh<br>';
         }
         if(!isset($inStock)  || !is_int($inStock) || $inStock <= 0){

@@ -73,7 +73,12 @@ class CartController extends baseController {
     }
 
     public function indexAdmin(){
-        $data = array('orders' => Order::all());
+        if(isAdmin()){
+            $data = array('orders' => Order::all());
+        }else{
+            $data = array('orders' => Order::myOrder($_SESSION['userLogin']['id']));
+        }
+        
         
         return $this->render('order', $data, 'adminLayout');
     }
@@ -103,6 +108,12 @@ class CartController extends baseController {
         
         $this->render('invoice', $data, 'adminLayout');  
 
+    }
+    public function updateStatus(){
+        $id = $_POST['id'];
+        $status = $_POST['status'];
+
+        Order::updateOne($id, $status);
     }
     public function error(){
       $this->render('error');

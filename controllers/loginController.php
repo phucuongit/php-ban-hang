@@ -9,6 +9,11 @@ class LoginController extends baseController{
         $this->render('login', $data);
     }
 
+    public function indexAdmin(){
+        $data = array('users' => User::all());
+        $this->render('user', $data, 'adminLayout');
+    }
+
     public function login(){
        $username = $_POST['username'];
        $password = md5($_POST['password']);

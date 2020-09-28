@@ -32,7 +32,18 @@
                   <address>
                     <strong><?= $order->fullname ?></strong><br>
                   </address>
-                  <p>Trạng thái đơn hàng: <b><?= getStatusOrder($order->status) ?></b></p>
+                  <p>Trạng thái đơn hàng: <p class="show_status"><b><?= getStatusOrder($order->status) ?></b></p></p>
+                  <?php if(isAdmin()) {?> 
+                   <div class="form-group update_status">
+                        <label>Chọn</label>
+                        <select class="form-control" name="update_status">
+                            <option value="0">Đang chờ thanh toán</option>
+                            <option value="1">Đang giao hàng</option>
+                            <option value="2">Hoàn thành</option>
+                        </select>
+                    </div>
+                  <button class="btn btn-primary updateStatus" style="margin-bottom: 30px;">Cập nhật trạng thái đơn hàng</button>
+                  <?php }?>
                 </div>
          
                 <div class="col-sm-4 invoice-col">
@@ -66,7 +77,7 @@
                     </tbody>
                   </table>
                 </div>
-                <!-- /.col -->
+              
               </div>
 
               <div class="row">
@@ -94,10 +105,7 @@
               </div>
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                  <button type="button" class="btn btn-primary float-right" onClick="window.print()"style="margin-right: 5px;">
-                    <i class="fas fa-download"></i> In hóa đơn
-                  </button>
+                  <a target="_blank" class="btn btn-default"  onClick="window.print()"><i class="fas fa-print"></i>  In hóa đơn</a>
                 </div>
               </div>
             </div>
