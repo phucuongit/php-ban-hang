@@ -23,15 +23,27 @@ class Order {
             return $e->getMessage();
         }
     }
-    public static function findById($id){
+    public static function findById(int $id){
         $db = DB::getInstance();
 
-        $req = $db->prepare('select * from order_item  as p where p.id = :id and p.is_deleted = 0');
+        $req = $db->prepare('SELECT p.id, p.user_id, p.status, p.total, p.created_at, u.fullname 
+        from order_item as p join user as u on p.user_id = u.id 
+        where p.is_deleted = 0 and p.id = :id and p.is_deleted = 0');
         $req->bindParam(':id', $id);
         $req->setFetchMode(PDO::FETCH_OBJ);
         $req->execute();
 
         return $req->fetch();
+    }
+    public static function ManyToMany($id): array{
+        $db = DB::getInstance();
+
+        $req = $db->prepare('SELECT * FROM order_prod as orp join product as p on p.id = orp.product_id where orp.order_id = :id');
+        $req->bindParam(':id', $id);
+        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->execute();
+
+        return $req->fetchAll();
     }
     public static function delete($id){
         $order = Order::findById($id);

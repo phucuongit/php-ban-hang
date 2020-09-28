@@ -89,7 +89,21 @@ class CartController extends baseController {
             $this->render('order', $data, 'adminLayout');  
         }
     }
+    public function detail(array $id){
+       
+        $regex = "/id=(\d+)/";
+        preg_match($regex, $id[0], $match);
+        if(!isset($match[1])){
+            return "Loi";
+        }
+        $id = $match[1];
+        $products = Order::ManyToMany($id);
 
+        $data = array('order' => Order::findById($id), 'products' => convertObjectToArray($products));
+        
+        $this->render('invoice', $data, 'adminLayout');  
+
+    }
     public function error(){
       $this->render('error');
     }

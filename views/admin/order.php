@@ -53,17 +53,13 @@
                         </td>
              
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" target="_blank" href="/san-pham/<?= $product->slug ?>">
+                            <a class="btn btn-primary btn-sm" target="_blank" href="/admin/don-hang?action=detail&id=<?= $order['id'] ?>">
                                 <i class="fas fa-folder">
                                 </i>
                                 Xem
                             </a>
-                            <a class="btn btn-info btn-sm" href="#">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Chỉnh sửa
-                            </a>
-                       <!-- <form action="/admin/don-hang?action=orderDel" method="post"> -->
+                          
+              
                             <a class="btn btn-danger btn-sm order-del" style="color: white">
                                 <i class="fas fa-trash">
                                 </i>

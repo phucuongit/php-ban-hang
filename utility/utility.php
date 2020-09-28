@@ -52,4 +52,11 @@
         return $result;
       
     }
+    function convertObjectToArray(array $object): array{
+        $array = array();
+        foreach($object as $obj){
+            array_push($array,json_decode(json_encode($obj), true) );
+        }
+        return $array;
+    }
 ?>
