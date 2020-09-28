@@ -39,6 +39,14 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/admin/don-hang" class="nav-link <?= isCurrentPage('/admin/don-hang') ? 'active' : ''?>">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Đơn hàng của tôi
+                                    </p>
+                                </a>
+                            </li>
                             <li class="nav-header">EXAMPLES</li>
                          
                         </ul>

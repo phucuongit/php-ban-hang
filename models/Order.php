@@ -2,29 +2,65 @@
 class Order {
     private $id;
     private $user_id;
+    private $status = 0;
+    private $total = 0;
+    private $is_deleted = 0;
     private $created_at;
 
-    public function __construct($user_id) {
-        $this->user_id = $user_id;
+    public function __construct($newOrder) {
+        foreach($newOrder as $key => $val){
+            $this->$key = $val;
+        }
     }
 
     public static function all(){
         $db = DB::getInstance();
         try{
-            $req = $db->prepare('select * from order_item');
+            $req = $db->prepare('select p.id, p.user_id, p.status, p.total, p.created_at, u.fullname from order_item as p join user as u on p.user_id = u.id where p.is_deleted = 0');
             $req->execute();
             return $req->fetchAll();
         }catch (Exception $e){
             return $e->getMessage();
         }
     }
+    public static function findById($id){
+        $db = DB::getInstance();
+
+        $req = $db->prepare('select * from order_item  as p where p.id = :id and p.is_deleted = 0');
+        $req->bindParam(':id', $id);
+        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->execute();
+
+        return $req->fetch();
+    }
+    public static function delete($id){
+        $order = Order::findById($id);
+        if(!$order){
+            return false;
+        }
+        $db = DB::getInstance();
+
+        $req = $db->prepare('update order_item as p set is_deleted = 1  where p.id = :id and p.is_deleted = 0');
+        $req->bindParam(':id', $id);
+        $req->execute();
+
+        return true;
+    }
     public function save(){
         $db = DB::getInstance();
         try{
-            $req = $db->prepare('insert into order_item (user_id) values (:user_id) ');
+            $req = $db->prepare('insert into order_item (user_id, status, total, is_deleted) values (:user_id, :status, :total, :is_deleted) ');
             $req->bindParam(':user_id', $this->user_id);
-  
-            $req->execute();
+            $req->bindParam(':status', $this->status);
+            $req->bindParam(':total', $this->total);
+            $req->bindParam(':is_deleted', $this->is_deleted);
+            try{
+                $req->execute();
+            }catch(Exception $e){
+                var_dump($e->getMessage());
+
+            }
+            
     
             return true;
         }catch (Exception $e){

@@ -91,7 +91,7 @@ class ProductController extends baseController implements ICartController{
         if(empty($des)){
             $error .= 'Vui lòng nhập mô tả dai<br>';
         }
-        if(empty($_FILES['image_url'])){
+        if(isset($_FILES['image_url'])){
             $error .= 'Vui lòng upload hình ảnh<br>';
         }
         if(!isset($inStock)  || !is_int($inStock) || $inStock <= 0){
@@ -105,10 +105,6 @@ class ProductController extends baseController implements ICartController{
         if(!isset($cateId) && !is_int($cateId)){
             $error .= 'Vui lòng chọn danh mục sản phẩm<br>';
         }
-        if($error != ''){
-            $data = array('error' => $error, 'categories' => Category::all());
-            return $this->render('product-add', $data, 'adminLayout');  
-        }
 
         $name =  time() . '.' . $_FILES['image_url']['name'];
         $target_dir = "assets/img/upload/";
@@ -117,10 +113,16 @@ class ProductController extends baseController implements ICartController{
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
         $extensions_arr = array("jpg","jpeg","png","gif");
-
-      
-        if( in_array($imageFileType,$extensions_arr) ){
+    
+        if( !in_array($imageFileType,$extensions_arr) ){
+            $error .= 'Vui lòng nhập đúng định dạng hình ảnh<br>';
+        }else {
             move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
+        }
+
+        if($error != ''){
+            $data = array('error' => $error, 'categories' => Category::all());
+            return $this->render('product-add', $data, 'adminLayout');  
         }
   
         $productInfo = array(

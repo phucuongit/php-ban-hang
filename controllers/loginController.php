@@ -19,7 +19,7 @@ class LoginController extends baseController{
             return $this->render('login', $data);
         }
         $_SESSION['userLogin'] = $user;
-        var_dump($_SESSION);
+        // var_dump($_SESSION);
         header('location: /');
     }
 

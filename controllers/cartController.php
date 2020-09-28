@@ -34,8 +34,7 @@ class CartController extends baseController {
 
     public function confirm(){
         if(count($_SESSION['item']) > 0){
-           
-            $order = new Order($_SESSION['userLogin']['id']);
+            
             $list = [];
             $itemCart = $_SESSION['item'];
             $total = 0;
@@ -49,7 +48,13 @@ class CartController extends baseController {
                 array_push($list, $prod);
             }
             $data = array('products' => $list, 'total' => $total);
+            $newOrder = array(
+                'user_id' => $_SESSION['userLogin']['id'],
+                'total' => $total
+            );
+            $order = new Order($newOrder);
             $order->save();
+         
             $idInserted =  $order->lastInserted()['order_id'];
             if(!$idInserted){
                 echo 'save don hang that bai';
@@ -66,6 +71,25 @@ class CartController extends baseController {
         }
       
     }
+
+    public function indexAdmin(){
+        $data = array('orders' => Order::all());
+        
+        return $this->render('order', $data, 'adminLayout');
+    }
+
+    public function orderDel(){
+        $id = $_POST['id'];
+
+        if(Order::delete($id)){
+            header('Location: /admin/don-hang/');
+        }else{
+            $data = array('orders' => Order::all(), 'error' => 'Loi xoa don hang');
+
+            $this->render('order', $data, 'adminLayout');  
+        }
+    }
+
     public function error(){
       $this->render('error');
     }

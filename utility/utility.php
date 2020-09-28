@@ -33,4 +33,23 @@
 
         return $text;
     }
+    function getStatusOrder($status): string{
+        $result = "";
+        switch($status){
+            case 0:
+                $result = "Đang chờ thanh toán";
+                break;
+            case 1:
+                $result = "Đang giao hàng";
+                break;
+            case 2:
+                $result = "Hoàn thành";
+                break;
+            default:
+                $result=  "Đang chờ thanh toán";
+                break;
+        }
+        return $result;
+      
+    }
 ?>

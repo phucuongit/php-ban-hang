@@ -9,7 +9,7 @@
         'dang-nhap' => 'login',
         'gio-hang' => 'cart',
         'dang-ky' => 'register',
-        'admin' => ['product'],
+        'admin' => ['product', 'cart'],
    
     );
     // get router
@@ -39,6 +39,7 @@
         }
     }
 
+   
     if(!$nameController){
         $nameController = 'error';
     }
@@ -49,11 +50,12 @@
             ''     => 'admin',
             'san-pham' => 'product',
             'dang-nhap' => 'login',
+            'don-hang'  => 'cart'
         );
         $removeAction = preg_replace("/\?(.+)/", '', $router[2] ?? '');
         $nameController = $controllerAdmin[$removeAction];
-
-        if(!array_key_exists($removeAction, $controllers)){
+        // var_dump($removeAction , $nameController);
+        if(!array_key_exists($removeAction, $controllerAdmin)){
             $nameController = 'error';
         }
             // get action to call
@@ -68,6 +70,7 @@
     
     include_once('controllers/' . $nameController . 'Controller.php');
     $class = ucwords($nameController) . 'Controller';
+    // var_dump($class, $nameController);
     $classController = new $class($router);
     $classController->$action($arguments);
 
