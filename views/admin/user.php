@@ -3,7 +3,13 @@
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">Danh sách người dùng</h3>
-  </div>
+    <div class="card-tools">
+      <a type="button" class="btn btn-primary" href="/admin/user/them-moi">
+        <i class="fas fa-plus-circle"></i>Thêm mới</a>
+    </div>
+
+</div>
+ 
   <div class="card-body p-0">
     <table class="table table-striped projects">
         <thead>
@@ -34,7 +40,7 @@
                             <?= $user['id'] ?>
                         </td>
                         <td>
-                            <p><?= $user['username'] ?> VND</p>
+                            <p><?= $user['username'] ?></p>
                         </td>
                         <td>
                             <p><?= $user['fullname'] ?></p>
@@ -47,10 +53,10 @@
                             </a>
                           
               
-                            <a class="btn btn-danger btn-sm order-del" style="color: white">
+                            <a class="btn btn-danger btn-sm user-del" style="color: white">
                                 <i class="fas fa-trash">
                                 </i>
-                                <input type="hidden" name="id" value="<?= $order['id'] ?>"/>
+                                <input type="hidden" name="id" value="<?= $user['id'] ?>"/>
                                 Xóa
                             </a> 
                         </td>

@@ -55,7 +55,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th scope="col">Total: <?= $total ?></th>
+                                <th scope="col">Tổng cộng: <?= $total ?></th>
                             </tr>
                         </tfoot>
                     </table>

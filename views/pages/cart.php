@@ -4,7 +4,7 @@
     <?= @$error ?>
     </div>
         <div class="cart_inner">
-        <?php //echo '<pre>'; var_dump($products); ?>
+       
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -16,6 +16,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php if(count($products) ===0) { ?>
+                        <tr>
+                            <td colspan="4" style="text-align: center;">
+                                Giỏ hàng trống
+                            </td>
+                        </tr>
+                     <?php }else { ?>
                     <form action="/gio-hang?action=update" method="post">
                     <?php foreach($products as $product) {?>
                         <tr>
@@ -64,6 +71,7 @@
                             </td>
                         </tr>
                     </form>
+                    <?php } ?>
                     </tbody>
                 </table>
                 <div class="checkout_btn_inner float-right">

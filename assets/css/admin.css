@@ -10,3 +10,14 @@
 .show_status {
   display: block;
 }
+.showMenu {
+  margin-left: 0 !important;
+}
+.hold-transition .main-sidebar {
+  transition: all 0.3s ease-in-out !important;
+}
+@media (max-width: 991px) {
+  .hold-transition .main-sidebar {
+    margin-left: -250px;
+  }
+}

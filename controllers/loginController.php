@@ -10,8 +10,14 @@ class LoginController extends baseController{
     }
 
     public function indexAdmin(){
-        $data = array('users' => User::all());
-        $this->render('user', $data, 'adminLayout');
+        if(isset($this->router[3]) && $this->router[3]  === 'them-moi'){
+            $data = array();
+            $this->render('user-add', $data, 'adminLayout');
+        }else{
+            $data = array('users' => User::all());
+            $this->render('user', $data, 'adminLayout');
+        }
+ 
     }
 
     public function login(){
@@ -24,7 +30,6 @@ class LoginController extends baseController{
             return $this->render('login', $data);
         }
         $_SESSION['userLogin'] = $user;
-        // var_dump($_SESSION);
         header('location: /');
     }
 
@@ -36,4 +41,27 @@ class LoginController extends baseController{
     public function error(){
       $this->render('error');
     }
+
+    public function userDel(){
+        $id = $_POST['id'];
+        User::delete($id);
+    }
+
+    public function add(){
+        $username = $_POST['username'];
+        $fullname = $_POST['fullname'];
+        $password = $_POST['password'];
+        $is_admin = $_POST['permission'];
+        // var_dump($is_admin);
+         if(User::checkExist($username)){
+             $data = array('error' => 'Lỗi: username đã tồn tại');
+             $this->render('register', $data);
+             return;
+         }
+         $user = new User($username, md5($password), $fullname, $is_admin);
+         $user->save();
+        
+         header('location: /admin/user');
+    }
+ 
 }

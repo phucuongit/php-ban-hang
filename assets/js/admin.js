@@ -30,27 +30,52 @@ orderDel.forEach((order) => {
     });
   });
 });
-let updateStatus = document.querySelector(".updateStatus");
-updateStatus.addEventListener("click", function () {
-  let display = document.querySelector(".update_status").style.display;
 
-  if (display == "none" || display == "") {
-    document.querySelector(".update_status").style.display = "block";
-    document.querySelector(".show_status").style.display = "none";
-  } else {
-    document.querySelector(".update_status").style.display = "none";
-    document.querySelector(".show_status").style.display = "block";
-    let newStatus = document.querySelector("select[name='update_status']");
-    let status = newStatus.value;
-    let regexp = new RegExp(/id=(\d+)/);
-    let formData = new FormData();
-    formData.append("id", regexp.exec(window.location.href)[1]);
-    formData.append("status", status);
-    document.querySelector("p.show_status").innerHTML =
-      "<b>" + newStatus.options[status].text + "</b>";
-    fetch("/admin/don-hang?action=updateStatus", {
+let updateStatus = document.querySelector(".updateStatus");
+if (updateStatus) {
+  updateStatus.addEventListener("click", function () {
+    let display = document.querySelector(".update_status").style.display;
+
+    if (display == "none" || display == "") {
+      document.querySelector(".update_status").style.display = "block";
+      document.querySelector(".show_status").style.display = "none";
+    } else {
+      document.querySelector(".update_status").style.display = "none";
+      document.querySelector(".show_status").style.display = "block";
+      let newStatus = document.querySelector("select[name='update_status']");
+      let status = newStatus.value;
+      let regexp = new RegExp(/id=(\d+)/);
+      let formData = new FormData();
+      formData.append("id", regexp.exec(window.location.href)[1]);
+      formData.append("status", status);
+      document.querySelector("p.show_status").innerHTML =
+        "<b>" + newStatus.options[status].text + "</b>";
+      fetch("/admin/don-hang?action=updateStatus", {
+        method: "POST",
+        body: formData,
+      }).then((result) => {});
+    }
+  });
+}
+
+let userDel = document.querySelectorAll(".user-del");
+userDel.forEach((user) => {
+  user.addEventListener("click", async function (e) {
+    e.preventDefault();
+
+    let idPro = this.querySelector("input").value;
+    let fd = new FormData();
+    fd.append("id", idPro);
+    fetch("/admin/user?action=userDel", {
       method: "POST",
-      body: formData,
-    }).then((result) => {});
-  }
+      body: fd,
+    }).then((response) => {
+      console.log(this.parentElement.parentElement.remove());
+    });
+  });
+});
+let menuMobile = document.querySelector(".menu-mobile");
+menuMobile.addEventListener("click", function () {
+  let sidebar = document.querySelector(".main-sidebar");
+  sidebar.classList.toggle("showMenu");
 });

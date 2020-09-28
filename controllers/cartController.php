@@ -9,6 +9,11 @@ class CartController extends baseController {
         $list = [];
         $itemCart = $_SESSION['item'];
         $total = 0;
+
+        if(empty($itemCart)){
+            $data = array('products' => [], 'total' => 0);
+            return $this->render('cart', $data);
+        }
         foreach($itemCart as $key => $item){
             $prod = Product::findById($key);
             $total += ( $prod->price * $item['quality'] );
@@ -53,6 +58,15 @@ class CartController extends baseController {
                 'total' => $total
             );
             $order = new Order($newOrder);
+            // foreach($itemCart as $key => $item){
+            //     $prod = Product::findById($key);
+            //     $total += ( $prod->price * $item['quality'] );
+            //     $prod = json_decode(json_encode($prod), true);
+
+            //     $prod = array_merge($prod, array('quality' => $item['quality']));
+                
+            //     array_push($list, $prod);
+            // }
             $order->save();
          
             $idInserted =  $order->lastInserted()['order_id'];
