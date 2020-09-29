@@ -23,7 +23,7 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item has-treeview">
                                 <a href="/admin" class="nav-link <?= isCurrentPage('/admin') ? 'active' : ''?>">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="fas fa-tachometer-alt"></i>
                                     <p>
                                         Dashboard
                                     </p>
@@ -43,7 +43,7 @@
                                 <li class="nav-header">Quản trị</li>
                                 <li class="nav-item">
                                     <a href="/admin/san-pham" class="nav-link <?= isCurrentPage('/admin/san-pham') ? 'active' : ''?>">
-                                        <i class="nav-icon fas fa-th"></i>
+                                    <i class="fas fa-cubes"></i>
                                         <p>
                                             Quản lý sản phẩm
                                         </p>
@@ -51,7 +51,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="/admin/danh-muc" class="nav-link <?= isCurrentPage('/admin/danh-muc') ? 'active' : ''?>">
-                                        <i class="nav-icon fas fa-th"></i>
+                                    <i class="fab fa-battle-net"></i>
                                         <p>
                                             Quản lý danh mục
                                         </p>
@@ -67,7 +67,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="/dang-nhap?action=logout" class="nav-link">
-                                        <i class="fas fa-users"></i>
+                
                                         <p>
                                             Đăng suất
                                         </p>

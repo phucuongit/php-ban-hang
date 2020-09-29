@@ -5,7 +5,7 @@
     <h3 class="card-title">Danh sách danh mục</h3>
 
     <div class="card-tools">
-      <a type="button" class="btn btn-primary" href="/admin/san-pham/them-moi">
+      <a type="button" class="btn btn-primary" href="/admin/danh-muc/them-moi">
         <i class="fas fa-plus-circle"></i>Thêm mới</a>
     </div>
   </div>
@@ -18,6 +18,9 @@
                 </th>
                 <th style="width: 20%">
                     Tên danh mục
+                </th>
+                <th style="width: 20%">
+                    Mô tả danh mục
                 </th>
                 <th style="width: 20%">
                     Hành động
@@ -38,7 +41,9 @@
                         <td>
                             <?= $category['name'] ?>
                         </td>
-                
+                        <td>
+                            <?= $category['description'] ?>
+                        </td>
                         <td class="project-actions text-right">
                             <a class="btn btn-info btn-sm" href="/admin/san-pham?action=detail&id=<?= $product->id ?>">
                                 <i class="fas fa-pencil-alt">

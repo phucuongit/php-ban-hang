@@ -31,81 +31,25 @@ class CategoryController extends baseController{
             $this->render('category', $data, 'adminLayout');  
         }
     }
-    // public function add(){
-    //     $data = array();
-    //     $title = htmlspecialchars($_POST['title']);
-    //     $shortDes = htmlspecialchars($_POST['short_des']);
-    //     $inStock = (int)$_POST['in_stock'];
-    //     $price = (int)$_POST['price'];
-    //     $cateId = $_POST['category_id'] ?? NULL;
-      
-    //     $des = htmlspecialchars($_POST['description']);
-    //     $error = '';
+    public function add(){
+        $data = array();
+        $name = htmlspecialchars($_POST['name']);
+        $description = htmlspecialchars($_POST['description']);
+        
+        $cate = array(
+            'slug'  => str_slug($name),
+            'name'  => $name,
+            'description' => $description,
+        );
      
-    //     if(empty($title)){
-    //         $error .= 'Vui lòng nhập tiêu đề<br>';
-    //     }
-
-    //     if(empty($shortDes)){
-    //         $error .= 'Vui lòng nhập mô tả ngắn<br>';
-    //     }
-        
-    //     if(empty($des)){
-    //         $error .= 'Vui lòng nhập mô tả dai<br>';
-    //     }
-    //     if(!isset($_FILES['image_url'])){
-    //         $error .= 'Vui lòng upload hình ảnh<br>';
-    //     }
-    //     if(!isset($inStock)  || !is_int($inStock) || $inStock <= 0){
-    //         $error .= 'Vui lòng nhập số lượng trong kho đúng định dạng<br>';
-    //     }
-
-    //     if(!isset($price) && !is_int($price) || $price <= 0){
-    //         $error .= 'Vui lòng nhập đúng định dạng giá sản phẩm<br>';
-    //     }
+        $category = new Category($cate);
        
-    //     if(!isset($cateId) && !is_int($cateId)){
-    //         $error .= 'Vui lòng chọn danh mục sản phẩm<br>';
-    //     }
+        $category->save();
 
-    //     $name =  time() . '.' . $_FILES['image_url']['name'];
-    //     $target_dir = "assets/img/upload/";
-    //     $target_file = $target_dir . basename($name);
-        
-    //     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-    //     $extensions_arr = array("jpg","jpeg","png","gif");
-    
-    //     if( !in_array($imageFileType,$extensions_arr) ){
-    //         $error .= 'Vui lòng nhập đúng định dạng hình ảnh<br>';
-    //     }else {
-    //         move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
-    //     }
-
-    //     if($error != ''){
-    //         $data = array('error' => $error, 'categories' => Category::all());
-    //         return $this->render('product-add', $data, 'adminLayout');  
-    //     }
-  
-    //     $productInfo = array(
-    //         'title' =>  $title,
-    //         'description'   =>  $des,
-    //         'price' => $price,
-    //         'category_id'   => $cateId,
-    //         'in_stock' => $inStock,
-    //         'image_url' =>  "/" .$target_dir.$name,
-    //         'slug'  => str_slug($title),
-    //         'short_des' => $shortDes
-    //     );
-
-    //     $product = new Product($productInfo);
-    
-    //     $response = $product->save();
-
-    //     $products = Product::all();
-    //     $data = array('products' => $products, 'error' => $response['message']);
-    //     $this->render('product', $data, 'adminLayout');   
-    // }
+        $categories = convertObjectToArray(Category::all());
+        $data = array('categories' => $categories);
+        $this->render('category', $data, 'adminLayout');   
+    }
     // public function detail($id){
     //     $regex = "/id=(\d+)/";
     //     preg_match($regex, $id[0], $match);

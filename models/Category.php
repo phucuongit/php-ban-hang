@@ -3,15 +3,16 @@ class Category {
     private $id;
     private $name;
     private $description;
-    private $picture;
     private $slug;
+    private $is_deleted = 0;
 
-    public function __constructor($id, $name, $description, $picture, $slug){
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->picture = $picture;
-        $this->slug = $slug;
+
+    public function __construct($cate){
+
+        foreach($cate as $key => $val){
+           
+            $this->$key = $val;
+        }
     }
 
     public static function all(){
@@ -45,6 +46,21 @@ class Category {
             return true;
         }catch (Exception $e){
             echo $e->getMessages();
+            return false;
+        }
+    }
+    public function save(){
+        $db = DB::getInstance();
+        try{
+            $req = $db->prepare('INSERT into category (name, description, slug, is_deleted) values (:name, :description, :slug, :is_deleted) ');
+            $req->bindParam(':name', $this->name);
+            $req->bindParam(':description', $this->description);
+            $req->bindParam(':slug', $this->slug);
+            $req->bindParam(':is_deleted', $this->is_deleted);
+            $req->execute();
+            return true;
+        }catch (Exception $e){
+            echo $e->getMessage();
             return false;
         }
     }
