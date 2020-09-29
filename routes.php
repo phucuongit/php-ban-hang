@@ -51,15 +51,18 @@
             'san-pham' => 'product',
             'dang-nhap' => 'login',
             'don-hang'  => 'cart',
-            'user'  => 'login'
+            'user'  => 'login',
+            'danh-muc'  => 'category'
         );
+        //none admin can access
+        $protectCanAccess = array('' => 'admin','don-hang'  => 'cart');
+
         $removeAction = preg_replace("/\?(.+)/", '', $router[2] ?? '');
         $nameController = $controllerAdmin[$removeAction];
-        // var_dump($removeAction , $nameController);
-        if(!array_key_exists($removeAction, $controllerAdmin)){
+        if(!array_key_exists($removeAction, $controllerAdmin) || (!isAdmin() && !array_key_exists($removeAction, $protectCanAccess)) ){
             $nameController = 'error';
         }
-            // get action to call
+        // get action to call
         $pattern = "/action=(\w+)/";
         preg_match($pattern, $routerString, $matches);
         if(isset($matches[1])){

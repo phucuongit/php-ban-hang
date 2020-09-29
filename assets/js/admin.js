@@ -79,3 +79,19 @@ menuMobile.addEventListener("click", function () {
   let sidebar = document.querySelector(".main-sidebar");
   sidebar.classList.toggle("showMenu");
 });
+let cateDel = document.querySelectorAll(".cate-del");
+cateDel.forEach((cate) => {
+  cate.addEventListener("click", async function (e) {
+    e.preventDefault();
+
+    let idPro = this.querySelector("input").value;
+    let fd = new FormData();
+    fd.append("id", idPro);
+    fetch("/admin/danh-muc?action=cateDel", {
+      method: "POST",
+      body: fd,
+    }).then((response) => {
+      console.log(this.parentElement.parentElement.remove());
+    });
+  });
+});

@@ -65,6 +65,14 @@
                                         </p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="/dang-nhap?action=logout" class="nav-link">
+                                        <i class="fas fa-users"></i>
+                                        <p>
+                                            Đăng suất
+                                        </p>
+                                    </a>
+                                </li>
                             <?php } ?>
                         </ul>
                     </nav>
