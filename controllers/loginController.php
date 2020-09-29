@@ -52,13 +52,18 @@ class LoginController extends baseController{
         $fullname = $_POST['fullname'];
         $password = $_POST['password'];
         $is_admin = $_POST['permission'];
-        // var_dump($is_admin);
+        $newUser = array(
+            'username' => $username,
+            'fullname'  => $fullname,
+            'password'  => md5($password),
+            'is_admin'  => $is_admin,
+        );
          if(User::checkExist($username)){
              $data = array('error' => 'Lỗi: username đã tồn tại');
              $this->render('register', $data);
              return;
          }
-         $user = new User($username, md5($password), $fullname, $is_admin);
+         $user = new User($newUser);
          $user->save();
         
          header('location: /admin/user');

@@ -34,8 +34,8 @@
                                     class="form-control"
                                     id="fullname"
                                     name="fullname"
-                                    value="Họ tên"
-                                    placeholder=""
+                                    value=""
+                                    placeholder="Họ tên"
                                 />
                             </div>
                             <div class="col-md-12 form-group p_star">

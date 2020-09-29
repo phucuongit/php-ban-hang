@@ -4,13 +4,12 @@ class User {
     private $username;
     private $password;
     private $fullname;
-    private $is_admin;
+    private $is_admin = 0;
 
-    public function __construct($username, $password, $fullname, $is_admin){
-        $this->username = $username;
-        $this->password = $password;
-        $this->fullname = $fullname;
-        $this->is_admin = $is_admin;
+    public function __construct(array $user){
+        foreach($user as $key => $val){
+            $this->$key = $val;
+        }
     }
 
     public static function all(){
@@ -22,6 +21,27 @@ class User {
         }catch (Exception $e){
             return $e->getMessage();
         }
+    }
+    public static function findById(int $id){
+        $db = DB::getInstance();
+
+        $req = $db->prepare('SELECT * from user where is_deleted = 0 and id = :id');
+        $req->bindParam(':id', $id);
+        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->execute();
+
+        return $req->fetch();
+    }
+    public static function lastInserted(){
+        $db = DB::getInstance();
+        $req = $db->prepare('SELECT LAST_INSERT_ID() as "user"');
+        $req->execute(); 
+
+        if (!$req->rowCount()){
+            return null;
+        }
+
+        return $req->fetch();
     }
     public function save(){
         $db = DB::getInstance();

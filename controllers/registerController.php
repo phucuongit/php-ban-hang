@@ -12,19 +12,29 @@ class RegisterController extends baseController{
     }
 
     public function register(){
+       
        $username = $_POST['username'];
        $fullname = $_POST['fullname'];
        $password = $_POST['password'];
+       $user = [ 'username' =>  $username, 'fullname' => $fullname,'password' => md5($password) ];
        $re_password = ($_POST['re_password']);
        if($re_password == $password){
+        if(strlen($password) < 8){
+            $data = array('error' => 'Lỗi: Mật khẩu vui lòng ít nhất 8 kí tự');
+            $this->render('register', $data);
+            return;
+        }
         if(User::checkExist($username)){
             $data = array('error' => 'Lỗi: username đã tồn tại');
             $this->render('register', $data);
             return;
         }
-        $user = new User($username, md5($password), $fullname);
+        $user = new User($user);
         $user->save();
-        $_SESSION['userLogin'] = $user;
+        $newId = User::lastInserted();
+   
+        $_SESSION['userLogin'] = convertArray(User::findById($newId['user']));
+   
         header('location: /');
        }else{
         $data = array('error' => 'Lỗi: mật khẩu và nhập lại mật khẩu không đúng');

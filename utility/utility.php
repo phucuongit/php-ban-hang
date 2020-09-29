@@ -59,4 +59,7 @@
         }
         return $array;
     }
+    function convertArray(object $object): array{
+        return json_decode(json_encode($object), true);
+    }
 ?>
