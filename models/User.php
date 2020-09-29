@@ -93,4 +93,17 @@ class User {
 
         return $req->fetch();
     }
+
+    public static function updateUser(array $user){
+        $db = DB::getInstance();
+        $req = $db->prepare('UPDATE user set fullname = :fullname, password = :password, is_admin = :is_admin where id = :id');   
+       
+        $req->bindParam(':id', $user['id']);
+        $req->bindParam(':fullname', $user['fullname']);
+        $req->bindParam(':password', $user['password']);
+        $req->bindParam(':is_admin', $user['is_admin']);
+        $req->execute();
+
+        return $req->fetch();
+    }
 }

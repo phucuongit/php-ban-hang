@@ -65,7 +65,7 @@
                                 </i>
                                 Xem
                             </a>
-                            <a class="btn btn-info btn-sm" href="#">
+                            <a class="btn btn-info btn-sm" href="/admin/san-pham?action=detail&id=<?= $product->id ?>">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Chỉnh sửa

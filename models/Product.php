@@ -93,7 +93,8 @@ class Product {
 
         $req = $db->prepare('select p.id, 
         p.title, p.description, p.price, 
-        p.in_stock, p.slug, p.image_url, 
+        p.in_stock, p.slug, p.image_url,
+        p.category_id,
         p.short_des, c.name, c.description
         from product as p join category as c 
         on  p.category_id = c.id 
@@ -116,6 +117,26 @@ class Product {
         }catch (Exception $e){
             echo $e->getMessages();
             return false;
+        }
+    }
+    public static function updateProduct(array $product){
+        $db = DB::getInstance();
+        $req = $db->prepare('UPDATE product  set title = :title, short_des = :short_des, description = :description, price = :price, category_id=:category_id, in_stock=:in_stock,image_url=:image_url where id =:id');
+      
+ 
+        $req->bindParam(':id', $product['id']);
+        $req->bindParam(':title', $product['title']);
+        $req->bindParam(':description', $product['description']);
+        $req->bindParam(':price', $product['price']);
+        $req->bindParam(':category_id', $product['category_id']);
+        $req->bindParam(':in_stock', $product['in_stock']);
+        $req->bindParam(':image_url', $product['image_url']);
+        $req->bindParam(':short_des', $product['short_des']);
+
+        $req->execute();
+   
+        if($req->errorCode() == 0) {
+            header('Location: /admin/san-pham');
         }
     }
 }

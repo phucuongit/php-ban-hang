@@ -93,7 +93,6 @@ class Order {
                 $req->execute();
             }catch(Exception $e){
                 var_dump($e->getMessage());
-
             }
             
     

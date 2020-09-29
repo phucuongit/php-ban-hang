@@ -68,5 +68,41 @@ class LoginController extends baseController{
         
          header('location: /admin/user');
     }
- 
+
+    public function detail(array $id){
+      
+        $regex = "/id=(\d+)/";
+        preg_match($regex, $id[0], $match);
+        if(!isset($match[1])){
+            return "Loi";
+        }
+        $id = $match[1];
+        $user = User::findById($id);
+
+        $data = array('user' => convertArray($user));
+        
+        $this->render('user-add', $data, 'adminLayout');  
+    }
+    // itemprop="thumbnailUrl"
+    public function edit(){
+        $id = intval($_POST['id']);
+        $fullname = $_POST['fullname'];
+        $password = $_POST['password'];
+        $is_admin = $_POST['permission'];
+        $user = User::findById($id);
+        if(strlen($password) < 8){
+            $data = array('user' => convertArray($user), 'error' => 'Lỗi: Mật khẩu vui lòng ít nhất 8 kí tự');
+            $this->render('user-add', $data, 'adminLayout'); 
+            return;
+        }
+        $newUser = array(
+            'id'    => $id,
+            'fullname'  => $fullname,
+            'password'  => md5($password),
+            'is_admin'  => $is_admin,
+        );
+        
+        User::updateUser($newUser);
+        header('location: /admin/user');
+    }
 }

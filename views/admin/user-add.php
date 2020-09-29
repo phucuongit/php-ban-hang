@@ -1,5 +1,5 @@
 <section class="content">
-<form action="/admin/user/them-moi?action=add" method="post" enctype="multipart/form-data">
+<form action="<?= @(isset($user) ? '/admin/user?action=edit' : '/admin/user/them-moi?action=add')  ?>" method="post" enctype="multipart/form-data">
     <div class="row">
 
     <div class="col-md-12">
@@ -10,22 +10,22 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="inputName">Username</label>
-                    <input type="text" name="username" class="form-control" />
+                    <input type="text" name="username" class="form-control" <?= @(isset($user) ? 'disabled' : '') ?> value="<?= @$user['username'] ?>" />
                 </div>
                 <div class="form-group">
                     <label for="inputDescription">Họ tên</label>
-                    <input type="text" name="fullname" class="form-control" />
+                    <input type="text" name="fullname" class="form-control" value="<?= @$user['fullname'] ?>"/>
                 </div>
                 <div class="form-group">
-                    <label for="inputDescription">Mật khẩu</label>
-                    <input type="password" name="password" class="form-control" />
+                    <label for="inputDescription">Mật khẩu <?= @(isset($user) ? 'mới' : '')  ?></label>
+                    <input type="password" name="password" class="form-control"/>
                 </div>
-
+                <input type="hidden" name="id" class="form-control" value="<?= @$user['id'] ?>"/>
                 <div class="form-group">
                     <label for="inputProjectLeader">Quyền hạn</label>
                     <select name="permission"  class="form-control">
-                        <option value="1">Admin</option>
-                        <option value="0">Khách hàng</option>
+                        <option value="1"  <?= @($user['is_admin'] == 1) ? 'selected' : '' ?>>Admin</option>
+                        <option value="0" <?= @($user['is_admin'] == 0) ? 'selected' : '' ?>>Khách hàng</option>
                     </select>
                 </div>
             </div>
