@@ -45,7 +45,7 @@
                             <?= $category['description'] ?>
                         </td>
                         <td class="project-actions text-right">
-                            <a class="btn btn-info btn-sm" href="/admin/san-pham?action=detail&id=<?= $product->id ?>">
+                            <a class="btn btn-info btn-sm" href="/admin/danh-muc?action=detail&id=<?=  $category['id'] ?>">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Chỉnh sửa

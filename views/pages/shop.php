@@ -41,7 +41,8 @@
                         <div class="pageination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item">
+                                   <?= $page ?>
+                                    <!-- <li class="page-item">
                                         <a class="page-link" href="#" aria-label="Previous">
                                             <i class="ti-angle-double-left"></i>
                                         </a>
@@ -56,7 +57,7 @@
                                         <a class="page-link" href="#" aria-label="Next">
                                             <i class="ti-angle-double-right"></i>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </nav>
                         </div>

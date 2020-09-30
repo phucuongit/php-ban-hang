@@ -69,7 +69,20 @@ class Product {
         }
         return $list;
     }
-
+    public static function paginate($current, $limit){
+        $db = DB::getInstance();
+        $offset = ($current -1 ) * $limit;
+        $req = $db->prepare('SELECT * from product LIMIT ' . $limit . ' OFFSET ' .$offset);
+     
+        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->execute();
+        $list = [];
+        foreach($req->fetchAll() as $item){
+            array_push($list, $item);
+        }
+        var_dump($req);
+        return $list;
+    }
     static function findBySlug($slug){
         $db = DB::getInstance();
 

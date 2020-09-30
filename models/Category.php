@@ -26,6 +26,19 @@ class Category {
         }
         return $list;
     }    
+    public static function paginate($current, $limit){
+        $db = DB::getInstance();
+        $req = $db->prepare('SELECT * from category  where is_deleted = 0 limit :offset, :limit');
+        $req->bindParam(':offset', ($current -1 ) * $limit);
+        $req->bindParam(':limit', $limit);
+        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->execute();
+        $list = [];
+        foreach($req->fetchAll() as $item){
+            array_push($list, $item);
+        }
+        return $list;
+    }
     public static function findById(int $id){
         $db = DB::getInstance();
 
@@ -57,6 +70,20 @@ class Category {
             $req->bindParam(':description', $this->description);
             $req->bindParam(':slug', $this->slug);
             $req->bindParam(':is_deleted', $this->is_deleted);
+            $req->execute();
+            return true;
+        }catch (Exception $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public static function updateCategory(array $category){
+        $db = DB::getInstance();
+        try{
+            $req = $db->prepare('UPDATE category set name = :name, description= :description where id= :id');
+            $req->bindParam(':id', $category['id']);
+            $req->bindParam(':name', $category['name']);
+            $req->bindParam(':description', $category['description']);
             $req->execute();
             return true;
         }catch (Exception $e){
