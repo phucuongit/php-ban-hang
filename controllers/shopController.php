@@ -23,8 +23,7 @@ class ShopController extends baseController{
         $currentPage = $page->getCurrentPage();
 
         $products = Product::paginate($currentPage, $config['limit']);
-        
-        // var_dump(($page->getCurrentPage()));
+    
         $data = array(
             'products' => $products, 
             'categories' => $category,

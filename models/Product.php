@@ -80,7 +80,7 @@ class Product {
         foreach($req->fetchAll() as $item){
             array_push($list, $item);
         }
-        var_dump($req);
+
         return $list;
     }
     static function findBySlug($slug){

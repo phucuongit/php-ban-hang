@@ -89,12 +89,7 @@ class Order {
             $req->bindParam(':status', $this->status);
             $req->bindParam(':total', $this->total);
             $req->bindParam(':is_deleted', $this->is_deleted);
-            try{
-                $req->execute();
-            }catch(Exception $e){
-                var_dump($e->getMessage());
-            }
-            
+            $req->execute();
     
             return true;
         }catch (Exception $e){

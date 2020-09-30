@@ -53,7 +53,7 @@ class CartController extends baseController {
                 array_push($list, $prod);
             }
             $data = array('products' => $list, 'total' => $total);
-            var_dump($_SESSION['userLogin']);
+        
             $newOrder = array(
                 'user_id' => $_SESSION['userLogin']['id'],
                 'total' => $total

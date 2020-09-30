@@ -47,17 +47,18 @@
         }
 
         public function getPagination(){
-            // var_dump($_SERVER['REQUEST_URI']);
+           
             $data = '';
             if (isset($this->config['full']) && $this->config['full'] === false) {
                 // nếu không thì
+                $request = preg_replace("/\?(.+)/",'',$_SERVER['REQUEST_URI']);
                 $current = $this->getCurrentPage();
                 $data .= ($current - 3) > 1 ? '<li>...</li>' : '';
                 for($i = ($current - 3) > 0 ? ($current  - 3) : 1; $i <= (($current + 3) > $this->getTotalPage() ? $this->getTotalPage() : ($this->getCurrentPage() + 3)); $i++){
                     if ($i === $current) {
                         $data .= '<li class="page-item active"><a class="page-link" href="#" >' . $i . '</a> </li>';
                     } else {
-                        $data .= '<li class="page-item"><a class="page-link" href="' . $_SERVER['REQUEST_URI'] . '?' . $this->config['querystring'] . '=' . $i . '" >' . $i . '</a> </li>';
+                        $data .= '<li class="page-item"><a class="page-link" href="' . $request  . '?' . $this->config['querystring'] . '=' . $i . '" >' . $i . '</a> </li>';
                     }
                 }
     
@@ -68,7 +69,7 @@
                     if ($i === $this->getCurrentPage()) {
                         $data .= '<li class="page-item active"><a class="page-link" href="#" >' . $i . '</a></li>';
                     } else {
-                        $data .= '<li class="page-item"><a class="page-link" href="' . $_SERVER['REQUEST_URI'] . '?' . $this->config['querystring'] . '=' . $i . '" >' . $i . '</a></li>';
+                        $data .= '<li class="page-item"><a class="page-link" href="' . $request . '?' . $this->config['querystring'] . '=' . $i . '" >' . $i . '</a></li>';
                     }
                 }
             }
