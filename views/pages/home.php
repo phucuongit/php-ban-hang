@@ -1,5 +1,5 @@
 
-<section class="product_list section_padding">
+<section class="product_list">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-12">

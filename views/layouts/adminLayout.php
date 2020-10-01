@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="/assets/css/adminlte.css">
   <link rel="stylesheet" href="/assets/css/admin.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="icon" type="image/png"  href="/assets/img/favicon.png">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

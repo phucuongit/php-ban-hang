@@ -5,7 +5,7 @@ require_once('models/Product.php');
 class HomeController extends baseController{
 
     public function index(){
-        $products = Product::all();
+        $products = Product::allFeature(8);
         $data = array('products' => $products, 'title' => 'Trang chủ - Cường Lê');
         $this->render('home', $data);
     }

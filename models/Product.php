@@ -22,7 +22,7 @@ class Product {
     function save(){
         $db = DB::getInstance();
         $req = $db->prepare('insert into product  (title, short_des, description, price, category_id, in_stock,image_url, slug, is_deleted) values (:title, :short_des, :description, :price, :category_id, :in_stock, :image_url, :slug, :is_deleted)');
-      
+       
         $vars = array_keys(get_class_vars(get_class($this)));
     
         foreach($vars as $v){ 
@@ -43,6 +43,21 @@ class Product {
         $db = DB::getInstance();
 
         $req = $db->prepare('select * from product where is_deleted = false');
+
+        $req->setFetchMode(PDO::FETCH_OBJ);
+
+        $req->execute();
+
+        foreach($req->fetchAll() as $item){
+            array_push($list, $item);
+        }
+        return $list;
+    }
+    static function allFeature($limit){
+        $list = [];
+        $db = DB::getInstance();
+
+        $req = $db->prepare('SELECT * from product where is_deleted = false ORDER BY created_at DESC limit ' . $limit);
 
         $req->setFetchMode(PDO::FETCH_OBJ);
 

@@ -4,7 +4,7 @@
   <div class="card-header">
     <h3 class="card-title">Danh sách đơn hàng</h3>
   </div>
-  <div class="card-body p-0">
+  <div class="card-body p-0 cart-list-item">
     <table class="table table-striped projects">
         <thead>
             <tr>

@@ -281,7 +281,7 @@ textarea {
 
 @media (max-width: 576px) {
   .section_padding {
-    padding: 300px 0px 10px 0px;
+    padding: 348px 0px 10px 0px;
   }
 }
 
@@ -2836,16 +2836,15 @@ ul {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-  /* line 115, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_banner.scss */
   .banner_part .slider-counter {
     font-size: 40px;
   }
 }
 
 @media (max-width: 991px) {
-  /* line 2, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_banner.scss */
   .banner_part {
     padding: 0;
+    height: 540px;
   }
 }
 

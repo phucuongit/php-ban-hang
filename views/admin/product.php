@@ -9,7 +9,7 @@
         <i class="fas fa-plus-circle"></i>Thêm mới</a>
     </div>
   </div>
-  <div class="card-body p-0">
+  <div class="card-body p-0 cart-list-item">
     <table class="table table-striped projects">
         <thead>
             <tr>

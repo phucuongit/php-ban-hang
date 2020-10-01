@@ -155,3 +155,12 @@ ul.list_info li span {
 li.page-item.active a {
   color: #ff3368;
 }
+@media (max-width: 991px) {
+  .main_menu .cart i {
+    color: #000;
+    position: relative;
+    z-index: 1;
+    font-size: 30px;
+    top: 20px;
+  }
+}

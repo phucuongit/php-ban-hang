@@ -26,3 +26,6 @@
     padding: 0;
   }
 }
+.cart-list-item {
+  overflow-x: scroll;
+}
