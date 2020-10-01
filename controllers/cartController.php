@@ -94,7 +94,8 @@ class CartController extends baseController {
             $data = array('orders' => Order::myOrder($_SESSION['userLogin']['id']));
         }
         
-        
+        $data = array_merge($data, array('title' => 'Đơn hàng - Cường Lê'));
+    
         return $this->render('order', $data, 'adminLayout');
     }
 

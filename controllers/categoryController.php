@@ -15,7 +15,8 @@ class CategoryController extends baseController{
             $this->render('category-add', $data, 'adminLayout');
         }else{
             $categories = convertObjectToArray(Category::all());
-            $data = array('categories' => $categories);
+            $data = array('title' => 'Quản lý danh mục - Cường Lê','categories' => $categories);
+
             $this->render('category', $data, 'adminLayout');
         }
     }

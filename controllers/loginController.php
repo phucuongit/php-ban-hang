@@ -14,7 +14,7 @@ class LoginController extends baseController{
             $data = array();
             $this->render('user-add', $data, 'adminLayout');
         }else{
-            $data = array('users' => User::all());
+            $data = array('title' => 'Quản lý người dùng - Cường Lê','users' => User::all());
             $this->render('user', $data, 'adminLayout');
         }
  

@@ -50,7 +50,7 @@ class ProductController extends baseController implements ICartController{
             $this->render('product-add', $data, 'adminLayout');
         }else{
             $products = Product::all();
-            $data = array('products' => $products);
+            $data = array('title' => 'Quản lý sản phẩm - Cường Lê', 'products' => $products);
             $this->render('product', $data, 'adminLayout');
         }
     }
@@ -119,7 +119,7 @@ class ProductController extends baseController implements ICartController{
         }else {
             move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
         }
-        
+
         if($error != ''){
             $data = array('error' => $error, 'categories' => Category::all());
             return $this->render('product-add', $data, 'adminLayout');  
