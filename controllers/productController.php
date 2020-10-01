@@ -107,7 +107,7 @@ class ProductController extends baseController implements ICartController{
         }
 
         $name =  time() . '.' . $_FILES['image_url']['name'];
-        $target_dir = "/assets/img/upload/";
+        $target_dir = "assets/img/upload/";
         $target_file = $target_dir . basename($name);
         
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -131,7 +131,7 @@ class ProductController extends baseController implements ICartController{
             'price' => $price,
             'category_id'   => $cateId,
             'in_stock' => $inStock,
-            'image_url' =>  $target_dir.$name,
+            'image_url' =>  "/".$target_dir.$name,
             'slug'  => str_slug($title),
             'short_des' => $shortDes
         );
@@ -196,7 +196,7 @@ class ProductController extends baseController implements ICartController{
         }
 
         $name =  time() . '.' . $_FILES['image_url']['name'];
-        $target_dir = "/assets/img/upload/";
+        $target_dir = "assets/img/upload/";
         $target_file = $target_dir . basename($name);
         
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
