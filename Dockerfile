@@ -29,14 +29,15 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 RUN usermod -u 1000 www-data
 
-COPY docker-entrypoint.sh /entrypoint.sh
-RUN ["chmod", "+x", "/entrypoint.sh"]
-
 COPY . .
 
-ENTRYPOINT [ "/entrypoint.sh" ]
+COPY docker-entrypoint.sh /entrypoint.sh
+
+RUN ["chmod", "+x", "/entrypoint.sh"]
+
+ENTRYPOINT ["sh","/entrypoint.sh" ]
 # RUN chown -R www-data:www-data .
 
 # RUN mkdir /app/assets/img/upload
 # RUN chmod -R 777 /app/assets/img/upload
-# USER www-data
+USER www-data
