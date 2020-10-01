@@ -4,12 +4,13 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Web Ban Hang</title>
+        <title><?= isset($title) ? $title : "Web Ban Hang" ?></title>
         <link rel="stylesheet" href="/assets/css/style.css" />
         <link rel="stylesheet" href="/assets/css/all.css" />
         <link rel="stylesheet" href="/assets/css/my.css" />
         <link rel="stylesheet" href="/assets/css/icon.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png"  href="/assets/img/favicon.png">
     </head>
     <body>
         <?php require_once('header.php') ?>

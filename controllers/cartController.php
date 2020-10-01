@@ -23,7 +23,7 @@ class CartController extends baseController {
             
             array_push($list, $prod);
         }
-        $data = array('products' => $list, 'total' => $total);
+        $data = array( 'title' => 'Giỏ hàng - Cường Lê', 'products' => $list, 'total' => $total);
         $this->render('cart', $data);
     }
 

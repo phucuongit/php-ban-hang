@@ -31,6 +31,7 @@ class ShopController extends baseController{
         $products = Product::paginate($currentPage, $config['limit'],isset($_GET['name']) ? $name : 'full');
 
         $data = array(
+            'title' => 'Cửa hàng - Cường Lê Shop',
             'products' => $products, 
             'categories' => $category,
             'page'  => $page->getPagination()

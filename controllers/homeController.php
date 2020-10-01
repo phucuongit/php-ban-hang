@@ -6,7 +6,7 @@ class HomeController extends baseController{
 
     public function index(){
         $products = Product::all();
-        $data = array('products' => $products);
+        $data = array('products' => $products, 'title' => 'Trang chủ - Cường Lê');
         $this->render('home', $data);
     }
 

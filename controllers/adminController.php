@@ -9,7 +9,7 @@ class AdminController extends baseController {
     public function indexAdmin(){
         $user = User::all();
         $order = Order::all();
-        $data = array('totalUser' => count($user), 'totalOrder' => count($order));
+        $data = array('title' => 'Dashboard - Cường Lê', 'totalUser' => count($user), 'totalOrder' => count($order));
         $this->render('index', $data, 'adminLayout');
     }
 

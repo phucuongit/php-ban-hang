@@ -5,7 +5,7 @@ require_once('models/User.php');
 class LoginController extends baseController{
 
     public function index(){
-        $data = array();
+        $data = array('title' => 'Đăng nhập - Cường Lê Shop');
         $this->render('login', $data);
     }
 

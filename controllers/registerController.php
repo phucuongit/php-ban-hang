@@ -7,7 +7,7 @@ class RegisterController extends baseController{
     // private $user;
 
     public function index(){
-        $data = array();
+        $data = array('title' => 'Đăng ký - Cường Lê Shop');
         $this->render('register', $data);
     }
 

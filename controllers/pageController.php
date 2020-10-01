@@ -6,7 +6,7 @@ class PageController extends baseController{
 
     public function index(){
         $products = Product::all();
-        $data = array('products' => $products);
+        $data = array('title' => 'Liên hệ - Cường Lê Shop','products' => $products);
         $this->render('page', $data, 'page-layout');
     }
 

@@ -5,7 +5,7 @@ require_once('models/Product.php');
 class ErrorController extends baseController{
 
     public function index(){
-        $data = array();
+        $data = array( 'title' => '404 - Cường Lê');
         $this->render('error', $data);
     }
 
