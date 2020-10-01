@@ -49,7 +49,7 @@
                             <p><?= $order['created_at'] ?></p>
                         </td>
                         <td>
-                            <p><span class="badge badge-success"> <?= getStatusOrder($order['status']) ?></span></p>
+                            <p><span class="badge badge-<?=  ($order['status'] == 2) ? "success" : "danger" ?>"> <?= getStatusOrder($order['status']) ?></span></p>
                         </td>
              
                         <td class="project-actions text-right">
