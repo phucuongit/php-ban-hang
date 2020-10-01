@@ -58,7 +58,7 @@ class Product {
 
         $req = $db->prepare('SELECT c.total_product from category as cate join (
             select p.category_id, count(c.id) as "total_product" from product as p join category as c on p.category_id = c.id where p.is_deleted = 0 group by p.category_id
-        ) as c on cate.id = c.category_id where cate.slug = :slug');
+        ) as c on cate.id = c.category_id where cate.slug = :slug and cate.is_deleted = 0');
         $req->bindParam(':slug', $slug);
         $req->execute();
 
@@ -70,7 +70,7 @@ class Product {
 
         $req = $db->prepare('SELECT * from category as cate join (
             select p.category_id, count(c.id) as "total_product" from product as p join category as c on p.category_id = c.id where p.is_deleted = 0 group by p.category_id
-        ) as c on cate.id = c.category_id;');
+        ) as c on cate.id = c.category_id and cate.is_deleted = 0;');
         $req->setFetchMode(PDO::FETCH_OBJ);
 
         $req->execute();
