@@ -29,6 +29,6 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN usermod -u 1000 www-data
 
 COPY . .
-RUN mkdir /app/assets/img/upload
-RUN chmod 755 /app/assets/img/upload
 RUN chown -R www-data:www-data .
+RUN mkdir /app/assets/img/upload
+RUN chmod 777 /app/assets/img/upload
