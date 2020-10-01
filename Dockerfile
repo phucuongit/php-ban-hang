@@ -1,6 +1,6 @@
 FROM php:7.2-fpm-alpine
 RUN mkdir /app
-USER www-data
+
 WORKDIR /app
 
 RUN docker-php-ext-install pdo pdo_mysql
@@ -31,5 +31,7 @@ RUN usermod -u 1000 www-data
 
 COPY . .
 RUN chown -R www-data:www-data .
+
 RUN mkdir /app/assets/img/upload
 RUN chmod -R 777 /app/assets/img/upload
+USER www-data
