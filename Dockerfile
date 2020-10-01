@@ -33,7 +33,7 @@ COPY . .
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
 # RUN chown -R www-data:www-data .
 
 # RUN mkdir /app/assets/img/upload
