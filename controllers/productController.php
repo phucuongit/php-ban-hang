@@ -14,7 +14,7 @@ class ProductController extends baseController implements ICartController{
             return;
         }
 
-        $data = array('product' => $product);
+        $data = array('title' => $product->title . ' - Cường Lê Shop','product' => $product);
         $this->render('product', $data);
     }
 
@@ -107,7 +107,7 @@ class ProductController extends baseController implements ICartController{
         }
 
         $name =  time() . '.' . $_FILES['image_url']['name'];
-        $target_dir = "assets/img/upload/";
+        $target_dir = "/assets/img/upload/";
         $target_file = $target_dir . basename($name);
         
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -153,7 +153,7 @@ class ProductController extends baseController implements ICartController{
         $id = $match[1];
         $product = Product::findById($id);
 
-        $data = array('product' => convertArray($product), 'categories' => Category::all());
+        $data = array('title' => $product->title . 'Cường Lê Shop','product' => convertArray($product), 'categories' => Category::all());
         
         $this->render('product-add', $data, 'adminLayout');  
     }
@@ -196,7 +196,7 @@ class ProductController extends baseController implements ICartController{
         }
 
         $name =  time() . '.' . $_FILES['image_url']['name'];
-        $target_dir = "assets/img/upload/";
+        $target_dir = "/assets/img/upload/";
         $target_file = $target_dir . basename($name);
         
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

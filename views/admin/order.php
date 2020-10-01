@@ -43,7 +43,7 @@
                             <p><?= $order['fullname'] ?></p>
                         </td>
                         <td>
-                            <p><?= $order['total'] ?> VND</p>
+                            <p><?=  number_format($order['total'], 0, ".", ",") ?> VND</p>
                         </td>
                         <td>
                             <p><?= $order['created_at'] ?></p>

@@ -16,61 +16,69 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php if(count($products) ===0) { ?>
-                        <tr>
-                            <td colspan="4" style="text-align: center;">
-                                Giỏ hàng trống
-                            </td>
-                        </tr>
-                     <?php }else { ?>
-                    <form action="/gio-hang?action=update" method="post">
-                    <?php foreach($products as $product) {?>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="<?= $product->image_url ?>" alt="" />
+                    <?php if(isset($products)) { ?>
+                        <?php if(count($products) ===0) { ?>
+                            <tr>
+                                <td colspan="4" style="text-align: center;">
+                                    Giỏ hàng trống
+                                </td>
+                            </tr>
+                        <?php }else { ?>
+                        <form action="/gio-hang?action=update" method="post">
+                        <?php foreach($products as $product) {?>
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="<?= $product->image_url ?>" alt="" onerror="this.onerror=null;this.src='/assets/img/default.png';"/>
+                                        </div>
+                                        <div class="media-body">
+                                            <p><?= $product['title'] ?></p>
+                                        </div>
                                     </div>
-                                    <div class="media-body">
-                                        <p><?= $product['title'] ?></p>
+                                </td>
+                                <td>
+                                    <h5><?= number_format( $product['price'] , 0, ".", ",")  ?> đ</h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
+                                        <input class="input-number" type="text" name="quality[<?= $product['id'] ?>]" value="<?= $product['quality'] ?>" min="0" />
+                                        <input type="hidden" name="product_id[<?= $product['id'] ?>]" value="<?= $product['id'] ?>">
+                                        <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h5><?= $product['price'] ?> đ</h5>
-                            </td>
-                            <td>
-                                <div class="product_count">
-                                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-                                    <input class="input-number" type="text" name="quality[<?= $product['id'] ?>]" value="<?= $product['quality'] ?>" min="0" />
-                                    <input type="hidden" name="product_id[<?= $product['id'] ?>]" value="<?= $product['id'] ?>">
-                                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
-                                </div>
-                            </td>
-                            <td>
-                                <h5><?= $product['price'] * $product['quality'] ?> đ</h5>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>
+                                    <h5><?= number_format( $product['price'] * $product['quality'] , 0, ".", ",")  ?> đ</h5>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                            <tr class="bottom_button">
+                                <td>
+                                    <button style="border: none;"class="btn_1" type="submit">Cập nhật giỏ hàng</button>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <h5>Tổng tiền</h5>
+                                </td>
+                                <td>
+                                    <h5><?= number_format( $total , 0, ".", ",")  ?> đ</h5>
+                                </td>
+                            </tr>
+                        </form>
                         <?php } ?>
-                        <tr class="bottom_button">
-                            <td>
-                                <button class="btn_1" type="submit">Cập nhật giỏ hàng</button>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                    <?php } else { ?>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <h5>Tổng tiền</h5>
-                            </td>
-                            <td>
-                                <h5><?= $total ?> đ</h5>
-                            </td>
-                        </tr>
-                    </form>
+                                <td colspan="4" style="text-align: center;">
+                                    Giỏ hàng trống
+                                </td>
+                            </tr>
                     <?php } ?>
                     </tbody>
                 </table>

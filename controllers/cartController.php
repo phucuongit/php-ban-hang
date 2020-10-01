@@ -38,7 +38,7 @@ class CartController extends baseController {
     }
 
     public function confirm(){
-        if(count($_SESSION['item']) > 0){
+        if(isset($_SESSION['item']) && count($_SESSION['item']) > 0){
             
             $list = [];
             $itemCart = $_SESSION['item'];
@@ -59,15 +59,7 @@ class CartController extends baseController {
                 'total' => $total
             );
             $order = new Order($newOrder);
-            // foreach($itemCart as $key => $item){
-            //     $prod = Product::findById($key);
-            //     $total += ( $prod->price * $item['quality'] );
-            //     $prod = json_decode(json_encode($prod), true);
 
-            //     $prod = array_merge($prod, array('quality' => $item['quality']));
-                
-            //     array_push($list, $prod);
-            // }
             $order->save();
          
             $idInserted =  $order->lastInserted()['order_id'];
@@ -81,7 +73,7 @@ class CartController extends baseController {
             $_SESSION['item'] = null;
             return null;
         }else {
-            $data = array('error' => 'ban k co bat ki san pham nao trong gio');
+            $data = array();
             return $this->render('cart', $data);
         }
       

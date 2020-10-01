@@ -4,11 +4,11 @@
             <div class="row s_product_inner justify-content-between">
                 <div class="col-lg-7 col-xl-7">
                     <div class="product_slider_img">
-                        <div class="lSSlideOuter vertical" style="padding-right: 105px;">
+                        <div class="lSSlideOuter vertical" style="text-align: center;">
                             <div class="lSSlideWrapper usingCss" style="height: 450px;">
-                                <div id="vertical" class="lightSlider lsGrab lSSlide" style="height: 1800px; transform: translate3d(0px, 0px, 0px);">
+                                <div id="vertical" class="lightSlider lsGrab lSSlide" >
                                     <div class="lslide active" style="height: 450px; margin-bottom: 0px;">
-                                        <img src="<?= $product->image_url ?>" alt="image_thumb"/>
+                                        <img src="<?= $product->image_url ?>" alt="image_thumb" onerror="this.onerror=null;this.src='/assets/img/placeholder.png';"/>
                                     </div>
                       
                                 </div>
@@ -22,7 +22,7 @@
                     <form action="/san-pham/<?=$product->slug?>?action=addToCart" method="post">
                         <div class="s_product_text">
                             <h3><?= $product->title ?></h3>
-                            <h2><?= $product->price ?> đ</h2>
+                            <h2><?= number_format($product->price, 0, ".", ",") ?> đ</h2>
                             <ul class="list list_info">
                                 <li>
                                     <a class="active" href="#"> <span>Category:</span><?= $product->name ?></a>

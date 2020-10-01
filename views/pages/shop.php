@@ -25,7 +25,7 @@
                     <div class="col-lg-12">
                         <div class="product_top_bar d-flex justify-content-between align-items-center">
                             <div class="single_product_menu">
-                                <p><span><?= count($products) ?> </span> sản phẩm</p>
+                                <p><span><?= $total ?> </span> sản phẩm tìm thấy</p>
                             </div>
                         </div>
                     </div>

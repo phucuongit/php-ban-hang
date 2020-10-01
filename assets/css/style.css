@@ -279,21 +279,15 @@ textarea {
   padding: 140px 0px;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   .section_padding {
     padding: 348px 0px 10px 0px;
   }
 }
 
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  .section_padding {
-    padding: 70px 0px;
-  }
-}
-
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .section_padding {
-    padding: 300px 0px;
+    padding: 330px 0px;
   }
 }
 

@@ -34,7 +34,8 @@ class ShopController extends baseController{
             'title' => 'Cửa hàng - Cường Lê Shop',
             'products' => $products, 
             'categories' => $category,
-            'page'  => $page->getPagination()
+            'page'  => $page->getPagination(),
+            'total' => $config['total']
         );
         $this->render('shop', $data);
     }

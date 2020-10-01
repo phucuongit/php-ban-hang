@@ -163,4 +163,10 @@ li.page-item.active a {
     font-size: 30px;
     top: 20px;
   }
+  .product_slider_img {
+    margin-top: 53px;
+  }
+}
+.media {
+  display: flex;
 }
