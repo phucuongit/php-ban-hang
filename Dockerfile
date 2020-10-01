@@ -28,8 +28,9 @@ RUN apk update && apk add --no-cache \
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 RUN usermod -u 1000 www-data
-
+COPY docker-entrypoint.sh /entrypoint.sh
 COPY --chown=www-data:www-data . .
+
 ENTRYPOINT [ "/entrypoint.sh" ]
 # RUN chown -R www-data:www-data .
 
