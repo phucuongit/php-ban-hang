@@ -111,7 +111,9 @@ class ProductController extends baseController implements ICartController{
         $target_file = $target_dir . basename($name);
         
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
+        if (!is_dir($target_dir)) {
+            mkdir($target_dir);
+        }
         $extensions_arr = array("jpg","jpeg","png","gif");
     
         if( !in_array($imageFileType,$extensions_arr) ){
