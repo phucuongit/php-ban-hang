@@ -33,11 +33,8 @@ COPY . .
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-RUN ["chmod", "+x", "/entrypoint.sh"]
-
 ENTRYPOINT ["sh","/entrypoint.sh" ]
 # RUN chown -R www-data:www-data .
 
 # RUN mkdir /app/assets/img/upload
 # RUN chmod -R 777 /app/assets/img/upload
-USER www-data
