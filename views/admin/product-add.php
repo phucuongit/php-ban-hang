@@ -10,28 +10,21 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="inputName">Tên sản phẩm</label>
-                            <input type="text" name="title" class="form-control" value="<?= @$product['title'] ?>"/>
+                            <input type="text" placeholder="Nhập tên sản phẩm" name="title" class="form-control" value="<?= @$product['title'] ?>"/>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Mô tả sản phẩm</label>
-                            <textarea class="form-control" name="description" rows="4" ><?= @$product['description'] ?></textarea>
+                            <textarea class="form-control"  placeholder="Nhập mô tả sản phẩm" name="description" rows="4" ><?= @$product['description'] ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Mô tả ngắn</label>
-                            <textarea class="form-control" name="short_des" rows="4"><?= @$product['short_des'] ?></textarea>
+                            <textarea class="form-control" placeholder="Nhập mô tả ngắn"  name="short_des" rows="4"><?= @$product['short_des'] ?></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="inputStatus">Trạng thái</label>
-                            <select class="form-control custom-select">
-                                <option selected disabled>Chọn trạng thái</option>
-                                <option>Bắt đầu bán</option>
-                                <option>Chưa bán</option>
-                            </select>
-                        </div>
+
                         <input type="hidden" name="id" class="form-control"value="<?= @$product['id'] ?>" />
                         <div class="form-group">
                             <label for="inputProjectLeader">Số lượng kho</label>
-                            <input type="text" name="in_stock" class="form-control"value="<?= @$product['in_stock'] ?>" />
+                            <input type="text" name="in_stock" placeholder="Nhập số lượng kho" class="form-control"value="<?= @$product['in_stock'] ?>" />
                         </div>
                     </div>
                 </div>
@@ -53,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputClientCompany">Giá</label>
-                            <input type="text" name="price" class="form-control" value="<?= @$product['price'] ?>"/>
+                            <input type="text" name="price" placeholder="Nhập giá" class="form-control" value="<?= @$product['price'] ?>"/>
                         </div>
                         <div class="form-group">
                             <label for="inputClientCompany">Hình ảnh</label>
@@ -64,12 +57,13 @@
                         </div>
                     </div>
                 </div>
+                <button type="submit" class="form-control submit_product btn-primary" style="margin-bottom: 1rem;">Lưu</button>
             </div>
-      
+          
     </div>
     <?php if(isset($error)){ ?>
         <p class="bg-danger ui-draggable ui-draggable-handle" style="padding: 15px;"><?= @$error ?></p>
     <?php }?>
-    <button type="submit" class="form-control submit_product btn-primary">Save</button>
+   
     </form>
 </section>

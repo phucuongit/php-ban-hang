@@ -10,15 +10,15 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="inputName">Username</label>
-                    <input type="text" name="username" class="form-control" <?= @(isset($user) ? 'disabled' : '') ?> value="<?= @$user['username'] ?>" />
+                    <input type="text" name="username" placeholder="Nhập username" class="form-control" <?= @(isset($user) ? 'disabled' : '') ?> value="<?= @$user['username'] ?>" />
                 </div>
                 <div class="form-group">
                     <label for="inputDescription">Họ tên</label>
-                    <input type="text" name="fullname" class="form-control" value="<?= @$user['fullname'] ?>"/>
+                    <input type="text" name="fullname" placeholder="Nhập họ tên" class="form-control" value="<?= @$user['fullname'] ?>"/>
                 </div>
                 <div class="form-group">
                     <label for="inputDescription">Mật khẩu <?= @(isset($user) ? 'mới' : '')  ?></label>
-                    <input type="password" name="password" class="form-control"/>
+                    <input type="password" name="password" placeholder="Nhập mật khẩu" class="form-control"/>
                 </div>
                 <input type="hidden" name="id" class="form-control" value="<?= @$user['id'] ?>"/>
                 <div class="form-group">
@@ -37,6 +37,6 @@
     <?php if(isset($error)){ ?>
         <p class="bg-danger ui-draggable ui-draggable-handle" style="padding: 15px;"><?= @$error ?></p>
     <?php }?>
-    <button type="submit" class="form-control submit_product btn-primary">Save</button>
+    <button type="submit" class="form-control submit_product btn-primary">Lưu</button>
     </form>
 </section>
