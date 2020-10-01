@@ -111,21 +111,13 @@ class ProductController extends baseController implements ICartController{
         $target_file = $target_dir . basename($name);
 
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        if (!is_dir($target_dir)) {
-            mkdir($target_dir);
-        }
-      
+
         $extensions_arr = array("jpg","jpeg","png","gif");
     
         if( !in_array($imageFileType,$extensions_arr) ){
             $error .= 'Vui lòng nhập đúng định dạng hình ảnh<br>';
         }else {
-            try{
                 move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
-
-            }catch(Exception $e){
-                echo $e->getMessage();
-            }
         }
 
         if($error != ''){

@@ -7,7 +7,7 @@ class CartController extends baseController {
     
     public function index(){
         $list = [];
-        $itemCart = $_SESSION['item'];
+        $itemCart = isset($_SESSION['item']) ? $_SESSION['item'] : [];
         $total = 0;
 
         if(empty($itemCart)){

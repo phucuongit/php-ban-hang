@@ -118,7 +118,7 @@ class Product {
         $req = $db->prepare('select p.id, 
         p.title, p.description, p.price, 
         p.in_stock, p.slug, p.image_url, 
-        p.short_des, c.name, c.description
+        p.short_des, c.name, c.description as des_cate
         from product as p join category as c 
         on  p.category_id = c.id 
         where p.slug = :slug and p.is_deleted = false');
