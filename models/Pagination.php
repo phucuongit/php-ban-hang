@@ -47,13 +47,16 @@
                  return 1;
              }
         }
-
+        /**
+         * Danh sach paginate
+         * @return string
+         */
         public function getPagination(){
            
             $data = '';
             if (isset($this->config['full']) && $this->config['full'] === false) {
                 // nếu không thì
-                $request = preg_replace("/[?&]" . $this->config['querystring'] . "/", '' , $_SERVER['REQUEST_URI']);
+                $request = preg_replace("/[?&]" . $this->config['querystring'] . "=(\d)/", '' , $_SERVER['REQUEST_URI']);
               
                 $current = $this->getCurrentPage();
                 $data .= ($current - 3) > 1 ? '<li>...</li>' : '';
