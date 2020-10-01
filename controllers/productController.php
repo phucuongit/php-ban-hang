@@ -119,7 +119,12 @@ class ProductController extends baseController implements ICartController{
         if( !in_array($imageFileType,$extensions_arr) ){
             $error .= 'Vui lòng nhập đúng định dạng hình ảnh<br>';
         }else {
-            move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
+            try{
+                move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
+
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }
         }
 
         if($error != ''){
