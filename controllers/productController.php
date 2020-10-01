@@ -109,11 +109,12 @@ class ProductController extends baseController implements ICartController{
         $name =  time() . '.' . $_FILES['image_url']['name'];
         $target_dir = "assets/img/upload/";
         $target_file = $target_dir . basename($name);
-        
+        chmod($target_file, 0777);
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         if (!is_dir($target_dir)) {
-            mkdir($target_dir);
+            mkdir($target_dir, 0777);
         }
+      
         $extensions_arr = array("jpg","jpeg","png","gif");
     
         if( !in_array($imageFileType,$extensions_arr) ){
