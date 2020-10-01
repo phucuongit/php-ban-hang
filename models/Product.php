@@ -53,12 +53,23 @@ class Product {
         }
         return $list;
     }
+    static function numProdByCate($slug){
+        $db = DB::getInstance();
+
+        $req = $db->prepare('SELECT c.total_product from category as cate join (
+            select p.category_id, count(c.id) as "total_product" from product as p join category as c on p.category_id = c.id where p.is_deleted = 0 group by p.category_id
+        ) as c on cate.id = c.category_id where cate.slug = :slug');
+        $req->bindParam(':slug', $slug);
+        $req->execute();
+
+        return $req->fetch();
+    }
     static function allProdCate(){
         $list = [];
         $db = DB::getInstance();
 
-        $req = $db->prepare('select * from category as cate join (
-            select p.category_id, count(c.id) as "total_product" from product as p join category as c on p.category_id = c.id group by p.category_id
+        $req = $db->prepare('SELECT * from category as cate join (
+            select p.category_id, count(c.id) as "total_product" from product as p join category as c on p.category_id = c.id where p.is_deleted = 0 group by p.category_id
         ) as c on cate.id = c.category_id;');
         $req->setFetchMode(PDO::FETCH_OBJ);
 
@@ -69,19 +80,37 @@ class Product {
         }
         return $list;
     }
-    public static function paginate($current, $limit){
+    public static function paginate($current, $limit, $cateName = 'full'){
         $db = DB::getInstance();
         $offset = ($current -1 ) * $limit;
-        $req = $db->prepare('SELECT * from product LIMIT ' . $limit . ' OFFSET ' .$offset);
+        try{
+            if($cateName == 'full'){
+                $req = $db->prepare('SELECT * from product where is_deleted = 0 LIMIT ' . $limit . ' OFFSET ' .$offset);
+    
+            }else{          
+                $cate = Category::findBySlug($cateName);
+                if($cate){
+                    $id = $cate->id;
+                    $req = $db->prepare('SELECT * from product where is_deleted = 0 and category_id = :id LIMIT ' . $limit . ' OFFSET ' .$offset);
+                    $req->bindParam(':id', $id);
+                }else{
+                    return [];
+                }
+                     
+            }
+            $req->setFetchMode(PDO::FETCH_OBJ);
+            $req->execute();
+            $list = [];
+            foreach($req->fetchAll() as $item){
+                array_push($list, $item);
+            }
+            return $list;
      
-        $req->setFetchMode(PDO::FETCH_OBJ);
-        $req->execute();
-        $list = [];
-        foreach($req->fetchAll() as $item){
-            array_push($list, $item);
+        }catch (Exception $e){
+            echo $e->getMessage();
+            return false;
         }
-
-        return $list;
+        
     }
     static function findBySlug($slug){
         $db = DB::getInstance();

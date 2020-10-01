@@ -36,11 +36,13 @@
          public function getCurrentPage(){
              if(isset($_GET[$this->config['querystring']]) && (int)$_GET[$this->config['querystring']] >= 1){
                 // Nếu có kiểm tra tiếp xem nó có lớn hơn tổn số trang không.
+               
                 if((int) $_GET[$this->config['querystring']] > $this->getTotalPage()){
                     return $this->getTotalPage();
                 }else{
                     return (int)$_GET[$this->config['querystring']];
                 }
+                
             }else{
                  return 1;
              }
@@ -51,14 +53,15 @@
             $data = '';
             if (isset($this->config['full']) && $this->config['full'] === false) {
                 // nếu không thì
-                $request = preg_replace("/\?(.+)/",'',$_SERVER['REQUEST_URI']);
+                $request = preg_replace("/[?&]" . $this->config['querystring'] . "/", '' , $_SERVER['REQUEST_URI']);
+              
                 $current = $this->getCurrentPage();
                 $data .= ($current - 3) > 1 ? '<li>...</li>' : '';
                 for($i = ($current - 3) > 0 ? ($current  - 3) : 1; $i <= (($current + 3) > $this->getTotalPage() ? $this->getTotalPage() : ($this->getCurrentPage() + 3)); $i++){
                     if ($i === $current) {
                         $data .= '<li class="page-item active"><a class="page-link" href="#" >' . $i . '</a> </li>';
                     } else {
-                        $data .= '<li class="page-item"><a class="page-link" href="' . $request  . '?' . $this->config['querystring'] . '=' . $i . '" >' . $i . '</a> </li>';
+                        $data .= '<li class="page-item"><a class="page-link" href="' .  $request . (preg_match("/\?name/", $request) ? '&' : '?') . $this->config['querystring'] . '=' . $i . '" >' . $i . '</a> </li>';
                     }
                 }
     
@@ -69,7 +72,7 @@
                     if ($i === $this->getCurrentPage()) {
                         $data .= '<li class="page-item active"><a class="page-link" href="#" >' . $i . '</a></li>';
                     } else {
-                        $data .= '<li class="page-item"><a class="page-link" href="' . $request . '?' . $this->config['querystring'] . '=' . $i . '" >' . $i . '</a></li>';
+                        $data .= '<li class="page-item"><a class="page-link" href="' . $request . (preg_match("/\?name/", $request) ? '&' : '?') . $this->config['querystring'] . '=' . $i . '" >' . $i . '</a></li>';
                     }
                 }
             }

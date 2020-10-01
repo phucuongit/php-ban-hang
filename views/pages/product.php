@@ -1,5 +1,4 @@
 <section>
-    <?php //echo '<pre>'; var_dump($product) ?>
     <div class="product_image_area section_padding">
         <div class="container">
             <div class="row s_product_inner justify-content-between">
@@ -15,20 +14,7 @@
                                 </div>
                                 <div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div>
                             </div>
-                            <!-- <ul class="lSPager lSGallery" style="margin-left: 5px; width: 100px; transition-duration: 600ms; height: 607.167px; transform: translate3d(0px, 0px, 0px);">
-                                <li style="width: 100%; height: 146.66666666666666px; margin-bottom: 5px;" class="active">
-                                    <a href="#"><img src="/assets/img/product/single-product/product_1.png" /></a>
-                                </li>
-                                <li style="width: 100%; height: 146.66666666666666px; margin-bottom: 5px;">
-                                    <a href="#"><img src="/assets/img/product/single-product/product_1.png" /></a>
-                                </li>
-                                <li style="width: 100%; height: 146.66666666666666px; margin-bottom: 5px;">
-                                    <a href="#"><img src="/assets/img/product/single-product/product_1.png" /></a>
-                                </li>
-                                <li style="width: 100%; height: 146.66666666666666px; margin-bottom: 5px;">
-                                    <a href="#"><img src="/assets/img/product/single-product/product_1.png" /></a>
-                                </li>
-                            </ul> -->
+
                         </div>
                     </div>
                 </div>
@@ -79,26 +65,4 @@
         </div>
     </div>
 </section>
-<section class="product_list best_seller">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="section_tittle text-center">
-                    <h5 style="font-size: 30px">Sản phẩm liên quan</h5>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="row align-items-center justify-content-between">
-            <div class="col-lg-12">
-            <div class="owl-item cloned" style="width: 262.5px; margin-right: 30px;">
-                    <div class="single_product_item">
-                        <img src="img/product/product_2.png" alt="" />
-                        <div class="single_product_text">
-                            <h4>Quartz Belt Watch</h4>
-                            <h3>$150.00</h3>
-                        </div>
-                    </div>
-            </div>
-        </div> -->
-    </div>
-</section>
+

@@ -45,7 +45,6 @@
                         <div class="form-group">
                             <label for="inputName">Danh sách danh mục</label>
                             <?php foreach($categories as $category) { ?>
-                                <?php //var_dump($product) ?>
                                 <div class="custom-control custom-radio">
                                     <input class="custom-control-input" type="radio" <?= @($product['category_id'] == $category->id ? 'checked': '') ?> name="category_id" id="category<?= $category->id ?>" value="<?= $category->id ?>" />
                                     <label for="category<?= $category->id ?>" class="custom-control-label"><?= $category->name ?></label>

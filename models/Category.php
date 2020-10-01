@@ -39,6 +39,15 @@ class Category {
         }
         return $list;
     }
+    public static function findBySlug($name){
+        $db = DB::getInstance();
+        $req = $db->prepare('SELECT * from category where is_deleted = 0 and slug = :slug');
+        $req->bindParam(':slug', $name);
+        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->execute();
+
+        return $req->fetch();
+    }
     public static function findById(int $id){
         $db = DB::getInstance();
 

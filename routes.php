@@ -74,7 +74,6 @@
     
     include_once('controllers/' . $nameController . 'Controller.php');
     $class = ucwords($nameController) . 'Controller';
-    // var_dump($class, $nameController);
     $classController = new $class($router);
     $classController->$action($arguments);
 

@@ -22,18 +22,11 @@
             $request != '/dang-nhap' && 
             $request != '/dang-nhap?action=login' && 
             $request != '/dang-ky' &&
-            // !preg_match($regexAdmin, $request) &&
             $request != '/dang-ky?action=register' ){
                 header('Location: /dang-nhap');
                 return;
             }
-            // var_dump(preg_match($regexAdmin, $request), $request);
-            
-            //check /admin phai co quyen admin
-            // if(preg_match($regexAdmin, $request) && !isAdmin()){
-            //     header('Location: /error');
-            //     return;
-            // }
+
             $viewFile = 'views/'. $this->folder . '/' . $file . '.php';
             if(is_file($viewFile)){
                 extract($data);
