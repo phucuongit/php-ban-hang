@@ -30,6 +30,8 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN usermod -u 1000 www-data
 
 COPY docker-entrypoint.sh /entrypoint.sh
+RUN ["chmod", "+x", "/entrypoint.sh"]
+
 COPY . .
 
 ENTRYPOINT [ "/entrypoint.sh" ]
