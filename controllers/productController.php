@@ -107,7 +107,7 @@ class ProductController extends baseController implements ICartController{
         }
 
         $name =  time() . '.' . $_FILES['image_url']['name'];
-        $target_dir = "/assets/img/upload/";
+        $target_dir = "assets/img/upload/";
         $target_file = $target_dir . basename($name);
         
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
