@@ -7,7 +7,7 @@ RUN docker-php-ext-install pdo pdo_mysql
 RUN docker-php-ext-enable pdo_mysql
 RUN docker-php-ext-install pcntl
 
-RUN apk update && apk add --no-cache \
+RUN apk update && apk add \
     build-base shadow supervisor \
     php7-common \
     php7-pdo \
@@ -23,7 +23,7 @@ RUN apk update && apk add --no-cache \
     php7-gd \
     php7-dom \
     php7-session \
-    php7-zlib
+    php7-zlib -q
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
@@ -31,10 +31,6 @@ RUN usermod -u 1000 www-data
 
 COPY . .
 
-COPY docker-entrypoint.sh /entrypoint.sh
+RUN chown -R www-data:www-data /app
 
-# ENTRYPOINT ["/entrypoint.sh"]
-# RUN chown -R www-data:www-data .
-
-# RUN mkdir /app/assets/img/upload
-# RUN chmod -R 777 /app/assets/img/upload
+USER www-data

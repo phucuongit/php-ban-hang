@@ -35,6 +35,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=cuongdeptrai
       - MYSQL_DATABASE=banhang
+    user: 1000:1000
     networks:
       - app_net
   admin_php:
