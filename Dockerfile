@@ -34,5 +34,5 @@ RUN addgroup -g 1002 appgroup
 RUN adduser -D -u 1002 appuser -G appgroup
 
 RUN chown -R appuser:appgroup /app
-RUN chmod -R 700 /app
-USER appuser
+
+USER 1002
