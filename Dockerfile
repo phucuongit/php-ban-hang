@@ -27,10 +27,12 @@ RUN apk update && apk add \
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-RUN usermod -u 1002 www-data
-
 COPY . .
 
-RUN chown -R www-data:www-data /app
+RUN addgroup -g 1002 appgroup
 
-USER www-data
+RUN adduser -D -u 1002 appuser -G appgroup
+
+RUN chown -R appuser:appgroup /app
+
+USER appuser
