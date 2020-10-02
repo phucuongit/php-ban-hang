@@ -33,6 +33,6 @@ RUN addgroup -g 1002 appgroup
 
 RUN adduser -D -u 1002 appuser -G appgroup
 
-RUN chown -R appuser:appgroup /app
+RUN chown -R 1002:1002 /app
 
 USER 1002
