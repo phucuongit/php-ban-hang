@@ -27,7 +27,7 @@ RUN apk update && apk add \
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-RUN usermod -u 1000 www-data
+RUN usermod -u 1002 www-data
 
 COPY . .
 
