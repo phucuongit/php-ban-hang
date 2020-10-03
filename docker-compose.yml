@@ -30,8 +30,6 @@ services:
     volumes:
       - ./db:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/dump.sql
-    volumes:
-    - ./init.sql:/data/application/init.sql
     environment:
       - MYSQL_ROOT_PASSWORD=cuongdeptrai
       - MYSQL_DATABASE=banhang
