@@ -3,6 +3,6 @@ myInput=
 case "$1" in
     build)
         sudo rm -R ./db
-        docker-compose up --build --force-recreate
+        docker-compose -f ./docker-compose.dev.yml up --build -d
         ;;
 esac
