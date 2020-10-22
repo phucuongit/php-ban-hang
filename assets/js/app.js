@@ -3,7 +3,12 @@ let increase = document.getElementsByClassName("number-increment");
 if (increase.length > 0) {
   increase[0].addEventListener("click", function () {
     let input = document.querySelector(".input-number");
-    input.value = parseInt(input.value, 10) + 1;
+    if(parseInt(input.value, 10) + 1 <= input.getAttribute('max')){
+      input.value = parseInt(input.value, 10) + 1;
+    }else{
+      alert('Vui lòng mua nhỏ hơn ' + input.getAttribute('max') + 'sản phẩm')
+    }
+ 
   });
 }
 let decrease = document.getElementsByClassName("inumber-decrement");
@@ -49,33 +54,51 @@ function addTocart(query) {
     // console.log(blockProduct);
     blockProduct.forEach((product) => {
       // console.log(product);
-      let url = product.querySelector("a.add_cart").href;
-      let data = {
-        product_id: product.querySelector("input[name=product_id]").value,
-        quality: 1,
-      };
-      product
-        .querySelector("a.add_cart")
-        .addEventListener("click", async function (event) {
-          // console.log("click day");
-          event.preventDefault();
-          const fd = new FormData();
-          for (let key in data) {
-            fd.append(key, data[key]);
-          }
-          await fetch(url + "?action=addToCart", {
-            method: "POST",
-            body: fd,
-          });
-          var close = document.getElementsByClassName("alert");
-          close[0].style.opacity = "1";
-          close[0].style.display = "block";
+     
+      let tagAddTocart = product.querySelector("a.add_cart");
+        if(tagAddTocart){
+          tagAddTocart.addEventListener("click", async function (event) {
+            // console.log("click day");
+            event.preventDefault();
+            let url = product.querySelector("a.add_cart").href;
+            let input = document.querySelector(".input-number");
+            let data = {
+              product_id: product.querySelector("input[name=product_id]").value,
+            }
+            if(input){
+              let maxInput = input.getAttribute('max') ;
+              if (parseInt(input.value) <= 0 || parseInt(input.value) > maxInput) {
+                alert('Vui lòng mua lớn hơn 1 sản phẩm và nhỏ hơn ' + maxInput + 'sản phẩm')
+                return
+              }
+              data = Object.assign(data, {
+                quality: parseInt(input.value, 10),
+              })
+            }else{
+              data = Object.assign(data, {
+                quality: 1,
+              })
+            }
+      
+            const fd = new FormData();
+            for (let key in data) {
+              fd.append(key, data[key]);
+            }
+            await fetch(url + "?action=addToCart", {
+              method: "POST",
+              body: fd,
+            });
+            var close = document.getElementsByClassName("alert");
+            close[0].style.opacity = "1";
+            close[0].style.display = "block";
 
-          setTimeout(function () {
-            close[0].style.opacity = "0";
-            // close[0].style.display = "none";
-          }, 1000);
-        });
+            setTimeout(function () {
+              close[0].style.opacity = "0";
+              // close[0].style.display = "none";
+            }, 1000);
+          });
+      
+      }
     });
   }
 }

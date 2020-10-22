@@ -28,7 +28,7 @@
                                     <a class="active" href="#"> <span>Category:</span><?= $product->name ?></a>
                                 </li>
                                 <li>
-                                    <span>Kho: </span><em style="color: <?= ($product->in_stock > 0) ? 'green' : 'red'?>"><?= ($product->in_stock > 0) ? 'Còn hàng' : 'Hết hàng'?></em>
+                                    <span>Kho: </span><em style="color: <?= ($product->in_stock > 0) ? 'green' : 'red'?>"><?= ($product->in_stock > 0) ? 'Còn '.$product->in_stock.' sản phẩm' : 'Hết hàng'?></em>
                                 </li>
                             </ul>
                             <p>
@@ -39,7 +39,7 @@
                             
                                     <div class="product_count">
                                         <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                                        <input class="input-number" name="quality" type="text" value="1" min="0" />
+                                        <input class="input-number" name="quality" type="number" value="1" min="0" max="<?= $product->in_stock ?>"/>
                                         <span class="number-increment"> <i class="ti-plus"></i></span>
                                     </div>
                                     
