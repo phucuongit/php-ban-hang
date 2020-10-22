@@ -71,10 +71,11 @@
             $action = 'indexAdmin';
         }
     }
-    
+  
     include_once('controllers/' . $nameController . 'Controller.php');
     $class = ucwords($nameController) . 'Controller';
     $classController = new $class($router);
+    // var_dump($arguments);
     $classController->$action($arguments);
 
    

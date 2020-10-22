@@ -34,3 +34,8 @@
 .cart-list-item {
   overflow-x: scroll;
 }
+@media print {
+  .updateStatus{
+    display: none;
+  }
+}

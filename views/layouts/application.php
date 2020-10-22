@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="/assets/css/icon.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png"  href="/assets/img/favicon.png">
+        <script src="https://kit.fontawesome.com/a193da9337.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <?php require_once('header.php') ?>

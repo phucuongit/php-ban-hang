@@ -113,3 +113,23 @@ function closeBtn() {
     div.style.display = "none";
   }, 600);
 }
+
+var buttonsDelCart = document.querySelectorAll('.del-cart')
+buttonsDelCart.forEach(button => {
+  button.addEventListener('click', async function(e){
+    e.preventDefault();
+    var del = this;
+
+    let id = del.parentElement.parentElement.querySelector('input[type="hidden"').value;
+    await fetch('/gio-hang?action=delCart/' + id, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      // body: JSON.stringify({id: id})
+    })
+    alert('Xóa thành công sản phẩm trong giỏ hàng');
+    del.parentElement.parentElement.remove();
+  })
+})
+

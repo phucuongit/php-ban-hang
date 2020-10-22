@@ -13,6 +13,7 @@
                             <th scope="col">Giá</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Tổng</th>
+                            <th scope="col">Xoa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,11 @@
                                 </td>
                                 <td>
                                     <h5><?= number_format( $product['price'] * $product['quality'] , 0, ".", ",")  ?> đ</h5>
+                                </td>
+                                <td>
+                                    <button class="del-cart">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <?php } ?>

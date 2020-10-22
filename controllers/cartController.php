@@ -37,6 +37,12 @@ class CartController extends baseController {
         header('Location: /gio-hang');
     }
 
+    public function delCart($id){
+        unset($_SESSION['item'][$id[0]]);
+        var_dump($_SESSION['item']);
+        // header('Location: /gio-hang');
+    }
+
     public function confirm(){
         if(isset($_SESSION['item']) && count($_SESSION['item']) > 0){
             $itemCart = $_SESSION['item'];
