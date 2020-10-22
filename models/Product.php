@@ -37,7 +37,21 @@ class Product {
             header('Location: /admin/san-pham');
         }
     }
+    static function updateProductByStock($id, $stock){
+        $db = DB::getInstance();
+        $req = $db->prepare('update product set in_stock=:in_stock where id = :id');
+       
+       
+        $req->bindParam(':id', $id);
+        $req->bindParam(':in_stock', $stock);
+      
+      
+        $req->execute();
 
+        if($req->errorCode() == 0) {
+            header('Location: /admin/san-pham');
+        }
+    }
     static function all(){
         $list = [];
         $db = DB::getInstance();

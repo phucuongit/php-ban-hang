@@ -39,16 +39,31 @@ class CartController extends baseController {
 
     public function confirm(){
         if(isset($_SESSION['item']) && count($_SESSION['item']) > 0){
-            
-            $list = [];
             $itemCart = $_SESSION['item'];
             $total = 0;
+            $totalBackup=0;
+            $listBakup = [];
             foreach($itemCart as $key => $item){
                 $prod = Product::findById($key);
-                $total += ( $prod->price * $item['quality'] );
+                $totalBackup += ( $prod->price * $item['quality'] );
+                $prod = json_decode(json_encode($prod), true);
+    
+                $prod = array_merge($prod, array('quality' => $item['quality']));
+                
+                array_push($listBakup, $prod);
+            }
+            $list = [];
+            foreach($itemCart as $key => $item){
+                $prod = Product::findById($key);
+                $quality =  $item['quality'];
+                if($prod->in_stock - $quality < 0){
+                    $result =   array('products' => $listBakup,'total' => $totalBackup,'error' => 'Lỗi sản phẩm '.$prod->title.' chỉ còn ' .$prod->in_stock.' sản phẩm, vui lòng mua nhỏ hơn số lượng sản phẩm có trong kho');
+                    return $this->render('cart', $result);
+                }
+                $total += ( $prod->price * $quality);
                 $prod = json_decode(json_encode($prod), true);
 
-                $prod = array_merge($prod, array('quality' => $item['quality']));
+                $prod = array_merge($prod, array('quality' => $quality));
                 
                 array_push($list, $prod);
             }
@@ -64,10 +79,15 @@ class CartController extends baseController {
          
             $idInserted =  $order->lastInserted()['order_id'];
             if(!$idInserted){
-                echo 'save don hang that bai';
-                return;
+                $result =  array('products' => $listBakup,'error' => 'Mua hàng không thành công do 1 số lỗi');
+                return $this->render('cart', $result);
             }
-
+            foreach($itemCart as $key => $item){
+                $prod = Product::findById($key);
+                $quality =  $item['quality'];
+                $prod->in_stock -= $quality;
+                Product::updateProductByStock($prod->id,$prod->in_stock);
+            }
             $order->saveManyProduct($data['products'],$idInserted);
             $this->render('confirm', $data);
             $_SESSION['item'] = null;

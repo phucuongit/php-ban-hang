@@ -27,10 +27,11 @@
                         <form action="/gio-hang?action=update" method="post">
                         <?php foreach($products as $product) {?>
                             <tr>
-                                <td>
-                                    <div class="media">
+                                <td style="width: 40%">
+                                    <div class="media" style="flex-direction: column;">
                                         <div class="d-flex">
-                                            <img src="<?= $product->image_url ?>" alt="" onerror="this.onerror=null;this.src='/assets/img/default.png';"/>
+                                
+                                            <img src="<?= $product['image_url'] ?>" alt="" onerror="this.onerror=null;this.src='/assets/img/default.png';"/>
                                         </div>
                                         <div class="media-body">
                                             <p><?= $product['title'] ?></p>

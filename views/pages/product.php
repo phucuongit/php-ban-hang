@@ -28,21 +28,26 @@
                                     <a class="active" href="#"> <span>Category:</span><?= $product->name ?></a>
                                 </li>
                                 <li>
-                                    <span>Kho: </span><em style="color: green">Còn hàng</em>
+                                    <span>Kho: </span><em style="color: <?= ($product->in_stock > 0) ? 'green' : 'red'?>"><?= ($product->in_stock > 0) ? 'Còn hàng' : 'Hết hàng'?></em>
                                 </li>
                             </ul>
                             <p>
                             <?= $product->short_des ?>
                             </p>
-                            <div class="card_area d-flex justify-content-between align-items-center">
-                                <div class="product_count">
-                                    <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                                    <input class="input-number" name="quality" type="text" value="1" min="0" />
-                                    <span class="number-increment"> <i class="ti-plus"></i></span>
+                            <?php if($product->in_stock > 0){ ?>
+                                <div class="card_area d-flex justify-content-between align-items-center">
+                            
+                                    <div class="product_count">
+                                        <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                                        <input class="input-number" name="quality" type="text" value="1" min="0" />
+                                        <span class="number-increment"> <i class="ti-plus"></i></span>
+                                    </div>
+                                    
+                                    <input type="hidden" name="product_id" value="<?= $product->id ?>">
+                                    <a style="cursor: pointer" type="submit" class="btn_3 add_cart">Mua hàng</a>
+                            
                                 </div>
-                                <input type="hidden" name="product_id" value="<?= $product->id ?>">
-                                <a style="cursor: pointer" type="submit" class="btn_3 add_cart">Mua hàng</a>
-                            </div>
+                            <?php } ?>
                         </div>
                     </form>
                  

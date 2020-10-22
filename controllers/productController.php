@@ -116,7 +116,9 @@ class ProductController extends baseController implements ICartController{
     
         if( !in_array($imageFileType,$extensions_arr) ){
             $error .= 'Vui lòng nhập đúng định dạng hình ảnh<br>';
-        }else {
+        }else if($_FILES['image_url']['size'] > 2040){
+            $error .= 'Vui lòng upload hình ảnh nhỏ hơn 2M<br>';
+        }else{
             move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
         }
 
@@ -202,10 +204,12 @@ class ProductController extends baseController implements ICartController{
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
         $extensions_arr = array("jpg","jpeg","png","gif");
-    
+
         if( !in_array($imageFileType,$extensions_arr) ){
             $error .= 'Vui lòng nhập đúng định dạng hình ảnh<br>';
-        }else {
+        }else if($_FILES['image_url']['size'] > 2000000){
+            $error .= 'Vui lòng upload hình ảnh nhỏ hơn 2M<br>';
+        }else{
             move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
         }
 

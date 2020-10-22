@@ -21,6 +21,11 @@
     margin-left: -250px;
   }
 }
+@media(min-width: 992px){
+  .nav-link.menu-mobile{
+    display: none
+  }
+}
 @media (max-width: 576px) {
   .card-body.p-0 .table tbody > tr > td:last-of-type {
     padding: 0;

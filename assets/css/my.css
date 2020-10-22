@@ -170,3 +170,12 @@ li.page-item.active a {
 .media {
   display: flex;
 }
+.cart_inner .table tbody tr td .media .d-flex {
+  padding-right: 30px;
+  text-align:center;
+}
+
+.cart_inner .table tbody tr td .media .d-flex img {
+  border: 1px solid #eeeeee;
+  border-radius: 3px;
+}
