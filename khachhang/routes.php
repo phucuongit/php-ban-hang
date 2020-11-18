@@ -25,12 +25,12 @@
    
     // check not exist controller return nameController error
     $router = explode('/', $routerString);
-
+    var_dump($router);
     if(!array_key_exists($router[1], $controllers)){
         $nameController = 'error';
     }
 
-    $nameController = $controllers[preg_replace("/\?(.+)/", '', $router[1] ?? '')];
+    $nameController = $controllers[preg_replace("/\?(.+)/", '', $router[3] ?? '')];
 
     $arguments = array();
     foreach($router as $key => $val){
