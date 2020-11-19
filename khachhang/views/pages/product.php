@@ -8,7 +8,7 @@
                             <div class="lSSlideWrapper usingCss" style="height: 450px;">
                                 <div id="vertical" class="lightSlider lsGrab lSSlide" >
                                     <div class="lslide active" style="height: 450px; margin-bottom: 0px;">
-                                        <img src="<?= $product->image_url ?>" alt="image_thumb" onerror="this.onerror=null;this.src='/assets/img/placeholder.png';"/>
+                                        <img src="<?= BASE_URL . $product->image_url ?>" alt="image_thumb" onerror="this.onerror=null;this.src='<?= BASE_URL . '/assets/img/placeholder.png' ?>';"/>
                                     </div>
                       
                                 </div>
@@ -22,7 +22,7 @@
                     <form action="/san-pham/<?=$product->slug?>?action=addToCart" method="post">
                         <div class="s_product_text">
                             <h3><?= $product->title ?></h3>
-                            <h2><?= number_format($product->price, 0, ".", ",") ?> đ</h2>
+                            <h2><?= formatCurrency($product->price) ?></h2>
                             <ul class="list list_info">
                                 <li>
                                     <a class="active" href="#"> <span>Category:</span><?= $product->name ?></a>
@@ -39,7 +39,7 @@
                             
                                     <div class="product_count">
                                         <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                                        <input class="input-number" name="quality" type="number" value="1" min="0" max="<?= $product->in_stock ?>"/>
+                                        <input class="input-number" name="quality" type="text" value="1" min="0" max="<?= $product->in_stock ?>"/>
                                         <span class="number-increment"> <i class="ti-plus"></i></span>
                                     </div>
                                     

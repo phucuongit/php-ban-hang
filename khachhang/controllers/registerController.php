@@ -1,14 +1,14 @@
 <?php
 namespace KH\Controllers;
 
-use KH\Controllers\baseController;
+use KH\Controllers\BaseController;
 
 use KH\Models\User;
 
 require_once('baseController.php');
 require_once('models/User.php');
 
-class RegisterController extends baseController{
+class RegisterController extends BaseController{
 
     // private $user;
 

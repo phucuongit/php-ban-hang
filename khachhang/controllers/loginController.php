@@ -1,13 +1,14 @@
 <?php
 namespace KH\Controllers;
-use KH\Controllers\baseController;
+
+use KH\Controllers\BaseController;
 
 use KH\Models\User;
 
 require_once('baseController.php');
 require_once('models/User.php');
 
-class LoginController extends baseController{
+class LoginController extends BaseController{
 
     public function index(){
         $data = array('title' => 'Đăng nhập - Cường Lê Shop');
@@ -35,12 +36,12 @@ class LoginController extends baseController{
             return $this->render('login', $data);
         }
         $_SESSION['userLogin'] = $user;
-        header('location: /');
+        $this->redirect();
     }
 
     public function logout(){
         $_SESSION['userLogin'] = null;
-        header('Location: /dang-nhap');
+        $this->redirect('dang-nhap');
     }
 
     public function error(){

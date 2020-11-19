@@ -6,7 +6,7 @@
                     <div class="login_part_text_iner">
                         <h2>Đăng nhập tài khoản</h2>
                         <p>Vui lòng đăng nhập đề đặt hàng</p>
-                        <a href="/dang-nhap" class="btn_3">Đăng nhập</a>
+                        <a href="<?= BASE_URL . 'dang-nhap' ?>" class="btn_3">Đăng nhập</a>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                         <h3>
                             Chào mừng! <br />
                         </h3>
-                        <form class="row contact_form" action="/dang-ky?action=register" method="post" >
+                        <form class="row contact_form" action="<?= BASE_URL . 'dang-ky?action=register'?>" method="post" >
                             <div class="col-md-12 form-group p_star">
                                 <input
                                     type="text"

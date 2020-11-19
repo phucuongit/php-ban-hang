@@ -1,4 +1,5 @@
 <?php
+namespace KH\Models;
 class Category {
     private $id;
     private $name;
@@ -16,9 +17,9 @@ class Category {
     }
 
     public static function all(){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('SELECT * from category  where is_deleted = 0');
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         $req->execute();
         $list = [];
         foreach($req->fetchAll() as $item){
@@ -27,11 +28,11 @@ class Category {
         return $list;
     }    
     public static function paginate($current, $limit){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('SELECT * from category  where is_deleted = 0 limit :offset, :limit');
         $req->bindParam(':offset', ($current -1 ) * $limit);
         $req->bindParam(':limit', $limit);
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         $req->execute();
         $list = [];
         foreach($req->fetchAll() as $item){
@@ -40,30 +41,30 @@ class Category {
         return $list;
     }
     public static function findBySlug($name){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('SELECT * from category where is_deleted = 0 and slug = :slug');
         $req->bindParam(':slug', $name);
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         $req->execute();
 
         return $req->fetch();
     }
     public static function findById(int $id){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('SELECT * from category where is_deleted = 0 and id = :id');
         $req->bindParam(':id', $id);
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         $req->execute();
 
         return $req->fetch();
     }
     public static function delete(int $id){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             $req = $db->prepare('update category set is_deleted = 1 where id = :id');
             $req->bindParam(':id', $id);
-            $req->setFetchMode(PDO::FETCH_OBJ);
+            $req->setFetchMode(\PDO::FETCH_OBJ);
             $req->execute();
             return true;
         }catch (Exception $e){
@@ -72,7 +73,7 @@ class Category {
         }
     }
     public function save(){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             $req = $db->prepare('INSERT into category (name, description, slug, is_deleted) values (:name, :description, :slug, :is_deleted) ');
             $req->bindParam(':name', $this->name);
@@ -87,7 +88,7 @@ class Category {
         }
     }
     public static function updateCategory(array $category){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             $req = $db->prepare('UPDATE category set name = :name, description= :description where id= :id');
             $req->bindParam(':id', $category['id']);

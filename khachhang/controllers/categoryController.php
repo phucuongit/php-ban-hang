@@ -1,14 +1,14 @@
 <?php
 namespace KH\Controllers;
 
-use KH\Controllers\baseController;
+use KH\Controllers\BaseController;
 
 use KH\Models\Category;
 
 require_once('baseController.php');
 require_once('models/Category.php');
 
-class CategoryController extends baseController{
+class CategoryController extends BaseController{
 
     // admin 
     public function indexAdmin(){

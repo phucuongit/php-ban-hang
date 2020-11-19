@@ -1,4 +1,5 @@
 <?php
+namespace KH\Models;
 class Order {
     private $id;
     private $user_id;
@@ -14,7 +15,7 @@ class Order {
     }
 
     public static function all(){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             $req = $db->prepare('select p.id, p.user_id, p.status, p.total, p.created_at, u.fullname from order_item as p join user as u on p.user_id = u.id where p.is_deleted = 0');
             $req->execute();
@@ -25,7 +26,7 @@ class Order {
     }
 
     public static function myOrder($userId){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             $req = $db->prepare('select p.id, p.user_id, p.status, p.total, p.created_at, u.fullname from order_item as p join user as u on p.user_id = u.id where p.user_id = :userId and p.is_deleted = 0');
             $req->bindParam(':userId', $userId);
@@ -37,29 +38,29 @@ class Order {
     }
 
     public static function findById(int $id){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('SELECT p.id, p.user_id, p.status, p.total, p.created_at, u.fullname 
         from order_item as p join user as u on p.user_id = u.id 
         where p.is_deleted = 0 and p.id = :id and p.is_deleted = 0');
         $req->bindParam(':id', $id);
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         $req->execute();
 
         return $req->fetch();
     }
     public static function ManyToMany($id): array{
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('SELECT * FROM order_prod as orp join product as p on p.id = orp.product_id where orp.order_id = :id');
         $req->bindParam(':id', $id);
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         $req->execute();
 
         return $req->fetchAll();
     }
     public static function updateOne($id, $status){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('UPDATE order_item as prd SET prd.status = :status where prd.id = :id');
         $req->bindParam(':id', $id);
@@ -73,7 +74,7 @@ class Order {
         if(!$order){
             return false;
         }
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('update order_item as p set is_deleted = 1  where p.id = :id and p.is_deleted = 0');
         $req->bindParam(':id', $id);
@@ -82,7 +83,7 @@ class Order {
         return true;
     }
     public function save(){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             $req = $db->prepare('insert into order_item (user_id, status, total, is_deleted) values (:user_id, :status, :total, :is_deleted) ');
             $req->bindParam(':user_id', $this->user_id);
@@ -99,7 +100,7 @@ class Order {
         return false;
     }
     public function lastInserted(){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('select LAST_INSERT_ID() as "order_id"');
         $req->execute(); 
 
@@ -110,7 +111,7 @@ class Order {
         return $req->fetch();
     }
     public function saveManyProduct($products, $order_id){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             foreach($products as $product){
                 $req = $db->prepare('insert into order_prod (order_id, product_id, quality) values (:order_id, :product_id, :quality)');
@@ -128,7 +129,7 @@ class Order {
         return false;
     }
     public function updateQuality($product_id, $order_id, $quality){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
                 $req = $db->prepare('update order_prod set quality = :quality where product_id = :product_id and order_id = :order_id');
                 $req->bindParam(':quality', $quality);

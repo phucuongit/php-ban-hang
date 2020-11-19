@@ -3,12 +3,12 @@ namespace KH\Controllers;
 
 use KH\Models\Product;
 
-use KH\Controllers\baseController;
+use KH\Controllers\BaseController;
 
 require_once('baseController.php');
 require_once('models/Product.php');
 
-class PageController extends baseController{
+class PageController extends BaseController{
 
     public function index(){
         $products = Product::all();

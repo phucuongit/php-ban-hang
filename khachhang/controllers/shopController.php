@@ -5,14 +5,14 @@ use KH\Models\Product;
 use KH\Models\Category;
 use KH\Models\Pagination;
 
-use KH\Controllers\baseController;
+use KH\Controllers\BaseController;
 
 require_once('baseController.php');
 require_once('models/Product.php');
 require_once('models/Category.php');
 require_once('models/Pagination.php');
 
-class ShopController extends baseController{
+class ShopController extends BaseController{
 
     use Pagination;
 

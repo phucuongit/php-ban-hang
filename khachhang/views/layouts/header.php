@@ -30,6 +30,11 @@
                             <?php } ?>
                             <?php if(isLogin()) {  ?>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="<?= BASE_URL . 'admin'?>">Đơn hàng</a>
+                                </li>
+                            <?php } ?>
+                            <?php if(isLogin()) {  ?>
+                                <li class="nav-item">
                                     <a class="nav-link" href="<?= BASE_URL . 'admin'?>">Quản trị</a>
                                 </li>
                             <?php } ?>

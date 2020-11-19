@@ -3,14 +3,14 @@ namespace KH\Controllers;
 
 use KH\Models\Product;
 
-use KH\Controllers\baseController;
+use KH\Controllers\BaseController;
 
 require_once('baseController.php');
 require_once('models/Product.php');
 require_once('models/Category.php');
 require_once('ICartController.php');
 
-class ProductController extends baseController implements ICartController{
+class ProductController extends BaseController implements ICartController{
 
     public function index($arguments){
         $product = Product::findBySlug($arguments[2]);

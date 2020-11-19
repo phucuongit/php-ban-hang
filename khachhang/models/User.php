@@ -1,4 +1,5 @@
 <?php
+namespace KH\Models;
 class User {
     private $id;
     private $username;
@@ -13,7 +14,7 @@ class User {
     }
 
     public static function all(){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             $req = $db->prepare('select * from user where is_deleted = 0');
             $req->execute();
@@ -23,17 +24,17 @@ class User {
         }
     }
     public static function findById(int $id){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('SELECT * from user where is_deleted = 0 and id = :id');
         $req->bindParam(':id', $id);
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         $req->execute();
 
         return $req->fetch();
     }
     public static function lastInserted(){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('SELECT LAST_INSERT_ID() as "user"');
         $req->execute(); 
 
@@ -44,7 +45,7 @@ class User {
         return $req->fetch();
     }
     public function save(){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             $req = $db->prepare('insert into user (username, password, fullname, is_admin) values (:username, :password, :fullname, :is_admin)');
             $req->bindParam(':username', $this->username);
@@ -62,7 +63,7 @@ class User {
         return false;
     }
     static function checkExist($username){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('select * from user where username = :username and is_deleted = 0');
         $req->bindParam(':username', $username);
         $req->execute();
@@ -74,19 +75,19 @@ class User {
         
     }
     static function loginUser($username, $password){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('select * from user where username = :username and password = :password and is_deleted = 0');
         
         $req->bindParam(':username', $username);
         $req->bindParam(':password', $password);
 
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         $req->execute();
 
         return $req->fetch();
     }
     public static function delete($id){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('UPDATE user set is_deleted = 1 where id = :id');   
         $req->bindParam(':id', $id);
         $req->execute();
@@ -95,7 +96,7 @@ class User {
     }
 
     public static function updateUser(array $user){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('UPDATE user set fullname = :fullname, password = :password, is_admin = :is_admin where id = :id');   
        
         $req->bindParam(':id', $user['id']);
