@@ -25,8 +25,8 @@ class Router{
             'gio-hang' => 'cart',
             'lien-he' => 'page',
             'dang-nhap' => 'login',
-            'gio-hang' => 'cart',
             'dang-ky' => 'register',
+            'don-hang'  => 'order'
             // 'admin' => ['product', 'cart'],
         );
         // get router
@@ -91,7 +91,7 @@ class Router{
         $class = lcfirst($nameController) . 'Controller';
    
         $this->setRouterRepository(new RouterRepository());
-        var_dump($class, $action);
+        // var_dump($class, $action);
         $controller = $this->getRouterRepository()->switchController($class);
 
         $controller->$action($arguments);

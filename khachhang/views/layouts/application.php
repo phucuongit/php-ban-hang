@@ -6,11 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?= isset($title) ? $title : "Web Ban Hang" ?></title>
         <link rel="stylesheet" href="<?= BASE_URL . 'assets/css/style.css'?>"/>
-        <link rel="stylesheet" href="<?= BASE_URL . 'assets/css/all.css' ?>" />
+       
         <link rel="stylesheet" href="<?= BASE_URL . 'assets/css/my.css' ?>" />
         <link rel="stylesheet" href="<?= BASE_URL . 'assets/css/icon.css' ?>">
         <link rel="stylesheet" href="<?= BASE_URL . 'assets/css/css2.css' ?>">
+       
         <link rel="icon" type="image/png"  href="<?= BASE_URL . 'assets/img/favicon.png' ?>">
+        <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/all.min.css"  />
         <script src="<?= $BASE_URL . 'assets/js/kit.js' ?>"></script>
     </head>
     <body>

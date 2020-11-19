@@ -8,6 +8,7 @@ use KH\Controllers\PageController;
 use KH\Controllers\LoginController;
 use KH\Controllers\RegisterController;
 use KH\Controllers\CartController;
+use KH\Controllers\OrderController;
 
 require_once('controllers/homeController.php');
 require_once('controllers/shopController.php');
@@ -16,7 +17,7 @@ require_once('controllers/pageController.php');
 require_once('controllers/loginController.php');
 require_once('controllers/registerController.php');
 require_once('controllers/cartController.php');
-
+require_once('controllers/orderController.php');
 
 class RouterRepository{
 
@@ -27,6 +28,7 @@ class RouterRepository{
     const LOGIN_CONTROLLER = 'loginController';
     const REGISTER_CONTROLLER = 'registerController';
     const CART_CONTROLLER = 'cartController';
+    const ORDER_CONTROLLER = 'orderController';
 
     public function switchController($nameController)
     {
@@ -46,6 +48,8 @@ class RouterRepository{
                 return new RegisterController();
             case self::CART_CONTROLLER:
                 return new CartController();
+            case self::ORDER_CONTROLLER:
+                return new OrderController();
             default:
                 break;
         }

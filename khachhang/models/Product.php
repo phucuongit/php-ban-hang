@@ -35,9 +35,6 @@ class Product {
       
         $req->execute();
 
-        if($req->errorCode() == 0) {
-            header('Location: /admin/san-pham');
-        }
     }
     static function updateProductByStock($id, $stock){
         $db = \DB::getInstance();
@@ -50,9 +47,6 @@ class Product {
       
         $req->execute();
 
-        if($req->errorCode() == 0) {
-            header('Location: /admin/san-pham');
-        }
     }
     static function all(){
         $list = [];

@@ -90,8 +90,7 @@ function addTocart(query) {
               body: fd,
             }).then(response => response.json())
             .then((data) => {
-              console.log(data)
-              showAlert(data.message);
+                showAlert(data.message);
             }).catch(error => {
                 console.log(error)
                 showAlert('Lỗi không thể thêm sản phẩm này vào giỏ hàng');
@@ -131,15 +130,19 @@ buttonsDelCart.forEach(button => {
     var del = this;
 
     let id = del.parentElement.parentElement.querySelector('input[type="hidden"').value;
-    await fetch('/gio-hang?action=delCart/' + id, {
+    fetch('/gio-hang?action=delCart/' + id, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       },
       // body: JSON.stringify({id: id})
+    }).then(() => {
+      showAlert('Xóa thành công sản phẩm trong giỏ hàng');
+      del.parentElement.parentElement.remove();
+    }).catch((error) => {
+      console.log(error)
     })
-    alert('Xóa thành công sản phẩm trong giỏ hàng');
-    del.parentElement.parentElement.remove();
+  
   })
 })
 

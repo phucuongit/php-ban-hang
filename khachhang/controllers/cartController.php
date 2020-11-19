@@ -51,6 +51,10 @@ class CartController extends BaseController {
 
     public function confirm(){
         if(isset($_SESSION['item']) && count($_SESSION['item']) > 0){
+            if(!isLogin()){
+                $this->redirect('dang-nhap');
+                return;
+            }
             $itemCart = $_SESSION['item'];
             $total = 0;
             $totalBackup=0;
@@ -101,12 +105,12 @@ class CartController extends BaseController {
                 Product::updateProductByStock($prod->id,$prod->in_stock);
             }
             $order->saveManyProduct($data['products'],$idInserted);
-            $this->render('confirm', $data);
             $_SESSION['item'] = null;
-            return null;
+
+            $this->render('confirm', $data);
+
         }else {
-            $data = array();
-            return $this->render('cart', $data);
+            return $this->redirect('gio-hang');
         }
       
     }

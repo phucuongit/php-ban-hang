@@ -40,6 +40,7 @@ class BaseController{
      * @return string
      */
     public function redirect($url = null): string{
+     
         if(!isset($url)){
             return header('location: '. BASE_URL);
         }

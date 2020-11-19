@@ -5,7 +5,7 @@
                 <div class="login_part_text text-center">
                     <div class="login_part_text_iner">
                         <h2>Đăng ký tài khoản</h2>
-                        <p>Vui lòng tạo tài khoản đề đặt hàng</p>
+                        <p>Vui lòng tạo đăng nhập/tài khoản đề đặt hàng</p>
                         <a href="<?= BASE_URL . 'dang-ky' ?>" class="btn_3">Tạo tài khoản</a>
                     </div>
                 </div>

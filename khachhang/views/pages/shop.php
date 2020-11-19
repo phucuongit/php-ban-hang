@@ -9,9 +9,13 @@
                         </div>
                         <div class="widgets_inner">
                             <ul class="list">
+                                <li>
+                                    <a href="<?= BASE_URL . 'cua-hang'?>">Tất cả danh mục</a>
+                                    <span><?= $total ?></span>
+                                </li>
                                 <?php foreach($categories as $category){ ?>
                                     <li>
-                                        <a href="/cua-hang?name=<?= $category->slug ?>"><?= $category->name ?></a>
+                                        <a href="<?= BASE_URL . 'cua-hang?name='.$category->slug ?>"><?= $category->name ?></a>
                                         <span><?= $category->total_product ?></span>
                                     </li>
                                 <?php } ?>

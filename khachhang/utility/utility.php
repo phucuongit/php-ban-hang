@@ -64,4 +64,9 @@
     function convertArray(object $object): array{
         return json_decode(json_encode($object), true);
     }
+
+    function formatDate($time): string
+    {
+        return date("d/m/Y h:i", strtotime($time) + 7*60*60);
+    }
 ?>

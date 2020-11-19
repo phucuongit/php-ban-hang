@@ -28,15 +28,15 @@
                         <form action="<?= BASE_URL . 'gio-hang?action=update'?>" method="post">
                         <?php foreach($products as $product) {?>
                             <tr>
-                                <td style="width: 40%">
+                                <td style="width: auto">
                        
                                     <p><?= $product['title'] ?></p>
                                      
                                 </td>
                                 <td>
-                                    <h5><?= number_format( $product['price'] , 0, ".", ",")  ?> đ</h5>
+                                    <h5><?= formatCurrency( $product['price'])  ?></h5>
                                 </td>
-                                <td>
+                                <td  style="width: 15%">
                                     <div class="product_count">
                                         <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
                                         <input class="input-number" type="text" name="quality[<?= $product['id'] ?>]" value="<?= $product['quality'] ?>" min="0" />
@@ -44,8 +44,8 @@
                                         <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
                                     </div>
                                 </td>
-                                <td>
-                                    <h5><?= number_format( $product['price'] * $product['quality'] , 0, ".", ",")  ?> đ</h5>
+                                <td  style="width: 20%">
+                                    <h5><?= formatCurrency( $product['price'] * $product['quality'])  ?></h5>
                                 </td>
                                 <td>
                                     <button class="del-cart">
@@ -65,11 +65,11 @@
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td>
+                                <td >
                                     <h5>Tổng tiền</h5>
                                 </td>
-                                <td>
-                                    <h5><?= number_format( $total , 0, ".", ",")  ?> đ</h5>
+                                <td colspan="2">
+                                    <h5><?= formatCurrency( $total )  ?></h5>
                                 </td>
                             </tr>
                         </form>

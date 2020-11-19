@@ -25,13 +25,13 @@
                                 <tr>
                                     <th colspan="2"><span><?= $product['title'] ?></span></th>
                                     <th>x<?= $product['quality'] ?></th>
-                                    <th><span><?= number_format( $product['quality'] * $product['price'], 0, ".", ",")  ?></span></th>
+                                    <th><span><?= formatCurrency( $product['quality'] * $product['price'])  ?></span></th>
                                 </tr>
                             <?php } ?>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th scope="col">Tổng cộng: <?=number_format( $total , 0, ".", ",") ?> đ</th>
+                                <th scope="col">Tổng cộng: <?=formatCurrency($total) ?></th>
                             </tr>
                         </tfoot>
                     </table>

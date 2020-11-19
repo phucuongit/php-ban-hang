@@ -21,12 +21,12 @@
                             </li>
                             <?php if(isLogin()) {  ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL . 'admin'?>">Đơn hàng</a>
+                                    <a class="nav-link" href="<?= BASE_URL . 'don-hang'?>">Đơn hàng</a>
                                 </li>
                             <?php } ?>
-                            <?php if(isLogin()) {  ?>
+                            <?php if(isAdmin()) {  ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL . 'admin'?>">Quản trị</a>
+                                    <a class="nav-link" href="<?= BASE_DIR_URL . 'admin'?>">Quản trị</a>
                                 </li>
                             <?php } ?>
                             <?php if(isLogin()){ ?>
