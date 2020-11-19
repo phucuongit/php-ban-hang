@@ -1,6 +1,12 @@
 php_value post_max_size 30M
 php_value upload_max_filesize 30M
 
-RewriteEngine on
-RewriteBase /b1805744/khachhang
-RewriteRule ^(.*).html$ $1.php [R=301,L]
+RewriteEngine On
+RewriteBase /b1805744/
+
+
+RewriteCond $1 !^admin/
+RewriteRule ^admin/(.*)$ admin/index.php?page=$1  [L]
+
+RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
+RewriteRule ^(.*)$ khachhang/index.php

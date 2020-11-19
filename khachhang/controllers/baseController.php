@@ -1,16 +1,17 @@
 <?php
+    namespace KH\Controllers;
     class BaseController{
         
         protected $folder;
         protected $router;
 
-        function __construct($router){
-            $this->router = $router;
-            if($router[1] === 'admin'){
-                $this->folder = 'admin';
-            }else{
-                $this->folder = 'pages';
-            }
+        function __construct(){
+            // $this->router = $router;
+            // if($router[1] === 'admin'){
+            //     $this->folder = 'admin';
+            // }else{
+            $this->folder = 'pages';
+            // }
         }
 
         public function render($file, $data = array(), $customLayout = 'application'){

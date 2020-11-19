@@ -3,34 +3,34 @@
         <div class="row align-items-center">
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="/">
-                        <img src="/assets/img/logo_web.png" alt="logo" style="max-width: 250px;" />
+                    <a class="navbar-brand" href="<?= BASE_URL ?>">
+                        <img src="<?= BASE_URL . 'assets/img/logo_web.png' ?>" alt="logo" style="max-width: 250px;" />
                     </a>
                     <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                         <ul class="navbar-nav <?= (!isHome() ? 'navbar-menu' : '')?>">
                             <li class="nav-item">
-                                <a class="nav-link" href="/">Trang chủ</a>
+                                <a class="nav-link" href="<?= BASE_URL?>">Trang chủ</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="/cua-hang">
+                                <a class="nav-link dropdown-toggle" href="<?= BASE_URL . 'cua-hang' ?>">
                                     Cửa hàng
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/lien-he">Liên hệ</a>
+                                <a class="nav-link" href="<?= BASE_URL . 'lien-he'?>">Liên hệ</a>
                             </li>
                             <?php if(isLogin()){ ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/dang-nhap?action=logout">Đăng suất</a>
+                                    <a class="nav-link" href="<?= BASE_URL . 'dang-nhap?action=logout' ?>">Đăng suất</a>
                                 </li>
                             <?php }else{ ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/dang-nhap">Đăng nhập</a>
+                                    <a class="nav-link" href="<?= BASE_URL . 'dang-nhap' ?>">Đăng nhập</a>
                                 </li>
                             <?php } ?>
                             <?php if(isLogin()) {  ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/admin">Quản trị</a>
+                                    <a class="nav-link" href="<?= BASE_URL . 'admin'?>">Quản trị</a>
                                 </li>
                             <?php } ?>
                         </ul>

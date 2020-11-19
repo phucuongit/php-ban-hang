@@ -1,4 +1,6 @@
 <?php
+namespace KH\Models;
+
 class Product {
     private $id;
     private $title;
@@ -20,7 +22,7 @@ class Product {
     }
 
     function save(){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('insert into product  (title, short_des, description, price, category_id, in_stock,image_url, slug, is_deleted) values (:title, :short_des, :description, :price, :category_id, :in_stock, :image_url, :slug, :is_deleted)');
        
         $vars = array_keys(get_class_vars(get_class($this)));
@@ -38,7 +40,7 @@ class Product {
         }
     }
     static function updateProductByStock($id, $stock){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('update product set in_stock=:in_stock where id = :id');
        
        
@@ -54,11 +56,11 @@ class Product {
     }
     static function all(){
         $list = [];
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('select * from product where is_deleted = false');
 
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
 
         $req->execute();
 
@@ -69,11 +71,11 @@ class Product {
     }
     static function allFeature($limit){
         $list = [];
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('SELECT * from product where is_deleted = false ORDER BY created_at DESC limit ' . $limit);
 
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
 
         $req->execute();
 
@@ -83,7 +85,7 @@ class Product {
         return $list;
     }
     static function numProdByCate($slug){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('SELECT c.total_product from category as cate join (
             select p.category_id, count(c.id) as "total_product" from product as p join category as c on p.category_id = c.id where p.is_deleted = 0 group by p.category_id
@@ -95,12 +97,12 @@ class Product {
     }
     static function allProdCate(){
         $list = [];
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('SELECT * from category as cate join (
             select p.category_id, count(c.id) as "total_product" from product as p join category as c on p.category_id = c.id where p.is_deleted = 0 group by p.category_id
         ) as c on cate.id = c.category_id and cate.is_deleted = 0;');
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
 
         $req->execute();
 
@@ -110,7 +112,7 @@ class Product {
         return $list;
     }
     public static function paginate($current, $limit, $cateName = 'full'){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $offset = ($current -1 ) * $limit;
         try{
             if($cateName == 'full'){
@@ -127,7 +129,7 @@ class Product {
                 }
                      
             }
-            $req->setFetchMode(PDO::FETCH_OBJ);
+            $req->setFetchMode(\PDO::FETCH_OBJ);
             $req->execute();
             $list = [];
             foreach($req->fetchAll() as $item){
@@ -142,7 +144,7 @@ class Product {
         
     }
     static function findBySlug($slug){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('select p.id, 
         p.title, p.description, p.price, 
@@ -152,7 +154,7 @@ class Product {
         on  p.category_id = c.id 
         where p.slug = :slug and p.is_deleted = false');
         $req->bindParam(':slug', $slug);
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
 
         $req->execute();
 
@@ -160,7 +162,7 @@ class Product {
     }
 
     static function findById($id){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
 
         $req = $db->prepare('select p.id, 
         p.title, p.description, p.price, 
@@ -171,18 +173,18 @@ class Product {
         on  p.category_id = c.id 
         where p.id = :id and p.is_deleted = false');
         $req->bindParam(':id', $id);
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         $req->execute();
 
         return $req->fetch();
     }
 
     public function delete($id){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         try{
             $req = $db->prepare('update product set is_deleted = true where id = :id');
             $req->bindParam(':id', $id);
-            $req->setFetchMode(PDO::FETCH_OBJ);
+            $req->setFetchMode(\PDO::FETCH_OBJ);
             $req->execute();
             return true;
         }catch (Exception $e){
@@ -191,7 +193,7 @@ class Product {
         }
     }
     public static function updateProduct(array $product){
-        $db = DB::getInstance();
+        $db = \DB::getInstance();
         $req = $db->prepare('UPDATE product  set title = :title, short_des = :short_des, description = :description, price = :price, category_id=:category_id, in_stock=:in_stock,image_url=:image_url where id =:id');
       
  

@@ -1,4 +1,6 @@
 <?php
+namespace KH\Controllers;
+
 require_once('baseController.php');
 require_once('models/Product.php');
 require_once('models/Category.php');
