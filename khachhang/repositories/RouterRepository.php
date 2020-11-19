@@ -2,6 +2,11 @@
 namespace KH\Repositories;
 
 use KH\Controllers\HomeController;
+use KH\Controllers\ShopController;
+use KH\Controllers\ProductController;
+use KH\Controllers\PageController;
+use KH\Controllers\LoginController;
+use KH\Controllers\RegisterController;
 
 require_once('controllers/homeController.php');
 require_once('controllers/shopController.php');
@@ -18,7 +23,7 @@ class RouterRepository{
     const PAGE_CONTROLLER = 'pageController';
     const LOGIN_CONTROLLER = 'loginController';
     const REGISTER_CONTROLLER = 'registerController';
-    
+
 
     public function switchController($nameController)
     {
@@ -26,10 +31,19 @@ class RouterRepository{
             case self::HOME_CONTROLLER:
                 return new HomeController();
                 break;
+            case self::SHOP_CONTROLLER:
+                return new ShopController();
+            case self::PRODUCT_CONTROLLER:
+                return new ProductController();
+            case self::PAGE_CONTROLLER:
+                return new PageController();
+            case self::LOGIN_CONTROLLER:
+                return new LoginController();
+            case self::REGISTER_CONTROLLER:
+                return new RegisterController();
             default:
                 break;
         }
-
     }
 }  
 

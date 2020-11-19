@@ -1,6 +1,11 @@
 <?php
 namespace KH\Controllers;
 
+use KH\Controllers\baseController;
+
+use KH\Models\Product;
+use KH\Models\Order;
+
 require_once('baseController.php');
 require_once('models/Product.php');
 require_once('models/Order.php');

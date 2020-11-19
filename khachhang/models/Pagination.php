@@ -1,5 +1,6 @@
 <?php 
-    class Pagination {
+    namespace KH\Models;
+    trait Pagination {
         private $config = [
             'total' => 0,
             'limit' => 0,
@@ -12,7 +13,7 @@
          *
          * @param array $config
          */
-        public function __construct(array $config = []){
+        public function setPagination(array $config = []){
             if(isset($config['limit']) && $config['limit'] < 0 ||  isset($config['total']) && $config['total'] < 0){
                 // nếu không thì dừng chương trình và hiển thị thông báo.
                 die('limit và total không được nhỏ hơn 0');

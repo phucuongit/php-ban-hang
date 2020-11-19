@@ -5,7 +5,9 @@
         }
         return false;
     }
-
+    function formatCurrency($price){
+        return  number_format($price, 0, ",", ".") . ' đ';
+    }
     function isLogin(){
         if(!isset($_SESSION['userLogin'])){
             return false;

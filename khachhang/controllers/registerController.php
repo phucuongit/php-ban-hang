@@ -1,6 +1,10 @@
 <?php
 namespace KH\Controllers;
 
+use KH\Controllers\baseController;
+
+use KH\Models\User;
+
 require_once('baseController.php');
 require_once('models/User.php');
 

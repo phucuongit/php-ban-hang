@@ -10,7 +10,7 @@ require_once('controllers/productController.php');
 require_once('controllers/pageController.php');
 require_once('controllers/loginController.php');
 require_once('controllers/registerController.php');
-
+require_once('utility/utility.php');
 class Router{
     
     protected $routerRepository;
@@ -56,12 +56,10 @@ class Router{
             }
         }
 
-    
         if(!$nameController){
             $nameController = 'error';
         }
-
-        require_once('utility/utility.php');
+       
         // if($router[1] === 'admin'){
             // $controllerAdmin = array(
             //     ''     => 'admin',
@@ -93,14 +91,13 @@ class Router{
         $class = lcfirst($nameController) . 'Controller';
    
         $this->setRouterRepository(new RouterRepository());
-
+        var_dump($router, $action);
         $controller = $this->getRouterRepository()->switchController($class);
 
         $controller->$action($arguments);
     }
 
-
-    public function getRouterRepository(){
+    public function getRouterRepository(): RouterRepository{
         return $this->routerRepository;
     }
 

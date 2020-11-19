@@ -1,6 +1,12 @@
 <?php
 namespace KH\Controllers;
 
+use KH\Models\Product;
+use KH\Models\Category;
+use KH\Models\Pagination;
+
+use KH\Controllers\baseController;
+
 require_once('baseController.php');
 require_once('models/Product.php');
 require_once('models/Category.php');
@@ -8,9 +14,12 @@ require_once('models/Pagination.php');
 
 class ShopController extends baseController{
 
+    use Pagination;
+
     public function index(){
 
         $category = Product::allProdCate();
+
         $config = [
             'total' => 0, 
             'limit' => 5,
@@ -27,16 +36,17 @@ class ShopController extends baseController{
             $products = Product::all();
             $config['total'] = count($products);
         }
-      
-        $page = new Pagination($config);
-        $currentPage = $page->getCurrentPage();
+
+        $this->setPagination($config);
+        $currentPage = $this->getCurrentPage();
+
         $products = Product::paginate($currentPage, $config['limit'],isset($_GET['name']) ? $name : 'full');
 
         $data = array(
             'title' => 'Cửa hàng - Cường Lê Shop',
             'products' => $products, 
             'categories' => $category,
-            'page'  => $page->getPagination(),
+            'page'  => $this->getPagination(),
             'total' => $config['total']
         );
         $this->render('shop', $data);

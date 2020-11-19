@@ -2,6 +2,7 @@
 namespace KH\Controllers;
 
 use KH\Controllers\baseController;
+
 use KH\Models\Product;
 
 require_once('baseController.php');
