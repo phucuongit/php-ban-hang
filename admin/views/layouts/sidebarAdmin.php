@@ -1,6 +1,6 @@
 <?php $user = $_SESSION['userLogin'] ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="/admin" class="brand-link">
+    <a href="<?= BASE_ADMIN_URL ?>" class="brand-link">
         <span class="brand-text font-weight-light">Shop CuongLe</span>
     </a>
 
@@ -12,7 +12,7 @@
                 <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="/assets/img/user.png" class="img-circle elevation-2" alt="User Image" />
+                            <img src="<?= BASE_ADMIN_URL ?>assets/img/user.png" class="img-circle elevation-2" alt="User Image" />
                         </div>
                         <div class="info">
                             <a href="#" class="d-block"><?= $user['fullname']?></a>
@@ -22,7 +22,7 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item has-treeview">
-                                <a href="/admin" class="nav-link <?= isCurrentPage('/admin') ? 'active' : ''?>">
+                                <a href="<?= BASE_ADMIN_URL ?>" class="nav-link <?= isCurrentPage('/admin') ? 'active' : ''?>">
                                 <i class="fas fa-tachometer-alt"></i>
                                     <p>
                                         Dashboard
@@ -32,7 +32,7 @@
                             </li>
                            
                             <li class="nav-item">
-                                <a href="/admin/don-hang" class="nav-link <?= isCurrentPage('/admin/don-hang') ? 'active' : ''?>">
+                                <a href="<?= BASE_ADMIN_URL ?>don-hang" class="nav-link <?= isCurrentPage('/admin/don-hang') ? 'active' : ''?>">
                                 <i class="far fa-chart-bar"></i>
                                     <p>
                                         Đơn hàng của tôi
@@ -42,7 +42,7 @@
                             <?php if(isAdmin()) {?>
                                 <li class="nav-header">Quản trị</li>
                                 <li class="nav-item">
-                                    <a href="/admin/san-pham" class="nav-link <?= isCurrentPage('/admin/san-pham') ? 'active' : ''?>">
+                                    <a href="<?= BASE_ADMIN_URL ?>san-pham" class="nav-link <?= isCurrentPage( BASE_ADMIN_URL . 'san-pham') ? 'active' : ''?>">
                                     <i class="fas fa-cubes"></i>
                                         <p>
                                             Quản lý sản phẩm
@@ -50,7 +50,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/danh-muc" class="nav-link <?= isCurrentPage('/admin/danh-muc') ? 'active' : ''?>">
+                                    <a href="<?= BASE_ADMIN_URL ?>danh-muc" class="nav-link <?= isCurrentPage('/admin/danh-muc') ? 'active' : ''?>">
                                     <i class="fab fa-battle-net"></i>
                                         <p>
                                             Quản lý danh mục
@@ -58,7 +58,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/user" class="nav-link <?= isCurrentPage('/admin/user') ? 'active' : ''?>">
+                                    <a href="<?= BASE_ADMIN_URL ?>user" class="nav-link <?= isCurrentPage('/admin/user') ? 'active' : ''?>">
                                         <i class="fas fa-users"></i>
                                         <p>
                                             Quản lý người dùng
@@ -66,7 +66,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/dang-nhap?action=logout" class="nav-link">
+                                    <a href="<?= BASE_URL ?>dang-nhap?action=logout" class="nav-link">
                 
                                         <p>
                                             Đăng suất

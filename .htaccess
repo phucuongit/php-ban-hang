@@ -6,7 +6,8 @@ RewriteBase /b1805744/
 
 
 RewriteCond $1 !^admin/
-RewriteRule ^admin/(.*)$ admin/index.php?page=$1  [L]
+RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
+RewriteRule ^admin/(.*)$ admin/index.php  [L]
 
 RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
 RewriteRule ^(.*)$ khachhang/index.php

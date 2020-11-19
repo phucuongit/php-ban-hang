@@ -6,7 +6,7 @@
           <h3><i class="fas fa-exclamation-triangle text-warning"></i> Lỗi trang không tìm thấy.</h3>
 
           <p>
-          Lỗi trang không tìm thấy <a href="/">trở về trang chủ</a> 
+          Lỗi trang không tìm thấy <a href="<?= BASE_URL ?>">trở về trang chủ</a> 
           </p>
         </div>
       </div>

@@ -5,13 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?= isset($title) ? $title  : 'Trang quản trị'?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/assets/css/adminlte.css">
-  <link rel="stylesheet" href="/assets/css/admin.css">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link rel="icon" type="image/png"  href="/assets/img/favicon.png">
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/all.min.css"  />
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/adminlte.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/font.css">
+  <link rel="icon" type="image/png"  href="<?= BASE_ADMIN_URL ?>assets/img/favicon.png">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -49,6 +48,6 @@
   <aside class="control-sidebar control-sidebar-dark">
   </aside>
 </div>
-  <script src="/assets/js/admin.js"></script>
+  <script src="<?= BASE_URL ?>assets/js/admin.js"></script>
 </body>
 </html>

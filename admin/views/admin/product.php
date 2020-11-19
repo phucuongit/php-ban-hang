@@ -45,7 +45,7 @@
                             <?= $product->id ?>
                         </td>
                         <td>
-                            <img src="<?= $product->image_url ?>" alt="" style="max-width: 100%"  onerror="this.onerror=null;this.src='<?= BASE_URL . 'assets/img/default-150x150.png' ?>';">
+                            <img src="<?= $product->image_url ?>" alt="" style="max-width: 100%"  onerror="this.onerror=null;this.src='<?= BASE_ADMIN_URL . 'assets/img/default-150x150.png' ?>';">
                         </td>
                 
                         <td>

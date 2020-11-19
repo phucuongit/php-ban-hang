@@ -4,7 +4,7 @@
           <div class="col-lg-6 col-6">
 
             <div class="small-box bg-info">
-              <a href="/admin/don-hang">
+              <a href="<?= BASE_ADMIN_URL ?>don-hang">
                 <div class="inner">
                   <h3><?= $totalOrder ?></h3>
 
@@ -20,7 +20,7 @@
     
           <div class="col-lg-6 col-6">
             <div class="small-box bg-warning">
-            <a href="/admin/user">
+            <a href="<?= BASE_ADMIN_URL ?>user">
               <div class="inner">
                 <h3><?= $totalUser ?></h3>
                 <p>Thành viên đăng ký</p>
