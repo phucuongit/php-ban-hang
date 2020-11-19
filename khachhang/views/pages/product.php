@@ -8,7 +8,7 @@
                             <div class="lSSlideWrapper usingCss" style="height: 450px;">
                                 <div id="vertical" class="lightSlider lsGrab lSSlide" >
                                     <div class="lslide active" style="height: 450px; margin-bottom: 0px;">
-                                        <img src="<?= BASE_URL . $product->image_url ?>" alt="image_thumb" onerror="this.onerror=null;this.src='<?= BASE_URL . '/assets/img/placeholder.png' ?>';"/>
+                                        <img src="<?= BASE_URL . $product->image_url ?>" alt="image_thumb" onerror="this.onerror=null;this.src='<?= BASE_URL . 'assets/img/placeholder.png' ?>';"/>
                                     </div>
                       
                                 </div>

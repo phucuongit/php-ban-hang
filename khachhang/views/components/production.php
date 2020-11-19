@@ -1,7 +1,7 @@
 <div class="col-lg-3 col-sm-6 col-6">
     <a href="<?= BASE_URL . 'san-pham/' . $product->slug ?>">
         <div class="single_product_item">
-            <img src="<?= BASE_URL . $product->image_url ?>" alt="" onerror="this.onerror=null;this.src='<?= BASE_URL . '/assets/img/default.png' ?>';" style="width: 100%"/>
+            <img src="<?= BASE_URL . $product->image_url ?>" alt="" onerror="this.onerror=null;this.src='<?= BASE_URL . 'assets/img/default.png' ?>';" style="width: 100%"/>
             <div class="single_product_text">
                 <h4><?= $product->title ?></h4>
                 <h3><?=formatCurrency($product->price) ?></h3>

@@ -45,5 +45,9 @@ class BaseController{
         }
         return header('location: '. BASE_URL . $url);
     }
+
+    public function error(){
+        $this->render('error');
+    }
 }
 ?>

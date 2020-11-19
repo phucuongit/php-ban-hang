@@ -24,7 +24,7 @@
                         <div class="col-lg-8">
                             <div class="copyright_text">
                                 <p style="margin: 0">
-                                  Bản quyền ©CuongLe B1805744 <i class="ti-heart" aria-hidden="true"></i>
+                                  Bản quyền ©CuongLe B1805744 <i class="fas fa-heart" style="color: red"></i>
                                 </p>
                             </div>
                         </div>
@@ -45,6 +45,6 @@
                 </div>
             </div>
         </footer>
-        <script src="<?= BASE_URL . '/assets/js/app.js' ?>"></script>
+        <script src="<?= BASE_URL . 'assets/js/app.js' ?>"></script>
     </body>
 </html>

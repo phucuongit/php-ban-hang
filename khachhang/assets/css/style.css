@@ -2319,7 +2319,7 @@ ul {
 
 .banner_part {
   position: relative;
-  background: url(/assets/img/banner.jpg);
+
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;

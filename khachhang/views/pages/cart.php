@@ -13,31 +13,25 @@
                             <th scope="col">Giá</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Tổng</th>
-                            <th scope="col">Xoa</th>
+                            <th scope="col">Xóa sản phẩm</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php if(isset($products)) { ?>
                         <?php if(count($products) ===0) { ?>
                             <tr>
-                                <td colspan="4" style="text-align: center;">
+                                <td colspan="5" style="text-align: center;">
                                     Giỏ hàng trống
                                 </td>
                             </tr>
                         <?php }else { ?>
-                        <form action="/gio-hang?action=update" method="post">
+                        <form action="<?= BASE_URL . 'gio-hang?action=update'?>" method="post">
                         <?php foreach($products as $product) {?>
                             <tr>
                                 <td style="width: 40%">
-                                    <div class="media" style="flex-direction: column;">
-                                        <div class="d-flex">
-                                
-                                            <img src="<?= $product['image_url'] ?>" alt="" onerror="this.onerror=null;this.src='/assets/img/default.png';"/>
-                                        </div>
-                                        <div class="media-body">
-                                            <p><?= $product['title'] ?></p>
-                                        </div>
-                                    </div>
+                       
+                                    <p><?= $product['title'] ?></p>
+                                     
                                 </td>
                                 <td>
                                     <h5><?= number_format( $product['price'] , 0, ".", ",")  ?> đ</h5>
@@ -82,16 +76,16 @@
                         <?php } ?>
                     <?php } else { ?>
                         <tr>
-                                <td colspan="4" style="text-align: center;">
-                                    Giỏ hàng trống
-                                </td>
-                            </tr>
+                            <td colspan="5" style="text-align: center;">
+                                Giỏ hàng trống
+                            </td>
+                        </tr>
                     <?php } ?>
                     </tbody>
                 </table>
                 <div class="checkout_btn_inner float-right">
                     <a class="btn_1" href="/cua-hang">Tiếp tục mua hàng</a>
-                    <a class="btn_1 checkout_btn_1" href="/gio-hang?action=confirm">Đặt hàng</a>
+                    <a class="btn_1 checkout_btn_1" href="<?= BASE_URL . 'gio-hang?action=confirm' ?>">Đặt hàng</a>
                 </div>
             </div>
         </div>

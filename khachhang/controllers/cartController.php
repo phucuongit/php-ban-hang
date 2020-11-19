@@ -41,13 +41,12 @@ class CartController extends BaseController {
         foreach($itemCart as $key => $item){
             $_SESSION['item'][$key]['quality'] = $_POST['quality'][$key];
         }
-        header('Location: /gio-hang');
+        $this->redirect('gio-hang');
     }
 
     public function delCart($id){
         unset($_SESSION['item'][$id[0]]);
-        var_dump($_SESSION['item']);
-        // header('Location: /gio-hang');
+        $this->redirect('gio-hang');
     }
 
     public function confirm(){

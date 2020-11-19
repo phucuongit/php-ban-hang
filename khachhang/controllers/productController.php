@@ -26,12 +26,20 @@ class ProductController extends BaseController implements ICartController{
 
     
     public function addToCart(){
+      
         $id = $_POST['product_id'];
         $quality = $_POST['quality'];
-
+        
         $product = Product::findById($id);
+
+        header("Content-Type: application/json");
+
         if(!$product){
-            header('Location: /error');
+            echo json_encode([
+                'status'    => "ERROR",
+                "code"      => "addToCart.failed.not_found_product_id",
+                "message"   => "Không thể thêm vào giỏ hàng"
+            ]);
             return;
         }
         $itemAdd = array('id' => $id, 'quality' => $quality);
@@ -43,7 +51,11 @@ class ProductController extends BaseController implements ICartController{
         } else {
             $_SESSION['item'][$id]['quality'] += $quality;
         }
-        header('Location: /san-pham/' . $product->slug);
+        echo json_encode([
+            'status' => "OK",
+            "message"   => "Thêm thành công sản phẩm ".$product->title." vào giỏ hàng"
+        ]);
+        return;
     }
 
     // admin 
@@ -60,9 +72,7 @@ class ProductController extends BaseController implements ICartController{
             $this->render('product', $data, 'adminLayout');
         }
     }
-    public function error(){
-      $this->render('error');
-    }
+
     public function prod_del(){
         $id = $_POST['id'];
         $product = Product::findById($id);

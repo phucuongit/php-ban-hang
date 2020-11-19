@@ -84,25 +84,35 @@ function addTocart(query) {
             for (let key in data) {
               fd.append(key, data[key]);
             }
-            await fetch(url + "?action=addToCart", {
+            console.log('chay day')
+            fetch(url + "?action=addToCart", {
               method: "POST",
               body: fd,
-            });
-            var close = document.getElementsByClassName("alert");
-            close[0].style.opacity = "1";
-            close[0].style.display = "block";
-
-            setTimeout(function () {
-              close[0].style.opacity = "0";
-              // close[0].style.display = "none";
-            }, 1000);
+            }).then(response => response.json())
+            .then((data) => {
+              console.log(data)
+              showAlert(data.message);
+            }).catch(error => {
+                console.log(error)
+                showAlert('Lỗi không thể thêm sản phẩm này vào giỏ hàng');
+            })
+           
           });
       
       }
     });
   }
 }
+function showAlert(text){
+  var close = document.getElementsByClassName("alert");
+  close[0].style.opacity = "1";
+  close[0].style.display = "block";
 
+  setTimeout(function () {
+    close[0].style.opacity = "0";
+    close[0].innerHTML = text
+  }, 1000);
+}
 function closeBtn() {
   var close = document.getElementsByClassName("closebtn");
   var div = close[0].parentElement;
