@@ -8,9 +8,9 @@ use KH\Models\User;
 use KH\Models\Order;
 
 require_once('baseController.php');
-require_once('../khachhang/models/Product.php');
-require_once('../khachhang/models/Order.php');
-require_once('../khachhang/models/User.php');
+require_once(__DIR__ . '\..\..\khachhang\models\Product.php');
+require_once(__DIR__ . '\..\..\khachhang\models\Order.php');
+require_once(__DIR__ . '\..\..\khachhang\models\User.php');
 
 class AdminController extends BaseController {
 

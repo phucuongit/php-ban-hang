@@ -1,5 +1,5 @@
 <section class="content">
-<form action="<?= isset($product) ? '/admin/san-pham/them-moi?action=edit' : '/admin/san-pham/them-moi?action=add'?>" method="post" enctype="multipart/form-data">
+<form action="<?= BASE_ADMIN_URL . isset($product) ? 'san-pham/them-moi?action=edit' : 'san-pham/them-moi?action=add'?>" method="post" enctype="multipart/form-data">
     <div class="row">
       
             <div class="col-md-6">

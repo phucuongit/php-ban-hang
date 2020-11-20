@@ -1,5 +1,5 @@
 <section class="content">
-<form action="<?= (isset($category) ? '/admin/danh-muc?action=edit' : '/admin/danh-muc/them-moi?action=add')  ?>" method="post" enctype="multipart/form-data">
+<form action="<?= BASE_ADMIN_URL . (isset($category) ? 'danh-muc?action=edit' : 'danh-muc/them-moi?action=add')  ?>" method="post" enctype="multipart/form-data">
     <div class="row">
 
     <div class="col-md-12">

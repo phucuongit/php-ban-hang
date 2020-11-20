@@ -1,11 +1,12 @@
 <?php 
 namespace Admin\Repositories;
 
-use Admin\Models\Order;
-use Admin\Models\User;
+use KH\Models\Order;
+use KH\Models\User;
+use KH\Models\Product;
 
-require_once('../khachhang/models/Order.php');
-require_once('../khachhang/models/User.php');
+require_once(__DIR__ .'\..\..\khachhang\models\Product.php');
+require_once(__DIR__ .'\..\..\khachhang\models\Order.php');
 
 class OrderRepository{
 

@@ -6,8 +6,7 @@ use Admin\Controllers\BaseController;
 use KH\Models\Category;
 
 require_once('baseController.php');
-require_once('../khachhang/models/Category.php');
-
+require_once(__DIR__ . '\..\..\khachhang\models\Category.php');
 class CategoryController extends BaseController{
 
     // admin 

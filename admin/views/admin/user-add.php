@@ -1,5 +1,5 @@
 <section class="content">
-<form action="<?= @(isset($user) ? '/admin/user?action=edit' : '/admin/user/them-moi?action=add')  ?>" method="post" enctype="multipart/form-data">
+<form action="<?= BASE_ADMIN_URL . (isset($user) ? 'user?action=edit' : 'user/them-moi?action=add')  ?>" method="post" enctype="multipart/form-data">
     <div class="row">
 
     <div class="col-md-12">

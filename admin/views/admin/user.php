@@ -4,7 +4,7 @@
   <div class="card-header">
     <h3 class="card-title">Danh sách người dùng</h3>
     <div class="card-tools">
-      <a type="button" class="btn btn-primary" href="/admin/user/them-moi">
+      <a type="button" class="btn btn-primary" href="<?= BASE_ADMIN_URL ?>user/them-moi">
         <i class="fas fa-plus-circle"></i>Thêm mới</a>
     </div>
 

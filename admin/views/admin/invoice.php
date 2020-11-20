@@ -82,10 +82,10 @@
 
               <div class="row">
                 <div class="col-6">
-                  <img src="/assets/img/credit/visa.png" alt="Visa">
-                  <img src="/assets/img/credit/mastercard.png" alt="Mastercard">
-                  <img src="/assets/img/credit/american-express.png" alt="American Express">
-                  <img src="/assets/img/credit/paypal2.png" alt="Paypal">
+                  <img src="<?= BASE_ADMIN_URL ?>assets/img/credit/visa.png" alt="Visa">
+                  <img src="<?= BASE_ADMIN_URL ?>assets/img/credit/mastercard.png" alt="Mastercard">
+                  <img src="<?= BASE_ADMIN_URL ?>assets/img/credit/american-express.png" alt="American Express">
+                  <img src="<?= BASE_ADMIN_URL ?>assets/img/credit/paypal2.png" alt="Paypal">
 
                   <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
                   Cám ơn bạn đã đặt hàng bên chúng tôi

@@ -3,15 +3,13 @@ namespace Admin\Controllers;
 
 use Admin\Controllers\BaseController;
 
-use KH\Repositories\OrderRepository;
+use Admin\Repositories\OrderRepository;
 
 use KH\Models\Product;
 use KH\Models\Order;
 
 require_once('baseController.php');
-require_once('../khachhang/models/Product.php');
-require_once('../khachhang/models/Order.php');
-require_once('repositories/OrderRepository.php');
+require_once(__DIR__ . '\..\repositories\OrderRepository.php');
 
 class OrderController extends BaseController{
 
