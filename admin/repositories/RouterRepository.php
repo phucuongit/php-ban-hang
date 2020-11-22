@@ -11,6 +11,7 @@ use Admin\Controllers\CartController;
 use Admin\Controllers\OrderController;
 use Admin\Controllers\AdminController;
 use Admin\Controllers\CategoryController;
+use Admin\Controllers\ErrorController;
 
 require_once('controllers/homeController.php');
 require_once('controllers/shopController.php');
@@ -20,6 +21,7 @@ require_once('controllers/cartController.php');
 require_once('controllers/orderController.php');
 require_once('controllers/adminController.php');
 require_once('controllers/categoryController.php');
+require_once('controllers/errorController.php');
 
 class RouterRepository{
 
@@ -31,6 +33,7 @@ class RouterRepository{
     const ORDER_CONTROLLER = 'orderController';
     const ADMIN_CONTROLLER = 'adminController';
     const CATEGORY_CONTROLLER = 'categoryController';
+    const ERROR_CONTROLLER = 'errorController';
 
     public function switchController($nameController)
     {
@@ -52,6 +55,8 @@ class RouterRepository{
                 return new AdminController();
             case self::CATEGORY_CONTROLLER:
                 return new CategoryController();
+            case self::ERROR_CONTROLLER:
+                return new ErrorController();
             default:
                 break;
         }

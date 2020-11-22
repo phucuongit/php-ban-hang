@@ -15,7 +15,10 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
+  <div class="alert alert-success alert-dismissible hidden">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-check"></i> Thông báo!</h5>
+  </div>
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
  
     <ul class="navbar-nav ml-auto">

@@ -46,7 +46,7 @@
                             <p><?=  number_format($order['total'], 0, ".", ",") ?> VND</p>
                         </td>
                         <td>
-                            <p><?= $order['created_at'] ?></p>
+                            <p><?= formatDate($order['created_at']) ?></p>
                         </td>
                         <td>
                             <p><span class="badge badge-<?=  ($order['status'] == 2) ? "success" : "danger" ?>"> <?=  $this->orderRepository->statusOrder($order['status']) ?></span></p>

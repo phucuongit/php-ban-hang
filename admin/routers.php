@@ -20,6 +20,7 @@ class Router{
             'don-hang'  => 'cart',
             'user'      => 'login',
             'danh-muc'  => 'category',
+            'error'     => 'error'
         );
         // get router
         $routerString = $_SERVER['REQUEST_URI'];

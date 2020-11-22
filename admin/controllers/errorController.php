@@ -10,13 +10,9 @@ require_once(__DIR__ . '\..\..\khachhang\models\Product.php');
 
 class ErrorController extends BaseController{
 
-    public function index(){
-        $data = array( 'title' => '404 - Cường Lê');
-        $this->render('error', $data);
-    }
-
     public function indexAdmin(){
-        $data = array();
-        $this->render('error', $data);
+        $data = array( 'title' => '404 Không tìm thấy');
+        $this->render('error', $data, 'adminLayout');
     }
+    
 }

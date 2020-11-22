@@ -45,6 +45,7 @@ class CartController extends BaseController {
     }
 
     public function delCart(){
+        header("Content-Type: application/json");
         try{
             $id = $_POST['item_id'];
             unset($_SESSION['item'][$id]);

@@ -36,18 +36,25 @@ class CartController extends BaseController {
         return $this->render('order', $data, 'adminLayout');
     }
 
-    public function orderDel(){
+    public function orderDel()
+    {
         $id = $_POST['id'];
-
+        header("Content-Type: application/json");
         if(Order::delete($id)){
-            header('Location: /admin/don-hang/');
+            echo json_encode( [
+                'status'    => 'OK',
+                'message'   => 'Xóa thành công đơn hàng đơn hàng #' . $id 
+            ]);
         }else{
-            $data = array('orders' => Order::all(), 'error' => 'Loi xoa don hang');
-
-            $this->render('order', $data, 'adminLayout');  
+            echo json_encode( [
+                'status'    => 'ERROR',
+                'code'      => 'orderDel.failed.data_error' ,
+                'message'   => 'Lỗi xóa đơn hàng'
+            ]);
         }
     }
-    public function detail(array $id){
+    public function detail(array $id)
+    {
         $id = $_GET['id'];
 
         if(!isset($id)){
@@ -55,19 +62,32 @@ class CartController extends BaseController {
         }
 
         $products = Order::ManyToMany($id);
-
+        if(count($products) <= 0){
+            return $this->redirect('error');
+        }
         $data = array('order' => Order::findById($id), 'products' => convertObjectToArray($products));
         
         $this->render('invoice', $data, 'adminLayout');  
 
     }
-    public function updateStatus(){
+
+    public function updateStatus()
+    {
         $id = $_POST['id'];
         $status = $_POST['status'];
 
-        Order::updateOne($id, $status);
+        if(Order::updateOne($id, $status)){
+            echo json_encode( [
+                'status'    => 'OK',
+                'message'   => 'Cập nhật thành công đơn hàng đơn hàng #' . $id 
+            ]);
+        }else{
+            echo json_encode( [
+                'status'    => 'ERROR',
+                'code'      => 'updateStatus.failed.data_error' ,
+                'message'   => 'Lỗi cập nhật trạng thái đơn hàng'
+            ]);
+        }
     }
  
-    
-
 }
