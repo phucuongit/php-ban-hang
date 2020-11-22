@@ -44,7 +44,7 @@
                                     <h5 style="color:<?= $product['status'] == 2 ? 'green' : 'red'?>"><?= $this->getOrderRepository()->statusOrder($product['status'])  ?></h5>
                                 </td>
                                 <td>
-                                    <a href="">Chi tiết</a>
+                                    <a href="<?= BASE_URL . 'don-hang/'.$product['id'].'?action=orderDetail'?>">Chi tiết</a>
                                 </td>
                             </tr>
 

@@ -27,7 +27,6 @@ class Router{
             'dang-nhap' => 'login',
             'dang-ky' => 'register',
             'don-hang'  => 'order'
-            // 'admin' => ['product', 'cart'],
         );
         // get router
         $routerString = $_SERVER['REQUEST_URI'];
@@ -43,7 +42,7 @@ class Router{
         // check not exist controller return nameController error
         $router = explode('/', $routerString);
     
-        if(!array_key_exists($router[1], $controllers)){
+        if(!array_key_exists($router[3], $controllers)){
             $nameController = 'error';
         }
     
@@ -60,34 +59,6 @@ class Router{
             $nameController = 'error';
         }
        
-        // if($router[1] === 'admin'){
-            // $controllerAdmin = array(
-            //     ''     => 'admin',
-            //     'san-pham' => 'product',
-            //     'dang-nhap' => 'login',
-            //     'don-hang'  => 'cart',
-            //     'user'  => 'login',
-            //     'danh-muc'  => 'category'
-            // );
-            //none admin can access
-            // $protectCanAccess = array('' => 'admin','don-hang'  => 'cart');
-
-            // $removeAction = preg_replace("/\?(.+)/", '', $router[2] ?? '');
-            // $nameController = $controllerAdmin[$removeAction];
-            // if(!array_key_exists($removeAction, $controllerAdmin) || (!isAdmin() && !array_key_exists($removeAction, $protectCanAccess)) ){
-            //     $nameController = 'error';
-            // }
-            // // get action to call
-            // $pattern = "/action=(\w+)/";
-            // preg_match($pattern, $routerString, $matches);
-            // if(isset($matches[1])){
-            //     $action = $matches[1];
-            // }else{
-            //     $action = 'indexAdmin';
-            // }
-        // }
-    
-     
         $class = lcfirst($nameController) . 'Controller';
    
         $this->setRouterRepository(new RouterRepository());

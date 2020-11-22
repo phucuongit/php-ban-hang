@@ -32,6 +32,7 @@ class Router{
         // get action to call
         $pattern = "/action=(\w+)/";
         preg_match($pattern, $routerString, $matches);
+       
         if(isset($matches[1])){
             $action = $matches[1];
         }else{
@@ -40,8 +41,8 @@ class Router{
     
         // check not exist controller return nameController error
         $router = explode('/', $routerString);
-    
-        if(!array_key_exists($router[1], $controllers)){
+        // var_dump($router);
+        if(!array_key_exists($router[3], $controllers)){
             $nameController = 'error';
         }
     

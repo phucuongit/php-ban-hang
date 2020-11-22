@@ -9,19 +9,9 @@ class BaseController{
         $this->folder = 'pages';
     }
 
-    public function render($file, $data = array(), $customLayout = 'application'){
+    public function render($file, $data = array(), $customLayout = 'application')
+    {
 
-        $request =  $_SERVER['REQUEST_URI'];
-        // check request all cac trang khac /dang-nhap /dang-ky dieu huong ve dang nhap (tru /admin.+)
-        $regexAdmin = "/admin(\/.+)?/";
-        // if(!isset($_SESSION['userLogin']) && 
-        // $request != '/dang-nhap' && 
-        // $request != '/dang-nhap?action=login' && 
-        // $request != '/dang-ky' &&
-        // $request != '/dang-ky?action=register' ){
-        //     header('Location: /dang-nhap');
-        //     return;
-        // }
         $viewFile = 'views/'. $this->folder . '/' . $file . '.php';
         if(is_file($viewFile)){
             extract($data);
@@ -31,7 +21,7 @@ class BaseController{
             $content = ob_get_clean();
             require_once('views/layouts/'.$customLayout.'.php');
         } else {
-            header('Location: /index.php?error');
+            $this->redirect('404');
         }
     }
 

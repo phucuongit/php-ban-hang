@@ -38,6 +38,37 @@ class OrderRepository{
         }
 
     }
+
+    public function getDetailOrder($orderId)
+    {
+        try{
+            $order = Order::ManyToMany($orderId);
+            return [
+                'status'   => 'OK',
+                'data'     => $order
+            ];
+        }catch (Exception $error){
+            return [
+                'status'    => 'ERROR',
+                'code'      => 'getDetailOrder.failed.data_error' 
+            ];
+        }
+    }
+
+    public function getTotalOrder($orderId){
+        try{
+            $order = Order::findById($orderId);
+            return [
+                'status'   => 'OK',
+                'data'     => $order
+            ];
+        }catch (Exception $error){
+            return [
+                'status'    => 'ERROR',
+                'code'      => 'getTotalOrder.failed.data_error' 
+            ];
+        }
+    }
 }  
 
 ?>
