@@ -38,7 +38,7 @@
                                     <h5><?=  formatDate($product['created_at'])  ?></h5>
                                 </td>
                                 <td  style="width: 15%">
-                                   <h5><?= $product['total']  ?></h5>
+                                   <h5><?= formatCurrency($product['total'])  ?></h5>
                                 </td>
                                 <td  style="width: 20%">
                                     <h5 style="color:<?= $product['status'] == 2 ? 'green' : 'red'?>"><?= $this->getOrderRepository()->statusOrder($product['status'])  ?></h5>

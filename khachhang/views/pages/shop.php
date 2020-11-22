@@ -11,7 +11,6 @@
                             <ul class="list">
                                 <li>
                                     <a href="<?= BASE_URL . 'cua-hang'?>">Tất cả danh mục</a>
-                                    <span><?= $total ?></span>
                                 </li>
                                 <?php foreach($categories as $category){ ?>
                                     <li>

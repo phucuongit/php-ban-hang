@@ -104,12 +104,12 @@ function addTocart(query) {
 }
 function showAlert(text){
   var close = document.getElementsByClassName("alert");
+  close[0].innerHTML = text
   close[0].style.opacity = "1";
   close[0].style.display = "block";
 
   setTimeout(function () {
     close[0].style.opacity = "0";
-    close[0].innerHTML = text
   }, 1000);
 }
 function closeBtn() {
@@ -128,18 +128,21 @@ buttonsDelCart.forEach(button => {
   button.addEventListener('click', async function(e){
     e.preventDefault();
     var del = this;
-
+    var url = window.location.href.replace(/\/$/, ''); 
     let id = del.parentElement.parentElement.querySelector('input[type="hidden"').value;
-    fetch('/gio-hang?action=delCart/' + id, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      // body: JSON.stringify({id: id})
-    }).then(() => {
-      showAlert('Xóa thành công sản phẩm trong giỏ hàng');
+    console.log(id);
+    const formData = new FormData();
+    formData.append('item_id', id);
+    fetch(url + '/'+id+'?action=delCart', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then((data) => {
+      showAlert(data.message);
       del.parentElement.parentElement.remove();
     }).catch((error) => {
+      showAlert("Xãy ra lỗi, xóa thất bại")
       console.log(error)
     })
   

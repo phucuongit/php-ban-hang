@@ -47,8 +47,4 @@ class RegisterController extends BaseController{
         $this->render('register', $data);
        }
     }
-
-    public function error(){
-      $this->render('error');
-    }
 }

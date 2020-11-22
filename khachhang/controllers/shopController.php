@@ -47,7 +47,7 @@ class ShopController extends BaseController{
             'products' => $products, 
             'categories' => $category,
             'page'  => $this->getPagination(),
-            'total' => $config['total']
+            'total' => $config['total'],
         );
         $this->render('shop', $data);
     }

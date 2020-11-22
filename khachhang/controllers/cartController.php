@@ -44,9 +44,22 @@ class CartController extends BaseController {
         $this->redirect('gio-hang');
     }
 
-    public function delCart($id){
-        unset($_SESSION['item'][$id[0]]);
-        $this->redirect('gio-hang');
+    public function delCart(){
+        try{
+            $id = $_POST['item_id'];
+            unset($_SESSION['item'][$id]);
+            echo json_encode([
+                'status'    => "OK",
+                "message"   => "Xóa thành xông sản phẩm khỏi giỏ hàng"
+            ]);
+        }catch(Exception $error){
+            echo json_encode([
+                'status'    => "ERROR",
+                "code"      => "addToCart.failed.not_found_product_id",
+                "message"   => "Không thể xóa sản phẩm này khỏi giỏ hàng"
+            ]);
+        }
+        return;
     }
 
     public function confirm(){
