@@ -128,7 +128,7 @@ buttonsDelCart.forEach(button => {
   button.addEventListener('click', async function(e){
     e.preventDefault();
     var del = this;
-    var url = window.location.href.replace(/\/$/, ''); 
+    var url = window.location.href.replace(/\?action(.+)$/, ''); 
     let id = del.parentElement.parentElement.querySelector('input[type="hidden"').value;
     console.log(id);
     const formData = new FormData();

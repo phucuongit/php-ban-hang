@@ -53,7 +53,8 @@
     </div>
 
 </header>
-<?php if($_SERVER['REQUEST_URI'] == BASE_URL) { ?>
+
+<?php if($_SERVER['REQUEST_URI'] == BASE_URL || $_SERVER['REQUEST_URI'] == BASE_ROOT) { ?>
     <section class="banner_part" style="background-image: url(<?= BASE_URL .'assets/img/banner.jpg'?>);">
         <div class="container">
             <div class="row banner_slider"></div>

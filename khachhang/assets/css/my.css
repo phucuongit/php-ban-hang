@@ -182,3 +182,20 @@ li.page-item.active a {
 .error_message{
   color: red
 }
+button.del-cart{
+  background-color: #dc3545;
+  border-color: #dc3545;
+  box-shadow: none;
+  display: inline-block;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

@@ -6,7 +6,7 @@
   <title><?= isset($title) ? $title  : 'Trang quản trị'?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/ionicons.min.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/all.min.css"  />
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/all.css"  />
   <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/adminlte.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/font.css">
