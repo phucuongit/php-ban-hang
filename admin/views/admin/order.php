@@ -53,7 +53,7 @@
                         </td>
              
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" target="_blank" href="/admin/don-hang?action=detail&id=<?= $order['id'] ?>">
+                            <a class="btn btn-primary btn-sm" target="_blank" href="<?= BASE_ADMIN_URL ?>don-hang?action=detail&id=<?= $order['id'] ?>">
                                 <i class="fas fa-folder">
                                 </i>
                                 Xem

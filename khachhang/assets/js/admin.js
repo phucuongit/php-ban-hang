@@ -1,4 +1,7 @@
 let prodDel = document.querySelectorAll(".prod-del");
+function getUrl(){
+  return window.location.href.replace(/\?action(.+)$/, ''); 
+}
 prodDel.forEach((prod) => {
   prod.addEventListener("click", async function (e) {
     e.preventDefault();
@@ -21,8 +24,9 @@ orderDel.forEach((order) => {
 
     let idPro = this.querySelector("input").value;
     let fd = new FormData();
+    let url = getUrl();
     fd.append("id", idPro);
-    fetch("/admin/don-hang?action=orderDel", {
+    fetch(url + '/don-hang?action=orderDel', {
       method: "POST",
       body: fd,
     }).then((response) => {
@@ -46,14 +50,21 @@ if (updateStatus) {
       let status = newStatus.value;
       let regexp = new RegExp(/id=(\d+)/);
       let formData = new FormData();
+      let url = getUrl();
       formData.append("id", regexp.exec(window.location.href)[1]);
       formData.append("status", status);
       document.querySelector("p.show_status").innerHTML =
         "<b>" + newStatus.options[status].text + "</b>";
-      fetch("/admin/don-hang?action=updateStatus", {
+      fetch(url + '/don-hang?action=updateStatus', {
         method: "POST",
         body: formData,
-      }).then((result) => {});
+      })
+      .then((result) => {
+        console.log(result)
+      })
+      .catch(e => {
+        console.log(e)
+      });
     }
   });
 }
@@ -65,8 +76,9 @@ userDel.forEach((user) => {
 
     let idPro = this.querySelector("input").value;
     let fd = new FormData();
+    let url = getUrl();
     fd.append("id", idPro);
-    fetch("/admin/user?action=userDel", {
+    fetch(url + '/user?action=userDel', {
       method: "POST",
       body: fd,
     }).then((response) => {
@@ -83,11 +95,11 @@ let cateDel = document.querySelectorAll(".cate-del");
 cateDel.forEach((cate) => {
   cate.addEventListener("click", async function (e) {
     e.preventDefault();
-
+    let url = getUrl();
     let idPro = this.querySelector("input").value;
     let fd = new FormData();
     fd.append("id", idPro);
-    fetch("/admin/danh-muc?action=cateDel", {
+    fetch(url + '/danh-muc?action=cateDel', {
       method: "POST",
       body: fd,
     }).then((response) => {

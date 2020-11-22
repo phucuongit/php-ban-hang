@@ -24,12 +24,11 @@ class CartController extends BaseController {
         if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
+        $this->orderRepository = new OrderRepository();
     }
 
     public function indexAdmin()
     {
-
-        $this->orderRepository = new OrderRepository();
 
         $data = array('orders' => Order::all());
         $data = array_merge($data, array('title' => 'Đơn hàng - Cường Lê'));
@@ -49,13 +48,12 @@ class CartController extends BaseController {
         }
     }
     public function detail(array $id){
-       
-        $regex = "/id=(\d+)/";
-        preg_match($regex, $id[0], $match);
-        if(!isset($match[1])){
-            return "Loi";
+        $id = $_GET['id'];
+
+        if(!isset($id)){
+            return $this->redirect('error');
         }
-        $id = $match[1];
+
         $products = Order::ManyToMany($id);
 
         $data = array('order' => Order::findById($id), 'products' => convertObjectToArray($products));

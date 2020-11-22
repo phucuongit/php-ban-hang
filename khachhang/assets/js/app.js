@@ -1,4 +1,9 @@
+function getUrl(){
+  return window.location.href.replace(/\?action(.+)$/, ''); 
+}
+
 //increase - decrease
+
 let increase = document.getElementsByClassName("number-increment");
 if (increase.length > 0) {
   increase[0].addEventListener("click", function () {
@@ -51,14 +56,10 @@ addTocart(".product_image_area");
 function addTocart(query) {
   let blockProduct = document.querySelectorAll(query);
   if (blockProduct.length > 0) {
-    // console.log(blockProduct);
     blockProduct.forEach((product) => {
-      // console.log(product);
-     
       let tagAddTocart = product.querySelector("a.add_cart");
         if(tagAddTocart){
           tagAddTocart.addEventListener("click", async function (event) {
-            // console.log("click day");
             event.preventDefault();
             let url = product.querySelector("a.add_cart").href;
             let input = document.querySelector(".input-number");
@@ -128,7 +129,7 @@ buttonsDelCart.forEach(button => {
   button.addEventListener('click', async function(e){
     e.preventDefault();
     var del = this;
-    var url = window.location.href.replace(/\?action(.+)$/, ''); 
+    var url = getUrl();
     let id = del.parentElement.parentElement.querySelector('input[type="hidden"').value;
     console.log(id);
     const formData = new FormData();

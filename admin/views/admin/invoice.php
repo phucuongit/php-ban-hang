@@ -32,14 +32,14 @@
                   <address>
                     <strong><?= $order->fullname ?></strong><br>
                   </address>
-                  <p>Trạng thái đơn hàng: <p class="show_status"><b><?= getStatusOrder($order->status) ?></b></p></p>
+                  <p>Trạng thái đơn hàng: <p class="show_status"><b><?= $this->orderRepository->statusOrder($order->status) ?></b></p></p>
                   <?php if(isAdmin()) {?> 
                    <div class="form-group update_status">
                         <label>Chọn</label>
                         <select class="form-control" name="update_status">
-                            <option value="0">Đang chờ thanh toán</option>
-                            <option value="1">Đang giao hàng</option>
-                            <option value="2">Hoàn thành</option>
+                            <option value="0">Đợi xác nhận</option>
+                            <option value="1">Đang vận chuyển</option>
+                            <option value="2">Đã giao hàng</option>
                         </select>
                     </div>
                   <button class="btn btn-primary updateStatus" style="margin-bottom: 30px;">Cập nhật trạng thái đơn hàng</button>
@@ -49,7 +49,7 @@
                 <div class="col-sm-4 invoice-col">
                   <b>ID đơn hàng: #<?= $order->id ?></b><br>
                   <br>
-                  <b>Ngày tạo: </b><?= date("m/d/Y", strtotime($order->created_at)) ?><br>
+                  <b>Ngày tạo: </b><?= formatDate($order->created_at) ?><br>
                 </div>
               </div>
               <div class="row">
