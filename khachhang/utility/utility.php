@@ -14,6 +14,12 @@
         }
         return true;
     }
+    function isAdminLogin(){
+        if(!isset($_SESSION['adminLogin'])){
+            return false;
+        }
+        return true;
+    }
     function isCurrentPage($uri){
         if($_SERVER['REQUEST_URI'] === $uri){
             return true;

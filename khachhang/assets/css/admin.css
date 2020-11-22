@@ -42,3 +42,6 @@
 .sidebar{
   overflow-y: hidden;
 }
+.errorMessage{
+  color: red;
+}

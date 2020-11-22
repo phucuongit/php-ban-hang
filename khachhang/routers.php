@@ -4,12 +4,6 @@ namespace KH\App;
 use KH\Repositories\RouterRepository;
 
 require_once('repositories/RouterRepository.php');
-require_once('controllers/homeController.php');
-require_once('controllers/shopController.php');
-require_once('controllers/productController.php');
-require_once('controllers/pageController.php');
-require_once('controllers/loginController.php');
-require_once('controllers/registerController.php');
 require_once('utility/utility.php');
 class Router{
     

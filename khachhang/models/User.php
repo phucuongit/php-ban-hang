@@ -86,6 +86,20 @@ class User {
 
         return $req->fetch();
     }
+
+    static function loginAdmin($username, $password)
+    {
+        $db = \DB::getInstance();
+        $req = $db->prepare('select * from user where username = :username and password = :password and is_admin = 1 and is_deleted = 0');
+        
+        $req->bindParam(':username', $username);
+        $req->bindParam(':password', $password);
+
+        $req->setFetchMode(\PDO::FETCH_OBJ);
+        $req->execute();
+
+        return $req->fetch();
+    }
     public static function delete($id){
         $db = \DB::getInstance();
         $req = $db->prepare('UPDATE user set is_deleted = 1 where id = :id');   

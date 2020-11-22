@@ -60,7 +60,7 @@
                             <span class="badge <?= $product->in_stock === 0 ? 'badge-error' : 'badge-success'?>"><?= $product->in_stock === 0 ? 'Hết hàng': 'Đang bán' ?></span>
                         </td>
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" target="_blank" href="/san-pham/<?= $product->slug ?>">
+                            <a class="btn btn-primary btn-sm" target="_blank" href="<?= BASE_URL ?>san-pham/<?= $product->slug ?>">
                                 <i class="fas fa-folder">
                                 </i>
                                 Xem

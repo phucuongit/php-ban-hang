@@ -12,6 +12,14 @@ require_once('ICartController.php');
 
 class ProductController extends BaseController implements ICartController{
 
+    public function __construct()
+    {
+        parent::__construct();
+        if(!isAdminLogin()){
+            return $this->redirect('dang-nhap');
+        }
+    }
+
     public function index($arguments){
         $product = Product::findBySlug($arguments[2]);
   

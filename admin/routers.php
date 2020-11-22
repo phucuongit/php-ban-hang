@@ -4,12 +4,6 @@ namespace Admin\App;
 use Admin\Repositories\RouterRepository;
 
 require_once('repositories/RouterRepository.php');
-require_once('controllers/homeController.php');
-require_once('controllers/shopController.php');
-require_once('controllers/productController.php');
-require_once('controllers/pageController.php');
-require_once('controllers/loginController.php');
-require_once('controllers/registerController.php');
 require_once('../khachhang/utility/utility.php');
 
 class Router{
@@ -20,12 +14,12 @@ class Router{
     {
         //define router
         $controllers = array(
-            ''     => 'admin',
-            'san-pham' => 'product',
+            ''          => 'admin',
+            'san-pham'  => 'product',
             'dang-nhap' => 'login',
             'don-hang'  => 'cart',
-            'user'  => 'login',
-            'danh-muc'  => 'category'
+            'user'      => 'login',
+            'danh-muc'  => 'category',
         );
         // get router
         $routerString = $_SERVER['REQUEST_URI'];

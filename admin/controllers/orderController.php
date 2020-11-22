@@ -15,9 +15,10 @@ class OrderController extends BaseController{
 
     protected $orderRepository;
 
-    public function __constructor()
+    public function __construct()
     {
-        if(!isLogin()){
+        parent::__construct();
+        if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
     }
@@ -38,7 +39,7 @@ class OrderController extends BaseController{
 
     public function index()
     {
-        if(!isLogin()){
+        if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
         

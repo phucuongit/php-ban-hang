@@ -8,6 +8,13 @@ use KH\Models\Category;
 require_once('baseController.php');
 require_once(__DIR__ . '\..\..\khachhang\models\Category.php');
 class CategoryController extends BaseController{
+    public function __construct()
+    {
+        parent::__construct();
+        if(!isAdminLogin()){
+            return $this->redirect('dang-nhap');
+        }
+    }
 
     // admin 
     public function indexAdmin(){
@@ -24,9 +31,7 @@ class CategoryController extends BaseController{
             $this->render('category', $data, 'adminLayout');
         }
     }
-    public function error(){
-      $this->render('error');
-    }
+  
     public function cateDel(){
         $id = $_POST['id'];
         if(Category::delete($id)){

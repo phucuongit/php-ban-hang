@@ -48,6 +48,8 @@
   <aside class="control-sidebar control-sidebar-dark">
   </aside>
 </div>
-  <script src="<?= BASE_URL ?>assets/js/admin.js"></script>
+<script src="<?= BASE_URL ?>plugins/jquery/jquery.min.js"></script>
+<script src="<?= BASE_URL ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= BASE_URL ?>assets/js/admin.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<?php $user = $_SESSION['userLogin'] ?>
+<?php $user = $_SESSION['adminLogin'] ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="<?= BASE_ADMIN_URL ?>" class="brand-link">
         <span class="brand-text font-weight-light">Shop CuongLe</span>

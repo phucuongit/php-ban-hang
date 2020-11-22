@@ -10,32 +10,43 @@ require_once('../khachhang/models/User.php');
 
 class LoginController extends BaseController{
 
-    public function index(){
-        $data = array('title' => 'Đăng nhập - Cường Lê Shop');
-        $this->render('login', $data);
+    function __construct()
+    {
+        $this->folder = 'admin';
     }
 
-    public function indexAdmin(){
-        if(isset($this->router[3]) && $this->router[3]  === 'them-moi'){
-            $data = array();
-            $this->render('user-add', $data, 'adminLayout');
-        }else{
-            $data = array('title' => 'Quản lý người dùng - Cường Lê','users' => User::all());
-            $this->render('user', $data, 'adminLayout');
+    public function renderLogin($data)
+    {
+        extract($data);
+        $viewFile = 'views/admin/login.php';
+        ob_start();
+        require_once($viewFile);
+        $content = ob_get_clean();
+        echo $content;
+    }
+
+    public function indexAdmin()
+    {
+        if(!isAdmin()){
+          return $this->renderLogin();
         }
- 
+        return  $this->redirect();
     }
 
     public function login(){
+        if(isAdmin()){
+            return $this->redirect();
+        }
+
        $username = $_POST['username'];
        $password = md5($_POST['password']);
 
-       $user = json_decode(json_encode(User::loginUser($username, $password)), true);
+       $user = json_decode(json_encode(User::loginAdmin($username, $password)), true);
        $data = array('error' => 'Tài khoản hoặc mật khẩu không đúng'); 
        if(!$user){
-            return $this->render('login', $data);
+            return $this->renderLogin($data);
         }
-        $_SESSION['userLogin'] = $user;
+        $_SESSION['adminLogin'] = $user;
         $this->redirect();
     }
 
@@ -49,11 +60,17 @@ class LoginController extends BaseController{
     }
 
     public function userDel(){
+        if(!isAdmin()){
+            return $this->redirect('dang-nhap');
+        }
         $id = $_POST['id'];
         User::delete($id);
     }
 
     public function add(){
+        if(!isAdmin()){
+            return $this->redirect('dang-nhap');
+        }
         $username = $_POST['username'];
         $fullname = $_POST['fullname'];
         $password = $_POST['password'];
@@ -76,7 +93,9 @@ class LoginController extends BaseController{
     }
 
     public function detail(array $id){
-      
+        if(!isAdmin()){
+            return $this->redirect('dang-nhap');
+        }
         $regex = "/id=(\d+)/";
         preg_match($regex, $id[0], $match);
         if(!isset($match[1])){
@@ -91,6 +110,9 @@ class LoginController extends BaseController{
     }
     // itemprop="thumbnailUrl"
     public function edit(){
+        if(!isAdmin()){
+            return $this->redirect('dang-nhap');
+        }
         $id = intval($_POST['id']);
         $fullname = $_POST['fullname'];
         $password = $_POST['password'];
