@@ -6,11 +6,7 @@
                    <a href="<?= BASE_URL ?>don-hang"><i class="fas fa-angle-left"></i>Trở về danh sách đơn đặt hàng</a>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="confirmation_tittle">
-                    <span>Chi tiết đơn đặt hàng #<?= $orderId ?>.</span>
-                </div>
-            </div>
+           
         </div>
         <div class="row">
             <div class="col-lg-12">
