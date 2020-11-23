@@ -5,7 +5,7 @@
     <h3 class="card-title">Danh sách sản phẩm</h3>
 
     <div class="card-tools">
-      <a type="button" class="btn btn-primary" href="<?= BASE_ADMIN_URL ?>san-pham/them-moi">
+      <a type="button" class="btn btn-primary" href="<?= BASE_ADMIN_URL ?>san-pham?action=addProd">
         <i class="fas fa-plus-circle"></i>Thêm mới</a>
     </div>
   </div>

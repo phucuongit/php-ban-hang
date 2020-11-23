@@ -68,6 +68,15 @@ class ProductController extends BaseController{
         }
         return;
     }
+
+
+    // load page add
+    public function addProd()
+    {
+        $data = array('title' => 'Thêm sản phẩm', 'categories' => Category::all());
+        return $this->render('product-add', $data, 'adminLayout');  
+    }
+
     public function add(){
         $data = array();
         $title = htmlspecialchars($_POST['title']);
@@ -105,22 +114,8 @@ class ProductController extends BaseController{
             $error .= 'Vui lòng chọn danh mục sản phẩm<br>';
         }
 
-        $name =  time() . '.' . $_FILES['image_url']['name'];
-        $target_dir = "assets/img/upload/";
-        $target_file = $target_dir . basename($name);
+        $nameSave = $this->getProductRepository()->handleUpload($_FILES, $error);
         
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-        $extensions_arr = array("jpg","jpeg","png","gif");
-    
-        if( !in_array($imageFileType,$extensions_arr) ){
-            $error .= 'Vui lòng nhập đúng định dạng hình ảnh<br>';
-        }else if($_FILES['image_url']['size'] > 2000000){
-            $error .= 'Vui lòng upload hình ảnh nhỏ hơn 2M<br>';
-        }else{
-            move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
-        }
-
         if($error != ''){
             $data = array('error' => $error, 'categories' => Category::all());
             return $this->render('product-add', $data, 'adminLayout');  
@@ -132,7 +127,7 @@ class ProductController extends BaseController{
             'price' => $price,
             'category_id'   => $cateId,
             'in_stock' => $inStock,
-            'image_url' =>  $target_dir.$name,
+            'image_url' =>  $nameSave,
             'slug'  => str_slug($title),
             'short_des' => $shortDes
         );
@@ -140,10 +135,8 @@ class ProductController extends BaseController{
         $product = new Product($productInfo);
     
         $response = $product->save();
-
-        $products = Product::all();
-        $data = array('products' => $products, 'error' => $response['message']);
-        $this->render('product', $data, 'adminLayout');   
+        
+        $this->redirect('san-pham');
     }
 
     public function detail($id)
@@ -161,6 +154,7 @@ class ProductController extends BaseController{
         $this->render('product-add', $data, 'adminLayout');  
     }
 
+    //chinh san pham
     public function edit()
     {
         $data = [];
