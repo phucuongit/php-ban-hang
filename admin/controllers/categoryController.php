@@ -8,6 +8,7 @@ use KH\Models\Category;
 require_once('baseController.php');
 require_once(__DIR__ . '\..\..\khachhang\models\Category.php');
 class CategoryController extends BaseController{
+
     public function __construct()
     {
         parent::__construct();
@@ -16,7 +17,6 @@ class CategoryController extends BaseController{
         }
     }
 
-    // admin 
     public function indexAdmin(){
         $data = array();
         if(isset($this->router[3]) && $this->router[3]  === 'them-moi'){
@@ -30,16 +30,31 @@ class CategoryController extends BaseController{
 
             $this->render('category', $data, 'adminLayout');
         }
+        
     }
-  
-    public function cateDel(){
+    
+    public function addCate()
+    {
+        $data = [];
+        return $this->render('category-add', $data, 'adminLayout');  
+    }
+    public function cateDel()
+    {
         $id = $_POST['id'];
+        
         if(Category::delete($id)){
-            header('Location: /admin/danh-muc/');
+            echo json_encode([
+                'status'    => "OK",
+                "message"   => "Xóa thành công danh mục sản phẩm"
+            ]);
         }else{
-            $data = array('error' => 'Loi xoa danh muc');
-            $this->render('category', $data, 'adminLayout');  
+            echo json_encode([
+                'status'    => "ERROR",
+                "code"      => "prodDel.failed.data_not_found",
+                "message"   => "Không thể xóa danh mục"
+            ]);
         }
+        return;
     }
     public function add(){
         $data = array();
@@ -60,19 +75,21 @@ class CategoryController extends BaseController{
         $data = array('categories' => $categories);
         $this->render('category', $data, 'adminLayout');   
     }
-    public function detail($id){
-        $regex = "/id=(\d+)/";
-        preg_match($regex, $id[0], $match);
-        if(!isset($match[1])){
-            return "Loi";
-        }
-        $id = $match[1];
+    public function detail($id)
+    {
+        $id = $_GET['id'];
+      
         $category = Category::findById($id);
+
+        if(!$category){
+            $this->redirect('error');
+        }
 
         $data = array('category' => convertArray($category), 'categories' => Category::all());
         
         $this->render('category-add', $data, 'adminLayout');  
     }
+    
     public function edit(){
         $data = array();
         $id = $_POST['id'];

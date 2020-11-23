@@ -27,14 +27,17 @@ class LoginController extends BaseController{
 
     public function indexAdmin()
     {
-        if(!isAdmin()){
-          return $this->renderLogin();
+        $data = [];
+        if(!isAdminLogin()){
+          return $this->renderLogin($data);
         }
-        return  $this->redirect();
+        
+        $data = array('title' => 'Quản lý người dùng - Cường Lê','users' => User::all());
+        $this->render('user', $data, 'adminLayout');
     }
 
     public function login(){
-        if(isAdmin()){
+        if(isAdminLogin()){
             return $this->redirect();
         }
 
@@ -60,7 +63,7 @@ class LoginController extends BaseController{
     }
 
     public function userDel(){
-        if(!isAdmin()){
+        if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
         $id = $_POST['id'];
@@ -68,7 +71,7 @@ class LoginController extends BaseController{
     }
 
     public function add(){
-        if(!isAdmin()){
+        if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
         $username = $_POST['username'];
@@ -93,7 +96,7 @@ class LoginController extends BaseController{
     }
 
     public function detail(array $id){
-        if(!isAdmin()){
+        if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
         $regex = "/id=(\d+)/";
@@ -108,9 +111,9 @@ class LoginController extends BaseController{
         
         $this->render('user-add', $data, 'adminLayout');  
     }
-    // itemprop="thumbnailUrl"
+
     public function edit(){
-        if(!isAdmin()){
+        if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
         $id = intval($_POST['id']);

@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputClientCompany">Hình ảnh</label>
-                            <input type="file" name="image_url" class="form-control"/>
+                            <input type="file" name="image_url" class="form-control" accept="image/*"/>
                             <?php if(isset($product)) {?>
                                 <img src="<?= @$product['image_url'] ?>" alt="image_product" style="max-width: 100%">
                             <?php } ?>

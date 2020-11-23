@@ -45,7 +45,7 @@
                             <?= $product->id ?>
                         </td>
                         <td>
-                            <img src="<?= $product->image_url ?>" alt="" style="max-width: 100%"  onerror="this.onerror=null;this.src='<?= BASE_ADMIN_URL . 'assets/img/default-150x150.png' ?>';">
+                            <img src="<?= BASE_ADMIN_URL . $product->image_url ?>" alt="" style="max-width: 100%"  onerror="this.onerror=null;this.src='<?= BASE_ADMIN_URL . 'assets/img/default-150x150.png' ?>';">
                         </td>
                 
                         <td>
@@ -57,7 +57,7 @@
                             </small>
                         </td>
                         <td class="project-state">
-                            <span class="badge <?= $product->in_stock === 0 ? 'badge-error' : 'badge-success'?>"><?= $product->in_stock === 0 ? 'Hết hàng': 'Đang bán' ?></span>
+                            <span class="badge <?= $product->in_stock == 0 ? 'badge-danger' : 'badge-success'?>"><?= $product->in_stock == 0 ? 'Hết hàng': 'Đang bán' ?></span>
                         </td>
                         <td class="project-actions text-right">
                             <a class="btn btn-primary btn-sm" target="_blank" href="<?= BASE_URL ?>san-pham/<?= $product->slug ?>">
@@ -65,7 +65,7 @@
                                 </i>
                                 Xem
                             </a>
-                            <a class="btn btn-info btn-sm" href="/admin/san-pham?action=detail&id=<?= $product->id ?>">
+                            <a class="btn btn-info btn-sm" href="<?= BASE_ADMIN_URL?>san-pham?action=detail&id=<?= $product->id ?>">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Chỉnh sửa

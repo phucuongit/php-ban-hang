@@ -2,15 +2,22 @@
 namespace Admin\Controllers;
 
 use KH\Models\Product;
+use KH\Models\Category;
 
 use Admin\Controllers\BaseController;
 
+use Admin\Repositories\ProductRepository;
+
 require_once('baseController.php');
+
 require_once('../khachhang/models/Product.php');
 require_once('../khachhang/models/Category.php');
-require_once('ICartController.php');
 
-class ProductController extends BaseController implements ICartController{
+require_once('repositories/ProductRepository.php');
+
+class ProductController extends BaseController{
+
+    protected $productRepository;
 
     public function __construct()
     {
@@ -18,55 +25,16 @@ class ProductController extends BaseController implements ICartController{
         if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
+        $this->setProductRepository();
     }
 
-    public function index($arguments){
-        $product = Product::findBySlug($arguments[2]);
-  
-        if(!$product){
-            $this->error();
-            return;
-        }
-
-        $data = array('title' => $product->title . ' - Cường Lê Shop','product' => $product);
-        $this->render('product', $data);
+    public function getProductRepository(): ProductRepository{
+        return $this->productRepository;
+    }
+    public function setProductRepository(){
+        return $this->productRepository = new ProductRepository();
     }
 
-    
-    public function addToCart(){
-      
-        $id = $_POST['product_id'];
-        $quality = $_POST['quality'];
-        
-        $product = Product::findById($id);
-
-        header("Content-Type: application/json");
-
-        if(!$product){
-            echo json_encode([
-                'status'    => "ERROR",
-                "code"      => "addToCart.failed.not_found_product_id",
-                "message"   => "Không thể thêm vào giỏ hàng"
-            ]);
-            return;
-        }
-        $itemAdd = array('id' => $id, 'quality' => $quality);
-        if(!isset($_SESSION['item'][$id])){
-            $_SESSION['item'][$id] = array(
-                'id' => $id, 
-                'quality' => $quality
-            );
-        } else {
-            $_SESSION['item'][$id]['quality'] += $quality;
-        }
-        echo json_encode([
-            'status' => "OK",
-            "message"   => "Thêm thành công sản phẩm ".$product->title." vào giỏ hàng"
-        ]);
-        return;
-    }
-
-    // admin 
     public function indexAdmin(){
         $data = array();
         if(isset($this->router[3]) && $this->router[3]  === 'them-moi'){
@@ -81,17 +49,24 @@ class ProductController extends BaseController implements ICartController{
         }
     }
 
-    public function prod_del(){
+    public function prodDel(){
         $id = $_POST['id'];
         $product = Product::findById($id);
-        $product = new Product(json_decode(json_encode($product), true));
-        
-        if($product->delete($id)){
-            header('Location: /admin/san-pham/');
+        $productDel = new Product(convertArray($product), true);
+ 
+        if($productDel->delete($id)){
+            echo json_encode([
+                'status'    => "OK",
+                "message"   => "Xóa thành công sản phẩm"
+            ]);
         }else{
-            $data = array('error' => 'Loi xoa san pham');
-            $this->render('product', $data, 'adminLayout');  
+            echo json_encode([
+                'status'    => "ERROR",
+                "code"      => "prodDel.failed.data_not_found",
+                "message"   => "Không thể xóa sản phẩm do còn có đơn đặt hàng sản phẩm này"
+            ]);
         }
+        return;
     }
     public function add(){
         $data = array();
@@ -157,7 +132,7 @@ class ProductController extends BaseController implements ICartController{
             'price' => $price,
             'category_id'   => $cateId,
             'in_stock' => $inStock,
-            'image_url' =>  "/".$target_dir.$name,
+            'image_url' =>  $target_dir.$name,
             'slug'  => str_slug($title),
             'short_des' => $shortDes
         );
@@ -170,21 +145,25 @@ class ProductController extends BaseController implements ICartController{
         $data = array('products' => $products, 'error' => $response['message']);
         $this->render('product', $data, 'adminLayout');   
     }
-    public function detail($id){
-        $regex = "/id=(\d+)/";
-        preg_match($regex, $id[0], $match);
-        if(!isset($match[1])){
-            return "Loi";
-        }
-        $id = $match[1];
-        $product = Product::findById($id);
 
+    public function detail($id)
+    {
+        $id = $_GET['id'];
+      
+        $product = Product::findById($id);
+  
+        if(!$product){
+            return $this->redirect('error');
+        }
+        
         $data = array('title' => $product->title . 'Cường Lê Shop','product' => convertArray($product), 'categories' => Category::all());
         
         $this->render('product-add', $data, 'adminLayout');  
     }
-    public function edit(){
-        $data = array();
+
+    public function edit()
+    {
+        $data = [];
         $title = htmlspecialchars($_POST['title']);
         $shortDes = htmlspecialchars($_POST['short_des']);
         $id = (int)$_POST['id'];
@@ -221,26 +200,11 @@ class ProductController extends BaseController implements ICartController{
             $error .= 'Vui lòng chọn danh mục sản phẩm<br>';
         }
 
-        $name =  time() . '.' . $_FILES['image_url']['name'];
-        $target_dir = "assets/img/upload/";
-        $target_file = $target_dir . basename($name);
-        
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-        $extensions_arr = array("jpg","jpeg","png","gif");
-
-        if( !in_array($imageFileType,$extensions_arr) ){
-            $error .= 'Vui lòng nhập đúng định dạng hình ảnh<br>';
-        }else if($_FILES['image_url']['size'] > 2000000){
-            $error .= 'Vui lòng upload hình ảnh nhỏ hơn 2M<br>';
-        }else{
-            move_uploaded_file($_FILES['image_url']['tmp_name'],$target_dir.$name);
-        }
-
+        $nameSave = $this->getProductRepository()->handleUpload($_FILES, $error);
+     
         if($error != ''){
             $product = Product::findById($id);
             $data = array('error' => $error, 'product' => convertArray($product), 'categories' => Category::all());
-  
             return $this->render('product-add', $data, 'adminLayout');  
         }
   
@@ -251,15 +215,12 @@ class ProductController extends BaseController implements ICartController{
             'price' => $price,
             'category_id'   => $cateId,
             'in_stock' => $inStock,
-            'image_url' =>  "/" .$target_dir.$name,
+            'image_url' =>  $nameSave,
             'short_des' => $shortDes
         );
 
         Product::updateProduct($productInfo);
-    
 
-        $products = Product::all();
-        $data = array('products' => $products, 'error' => $response['message']);
-        $this->render('product', $data, 'adminLayout');   
+        $this->redirect('san-pham');   
     }
 }

@@ -15,16 +15,16 @@ class LoginController extends BaseController{
         $this->render('login', $data);
     }
 
-    public function indexAdmin(){
-        if(isset($this->router[3]) && $this->router[3]  === 'them-moi'){
-            $data = array();
-            $this->render('user-add', $data, 'adminLayout');
-        }else{
-            $data = array('title' => 'Quản lý người dùng - Cường Lê','users' => User::all());
-            $this->render('user', $data, 'adminLayout');
-        }
+    // public function indexAdmin(){
+    //     if(isset($this->router[3]) && $this->router[3]  === 'them-moi'){
+    //         $data = array();
+    //         $this->render('user-add', $data, 'adminLayout');
+    //     }else{
+    //         $data = array('title' => 'Quản lý người dùng - Cường Lê','users' => User::all());
+    //         $this->render('user', $data, 'adminLayout');
+    //     }
  
-    }
+    // }
 
     public function login(){
        $username = $_POST['username'];

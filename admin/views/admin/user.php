@@ -46,7 +46,7 @@
                             <p><?= $user['fullname'] ?></p>
                         </td>
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="/admin/user?action=detail&id=<?= $user['id'] ?>">
+                            <a class="btn btn-primary btn-sm" href="<?= BASE_ADMIN_URL ?>user?action=detail&id=<?= $user['id'] ?>">
                                 <i class="fas fa-folder">
                                 </i>
                                 Sửa

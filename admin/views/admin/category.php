@@ -5,7 +5,7 @@
     <h3 class="card-title">Danh sách danh mục</h3>
 
     <div class="card-tools">
-      <a type="button" class="btn btn-primary" href="<?= BASE_ADMIN_URL . 'danh-muc/them-moi' ?>">
+      <a type="button" class="btn btn-primary" href="<?= BASE_ADMIN_URL . 'danh-muc/them-moi?action=addCate' ?>">
         <i class="fas fa-plus-circle"></i>Thêm mới</a>
     </div>
   </div>

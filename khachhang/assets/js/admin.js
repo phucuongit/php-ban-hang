@@ -22,7 +22,7 @@ prodDel.forEach((prod) => {
     let fd = new FormData();
     let url = getUrl();
     fd.append("id", idPro);
-    fetch(url + "/san-pham?action=prod_del", {
+    fetch(url + "?action=prodDel", {
       method: "POST",
       body: fd,
     })
@@ -130,7 +130,7 @@ cateDel.forEach((cate) => {
     let idPro = this.querySelector("input").value;
     let fd = new FormData();
     fd.append("id", idPro);
-    fetch(url + '/danh-muc?action=cateDel', {
+    fetch(url + '?action=cateDel', {
       method: "POST",
       body: fd,
     })

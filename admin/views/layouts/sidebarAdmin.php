@@ -22,7 +22,7 @@
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item has-treeview">
-                                <a href="<?= BASE_ADMIN_URL ?>" class="nav-link <?= isCurrentPage('/admin') ? 'active' : ''?>">
+                                <a href="<?= BASE_ADMIN_URL ?>" class="nav-link <?= isCurrentPage(BASE_ADMIN_URL) ? 'active' : ''?>">
                                 <i class="fas fa-tachometer-alt"></i>
                                     <p>
                                         Dashboard
@@ -32,7 +32,7 @@
                             </li>
                            
                             <li class="nav-item">
-                                <a href="<?= BASE_ADMIN_URL ?>don-hang" class="nav-link <?= isCurrentPage('/admin/don-hang') ? 'active' : ''?>">
+                                <a href="<?= BASE_ADMIN_URL ?>don-hang" class="nav-link <?= isCurrentPage(BASE_ADMIN_URL . 'don-hang') ? 'active' : ''?>">
                                 <i class="far fa-chart-bar"></i>
                                     <p>
                                         Đơn hàng của tôi
@@ -50,7 +50,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= BASE_ADMIN_URL ?>danh-muc" class="nav-link <?= isCurrentPage('/admin/danh-muc') ? 'active' : ''?>">
+                                    <a href="<?= BASE_ADMIN_URL ?>danh-muc" class="nav-link <?= isCurrentPage(BASE_ADMIN_URL .'danh-muc') ? 'active' : ''?>">
                                     <i class="fab fa-battle-net"></i>
                                         <p>
                                             Quản lý danh mục
@@ -58,7 +58,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= BASE_ADMIN_URL ?>user" class="nav-link <?= isCurrentPage('/admin/user') ? 'active' : ''?>">
+                                    <a href="<?= BASE_ADMIN_URL ?>user" class="nav-link <?= isCurrentPage(BASE_ADMIN_URL .'user') ? 'active' : ''?>">
                                         <i class="fas fa-users"></i>
                                         <p>
                                             Quản lý người dùng
