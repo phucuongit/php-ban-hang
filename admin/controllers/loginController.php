@@ -36,7 +36,8 @@ class LoginController extends BaseController{
         $this->render('user', $data, 'adminLayout');
     }
 
-    public function login(){
+    public function login()
+    {
         if(isAdminLogin()){
             return $this->redirect();
         }
@@ -53,24 +54,49 @@ class LoginController extends BaseController{
         $this->redirect();
     }
 
-    public function logout(){
+    public function logout()
+    {
         $_SESSION['userLogin'] = null;
         $this->redirect('dang-nhap');
     }
 
-    public function error(){
-      $this->render('error');
-    }
-
-    public function userDel(){
+    public function userDel()
+    {
         if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
-        $id = $_POST['id'];
+        $id = intval($_POST['id']);
+
+        if($_SESSION['adminLogin']['id'] == $id){
+            echo json_encode([
+                'status'    => "ERROR",
+                "code"      => "userDel.failed.Not_permission_remove_my_user",
+                "message"   => "Không thể xóa user chính bạn"
+            ]);
+            return;
+        }
+        
         User::delete($id);
+        echo json_encode([
+            'status'    => "OK",
+            "message"   => "Xóa thành công tài khoản #" . $id
+        ]);
+        return;
     }
 
-    public function add(){
+    public function addUser()
+    {
+        if(!isAdminLogin()){
+            return $this->redirect('dang-nhap');
+        }
+
+        $data = [];
+        
+        return $this->render('user-add', $data, 'adminLayout');  
+    }
+
+    public function add()
+    {
         if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
@@ -92,19 +118,16 @@ class LoginController extends BaseController{
          $user = new User($newUser);
          $user->save();
         
-         header('location: /admin/user');
+         return $this->redirect('user');
     }
 
-    public function detail(array $id){
+    public function detail()
+    {
         if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
-        $regex = "/id=(\d+)/";
-        preg_match($regex, $id[0], $match);
-        if(!isset($match[1])){
-            return "Loi";
-        }
-        $id = $match[1];
+        $id = $_GET['id'];
+      
         $user = User::findById($id);
 
         $data = array('user' => convertArray($user));
@@ -112,7 +135,8 @@ class LoginController extends BaseController{
         $this->render('user-add', $data, 'adminLayout');  
     }
 
-    public function edit(){
+    public function edit()
+    {
         if(!isAdminLogin()){
             return $this->redirect('dang-nhap');
         }
@@ -134,6 +158,6 @@ class LoginController extends BaseController{
         );
         
         User::updateUser($newUser);
-        header('location: /admin/user');
+        return $this->redirect('user');
     }
 }

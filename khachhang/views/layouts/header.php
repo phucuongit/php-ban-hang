@@ -20,29 +20,30 @@
                                 <a class="nav-link" href="<?= BASE_URL . 'lien-he'?>">Liên hệ</a>
                             </li>
                             <?php if(isLogin()) {  ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL . 'don-hang'?>">Đơn hàng</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= BASE_URL . 'don-hang'?>">Đơn hàng</a>
+                            </li>
                             <?php } ?>
                             <?php if(isAdmin()) {  ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_DIR_URL . 'admin'?>">Quản trị</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= BASE_DIR_URL . 'admin'?>">Quản trị</a>
+                            </li>
                             <?php } ?>
                             <?php if(isLogin()){ ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL . 'dang-nhap?action=logout' ?>">Đăng suất</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= BASE_URL . 'dang-nhap?action=logout' ?>">Đăng suất</a>
+                            </li>
                             <?php }else{ ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL . 'dang-nhap' ?>">Đăng nhập</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= BASE_URL . 'dang-nhap' ?>">Đăng nhập</a>
+                            </li>
                             <?php } ?>
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex">
                         <div class="dropdown cart">
-                            <a class="dropdown-toggle" href="<?= BASE_URL . 'gio-hang' ?>" id="navbarDropdown3" role="button">
+                            <a class="dropdown-toggle" href="<?= BASE_URL . 'gio-hang' ?>" id="navbarDropdown3"
+                                role="button">
                                 <i class="fas fa-cart-plus"></i>
                             </a>
                         </div>
@@ -55,14 +56,14 @@
 </header>
 
 <?php if($_SERVER['REQUEST_URI'] == BASE_URL || $_SERVER['REQUEST_URI'] == BASE_ROOT) { ?>
-    <section class="banner_part" style="background-image: url(<?= BASE_URL .'assets/img/banner.jpg'?>);">
-        <div class="container">
-            <div class="row banner_slider"></div>
-        </div>
-    </section>
+<section class="banner_part" style="background-image: url(<?= BASE_URL .'assets/img/banner.jpg'?>);">
+    <div class="container">
+        <div class="row banner_slider"></div>
+    </div>
+</section>
 <?php } ?>
 <style>
-    .main_menu .cart i:after{
-        content: "<?= count((array)(isset($_SESSION['item']) ? $_SESSION['item'] : [])); ?>"!important
-    }
+.main_menu .cart i:after {
+    content: "<?= count((array)(isset($_SESSION['item']) ? $_SESSION['item'] : [])); ?>" !important
+}
 </style>

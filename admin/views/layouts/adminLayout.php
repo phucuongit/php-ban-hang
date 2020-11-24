@@ -5,13 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?= isset($title) ? $title  : 'Trang quản trị'?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/ionicons.min.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/all.css"  />
   <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/adminlte.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/admin.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/font.css">
   <link rel="icon" type="image/png"  href="<?= BASE_ADMIN_URL ?>assets/img/favicon.png">
-
+  <script src="<?= BASE_ADMIN_URL ?>assets/js/ckeditor.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -51,8 +50,8 @@
   <aside class="control-sidebar control-sidebar-dark">
   </aside>
 </div>
-<script src="<?= BASE_URL ?>plugins/jquery/jquery.min.js"></script>
-<script src="<?= BASE_URL ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <script src="<?= BASE_URL ?>assets/js/admin.js"></script>
+
 </body>
 </html>

@@ -75,4 +75,8 @@
     {
         return date("d/m/Y h:i", strtotime($time) + 7*60*60);
     }
+
+    function printHTML($string){
+        return htmlspecialchars_decode(stripslashes($string));
+    }
 ?>

@@ -111,7 +111,10 @@ userDel.forEach((user) => {
     .then(response => response.json())
     .then((response) => {
       showAlert(response.message)
-      this.parentElement.parentElement.remove();
+      if(response.status === 'OK'){
+        this.parentElement.parentElement.remove();
+      }
+     
     });
   });
 });

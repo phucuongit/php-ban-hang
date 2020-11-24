@@ -54,3 +54,25 @@
   right: 0;
   transition: all 0.2s ease-in-out;
 }
+img[alt="image_product"]{
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 4px;
+  border: 1px solid #c8bebe;
+  margin-top: 10px;
+}
+.ck-content .text-tiny {
+  font-size: 0.7em;
+}
+
+.ck-content .text-small {
+  font-size: 0.85em;
+}
+
+.ck-content .text-big {
+  font-size: 1.4em;
+}
+
+.ck-content .text-huge {
+  font-size: 1.8em;
+}
