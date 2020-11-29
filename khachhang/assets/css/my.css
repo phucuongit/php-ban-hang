@@ -42,6 +42,7 @@
   padding: 10px 30px;
   color: #2a2a2a;
   font-size: 13px;
+  display: inline;
   font-weight: normal;
   border-radius: 50px;
 }
@@ -198,4 +199,32 @@ button.del-cart{
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.back-to-top.show {
+  position: fixed;
+  right: 35px;
+  bottom: 65px;
+  opacity: 1;
+}
+.back-to-top {
+  width: 40px;
+  height: 40px;
+  z-index: 199;
+  background: #ff3368;
+  color: #fff;
+  position: absolute;
+  text-align: center;
+  line-height: 40px;
+  opacity: 0;
+  top: auto !important;
+  font-size: 20px;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+.ship_info input, .ship_info textarea{
+  margin-bottom: 10px;
+}
+a:hover{
+  text-decoration: none;
 }

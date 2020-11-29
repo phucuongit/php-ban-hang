@@ -17,48 +17,25 @@
                         <h3>
                             Chào mừng! <br />
                         </h3>
-                        <form class="row contact_form" action="<?= BASE_URL . 'dang-ky?action=register'?>" method="post" >
+                        <form class="row contact_form" action="<?= BASE_URL . 'dang-ky?action=register'?>"
+                            method="post">
                             <div class="col-md-12 form-group p_star">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="username"
-                                    name="username"
-                                    value=""
-                                    placeholder="Tài khoản"
-                                />
+                                <input type="text" class="form-control" id="username" name="username" value=""
+                                    placeholder="Tài khoản" />
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="fullname"
-                                    name="fullname"
-                                    value=""
-                                    placeholder="Họ tên"
-                                />
+                                <input type="text" class="form-control" id="fullname" name="fullname" value=""
+                                    placeholder="Họ tên" />
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    id="password"
-                                    name="password"
-                                    value=""
-                                    placeholder="Mật khẩu"
-                                />
+                                <input type="password" class="form-control" id="password" name="password" value=""
+                                    placeholder="Mật khẩu" />
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    id="re_password"
-                                    name="re_password"
-                                    value=""
-                                    placeholder="Nhập lại mật khẩu"
-                                />
+                                <input type="password" class="form-control" id="re_password" name="re_password" value=""
+                                    placeholder="Nhập lại mật khẩu" />
                             </div>
-                            <?= @$error ?>
+                            <p class="error_message"><?= @$error ?></p>
                             <div class="col-md-12 form-group">
                                 <button type="submit" value="submit" class="btn_3">
                                     Đăng ký

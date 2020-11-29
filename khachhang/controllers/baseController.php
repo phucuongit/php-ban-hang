@@ -40,5 +40,24 @@ class BaseController{
     public function error(){
         $this->render('error');
     }
+
+    public function validateSubmit($input)
+    {
+        $arrayKey = array_keys($input);
+        $postArray = ($tmp = filter_input_array(INPUT_POST)) ? $tmp : Array();
+      
+        foreach($arrayKey as $key => $value){
+          
+            if(empty($postArray[$value])){
+                return [
+                    'status'    => 'ERROR',
+                    'message'   => $input[$value]
+                ];
+            }
+        }
+        return [
+            'status'    => 'OK'
+        ];
+    }
 }
 ?>

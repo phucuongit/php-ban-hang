@@ -65,7 +65,10 @@ class CartController extends BaseController {
         if(count($products) <= 0){
             return $this->redirect('error');
         }
-        $data = array('order' => Order::findById($id), 'products' => convertObjectToArray($products));
+        $data = [
+            'order' => Order::findById($id), 
+            'products' => convertObjectToArray($products),
+        ];
         
         $this->render('invoice', $data, 'adminLayout');  
 

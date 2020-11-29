@@ -17,30 +17,17 @@
                         <h3>
                             Chào mừng trở lại ! <br />
                         </h3>
-                        <form class="row contact_form" action="<?= BASE_URL . 'dang-nhap?action=login' ?>" method="post" >
+                        <form class="row contact_form" action="<?= BASE_URL . 'dang-nhap?action=login' ?>"
+                            method="post">
                             <div class="col-md-12 form-group p_star">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="username"
-                                    name="username"
-                                    value=""
-                                    placeholder="Tài khoản"
-                                   
-                                />
+                                <input type="text" class="form-control" id="username" name="username" value=""
+                                    placeholder="Tài khoản" />
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    id="password"
-                                    name="password"
-                                    value=""
-                                    placeholder="Mật khẩu"
-                                
-                                />
+                                <input type="password" class="form-control" id="password" name="password" value=""
+                                    placeholder="Mật khẩu" />
                             </div>
-                            <?= @$error ?>
+                            <p class="error_message"><?= @$error ?></p>
                             <div class="col-md-12 form-group">
                                 <button type="submit" value="submit" class="btn_3">
                                     Đăng nhập

@@ -6,31 +6,33 @@ use KH\Controllers\BaseController;
 use KH\Models\Product;
 use KH\Models\Order;
 
+use KH\Repositories\OrderRepository;
+
 require_once('baseController.php');
 require_once('models/Product.php');
 require_once('models/Order.php');
+require_once('repositories/OrderRepository.php');
 
 class CartController extends BaseController {
     
+    private $orderRepository;
+    
+    public function __construct(){
+        parent::__construct();
+        $this->orderRepository = new OrderRepository();
+    }
+
+    public function getOrderRepository() :OrderRepository
+    {
+        return $this->orderRepository;
+    }
+    
     public function index(){
-        $list = [];
-        $itemCart = isset($_SESSION['item']) ? $_SESSION['item'] : [];
-        $total = 0;
 
-        if(empty($itemCart)){
-            $data = array('products' => [], 'total' => 0);
-            return $this->render('cart', $data);
-        }
-        foreach($itemCart as $key => $item){
-            $prod = Product::findById($key);
-            $total += ( $prod->price * $item['quality'] );
-            $prod = json_decode(json_encode($prod), true);
-
-            $prod = array_merge($prod, array('quality' => $item['quality']));
-            
-            array_push($list, $prod);
-        }
-        $data = array( 'title' => 'Giỏ hàng - Cường Lê', 'products' => $list, 'total' => $total);
+        $result = $this->getOrderRepository()->getListOrderItem();
+     
+        $data = array( 'title' => 'Giỏ hàng - Cường Lê', 'products' => $result['products'], 'total' => $result['total']);
+        
         $this->render('cart', $data);
     }
 
@@ -69,59 +71,72 @@ class CartController extends BaseController {
                 $this->redirect('dang-nhap');
                 return;
             }
-            $itemCart = $_SESSION['item'];
-            $total = 0;
-            $totalBackup=0;
-            $listBakup = [];
-            foreach($itemCart as $key => $item){
-                $prod = Product::findById($key);
-                $totalBackup += ( $prod->price * $item['quality'] );
-                $prod = json_decode(json_encode($prod), true);
-    
-                $prod = array_merge($prod, array('quality' => $item['quality']));
+
+            $fullName = $_POST['fullname'];
+            $email = $_POST['email'] ?? null;
+            $phoneNumber = $_POST['phone_number'];
+            $address = $_POST['address'];
+            $note = $_POST['note'] ?? null;
+            $paymentMethod = $_POST['payment_method'];
+            
+            $resultCheck = $this->validateSubmit([
+                'fullname'  => 'Vui lòng nhập họ và tên',
+                'phone_number'  => 'Vui lòng nhập số điện thoại',
+                'address'       => 'Vui lòng nhập địa chỉ giao hàng',
+            ]);
+            
+            $result = $this->getOrderRepository()->getListOrderItem();
+            
+            if($resultCheck['status'] == 'OK'){
                 
-                array_push($listBakup, $prod);
-            }
-            $list = [];
-            foreach($itemCart as $key => $item){
-                $prod = Product::findById($key);
-                $quality =  $item['quality'];
-                if($prod->in_stock - $quality < 0){
-                    $result =   array('products' => $listBakup,'total' => $totalBackup,'error' => 'Lỗi sản phẩm '.$prod->title.' chỉ còn ' .$prod->in_stock.' sản phẩm, vui lòng mua nhỏ hơn số lượng sản phẩm có trong kho');
+                $newOrder = array(
+                    'user_id'       => $_SESSION['userLogin']['id'],
+                    'total'         => $result['total'],
+                    'fullName'      => $fullName,
+                    'email'         => $email,
+                    'phoneNumber'  => $phoneNumber,
+                    'address'       => $address,
+                    'note'          => $note,
+                    'paymentMethod'=> $paymentMethod
+                );
+                
+                $order = new Order($newOrder);
+    
+                $order->save();
+             
+                $idInserted =  $order->lastInserted()['order_id'];
+                if(!$idInserted){
+                    $result =  array('products' => $result['products'],'error' => 'Mua hàng không thành công do 1 số lỗi');
                     return $this->render('cart', $result);
                 }
-                $total += ( $prod->price * $quality);
-                $prod = json_decode(json_encode($prod), true);
-
-                $prod = array_merge($prod, array('quality' => $quality));
+                $itemCart = $_SESSION['item'];
+                foreach($itemCart as $key => $item){
+                    $prod = Product::findById($key);
+                    $quality =  $item['quality'];
+                    $prod->in_stock -= $quality;
+                    Product::updateProductByStock($prod->id,$prod->in_stock);
+                }
+                $order->saveManyProduct($itemCart,$idInserted);
+                $_SESSION['item'] = null;
+           
+                $data = [ 
+                    'title'     => 'Mua thành công sản phẩm - Cường Lê', 
+                    'products'  => $result['products'], 
+                    'total'     => $result['total'],
+                ];
+                $this->render('confirm', $data);
                 
-                array_push($list, $prod);
-            }
-            $data = array('products' => $list, 'total' => $total);
-        
-            $newOrder = array(
-                'user_id' => $_SESSION['userLogin']['id'],
-                'total' => $total
-            );
-            $order = new Order($newOrder);
-
-            $order->save();
+            }else{
          
-            $idInserted =  $order->lastInserted()['order_id'];
-            if(!$idInserted){
-                $result =  array('products' => $listBakup,'error' => 'Mua hàng không thành công do 1 số lỗi');
-                return $this->render('cart', $result);
+                $data = [ 
+                    'title'     => 'Giỏ hàng - Cường Lê', 
+                    'products'  => $result['products'], 
+                    'total'     => $result['total'],
+                    'errorCart'     => $resultCheck['message']
+                ];
+                 
+                $this->render('cart', $data);
             }
-            foreach($itemCart as $key => $item){
-                $prod = Product::findById($key);
-                $quality =  $item['quality'];
-                $prod->in_stock -= $quality;
-                Product::updateProductByStock($prod->id,$prod->in_stock);
-            }
-            $order->saveManyProduct($data['products'],$idInserted);
-            $_SESSION['item'] = null;
-
-            $this->render('confirm', $data);
 
         }else {
             return $this->redirect('gio-hang');

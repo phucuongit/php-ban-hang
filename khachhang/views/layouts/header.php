@@ -11,8 +11,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= BASE_URL?>">Trang chủ</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="<?= BASE_URL . 'cua-hang' ?>">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= BASE_URL . 'cua-hang' ?>">
                                     Cửa hàng
                                 </a>
                             </li>

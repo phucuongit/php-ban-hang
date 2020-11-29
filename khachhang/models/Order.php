@@ -7,7 +7,13 @@ class Order {
     private $total = 0;
     private $is_deleted = 0;
     private $created_at;
-
+    private $fullName;
+    private $email = null;
+    private $phoneNumber;
+    private $address;
+    private $note = null;
+    private $paymentMethod;
+    
     public function __construct($newOrder) {
         foreach($newOrder as $key => $val){
             $this->$key = $val;
@@ -40,7 +46,7 @@ class Order {
     public static function findById(int $id){
         $db = \DB::getInstance();
 
-        $req = $db->prepare('SELECT p.id, p.user_id, p.status, p.total, p.created_at, u.fullname 
+        $req = $db->prepare('SELECT p.id, p.user_id, p.status, p.total, p.created_at, p.fullname, p.phone_number, p.email, p.address, p.note, p.payment_method
         from order_item as p join user as u on p.user_id = u.id 
         where p.is_deleted = 0 and p.id = :id and p.is_deleted = 0');
         $req->bindParam(':id', $id);
@@ -85,11 +91,18 @@ class Order {
     public function save(){
         $db = \DB::getInstance();
         try{
-            $req = $db->prepare('insert into order_item (user_id, status, total, is_deleted) values (:user_id, :status, :total, :is_deleted) ');
+            $req = $db->prepare('insert into order_item (user_id, status, total, is_deleted, fullName, email, phone_number, address, note, payment_method) 
+                                                values (:user_id, :status, :total, :is_deleted, :fullName, :email, :phoneNumber, :address, :note, :paymentMethod)');
             $req->bindParam(':user_id', $this->user_id);
             $req->bindParam(':status', $this->status);
             $req->bindParam(':total', $this->total);
             $req->bindParam(':is_deleted', $this->is_deleted);
+            $req->bindParam(':fullName', $this->fullName);
+            $req->bindParam(':email', $this->email);
+            $req->bindParam(':phoneNumber', $this->phoneNumber);
+            $req->bindParam(':address', $this->address);
+            $req->bindParam(':note', $this->note);
+            $req->bindParam(':paymentMethod', $this->paymentMethod);
             $req->execute();
     
             return true;

@@ -150,3 +150,27 @@ buttonsDelCart.forEach(button => {
   })
 })
 
+
+//scroll to top
+$(document).ready(function(){
+ 
+  $(".back-to-top").on('click', function(event) {
+      $('html, body').animate(
+        {
+          scrollTop: 0
+        }, 800);
+  });
+  if(window.pageYOffset < 200){
+    $('.back-to-top').removeClass('show');
+  }else{
+    $('.back-to-top').addClass('show');
+  }
+});
+
+$(window).scroll(function(){
+    if($(this).scrollTop() < 200){
+      $('.back-to-top').removeClass('show');
+    }else{
+      $('.back-to-top').addClass('show');
+    }
+});

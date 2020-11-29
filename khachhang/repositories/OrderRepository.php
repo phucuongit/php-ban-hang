@@ -3,9 +3,11 @@ namespace KH\Repositories;
 
 use KH\Models\Order;
 use KH\Models\User;
+use KH\Models\Product;
 
 require_once('models/Order.php');
 require_once('models/User.php');
+require_once('models/Product.php');
 
 class OrderRepository{
 
@@ -13,6 +15,8 @@ class OrderRepository{
     const DELIVER = "Đang vận chuyển";
     const SUCCESS = "Đã giao hàng";
 
+    const TRANSFER  = "Chuyển khoản";
+    const COD       = "Thanh toán khi nhận hàng"; 
     public function getListOrderByUser($userId)
     {
         $user = User::findById($userId);
@@ -34,9 +38,19 @@ class OrderRepository{
            
             case 2:
                 return self::SUCCESS;
-           
         }
 
+    }
+
+    public function methodShip($method)
+    {
+        switch($method){
+            case 0:
+                return self::TRANSFER;
+        
+            case 1:
+                return self::COD;
+        }
     }
 
     public function getDetailOrder($orderId)
@@ -68,6 +82,35 @@ class OrderRepository{
                 'code'      => 'getTotalOrder.failed.data_error' 
             ];
         }
+    }
+
+    public function getListOrderItem()
+    {
+        $list = [];
+        $itemCart = isset($_SESSION['item']) ? $_SESSION['item'] : [];
+        $total = 0;
+
+        if(empty($itemCart)){
+            return [
+                'products' => [], 
+                'total' => 0
+            ];
+        }
+        
+        foreach($itemCart as $key => $item){
+            $prod = Product::findById($key);
+            $total += ( $prod->price * $item['quality'] );
+            $prod = json_decode(json_encode($prod), true);
+
+            $prod = array_merge($prod, array('quality' => $item['quality']));
+            
+            array_push($list, $prod);
+        }
+        
+        return [
+            'products' => $list, 
+            'total' => $total
+        ];
     }
 }  
 
