@@ -27,26 +27,6 @@
                             <textarea id="editor_short_des" name="short_des">
                                     <?= @$product['short_des'] ?>
                             </textarea>
-                            <script>
-                            ClassicEditor
-                                .create(document.querySelector('#editor'))
-                                .then(editor => {
-                                    const data = editor.getData();
-                                    editor.execute('fontFamily');
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                });
-                            ClassicEditor
-                                .create(document.querySelector('#editor_short_des'))
-                                .then(editor => {
-                                    const data = editor.getData();
-
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                });
-                            </script>
                         </div>
 
                         <input type="hidden" name="id" class="form-control" value="<?= @$product['id'] ?>" />

@@ -99,12 +99,13 @@ class ProductController extends BaseController{
     public function add(){
         $data = array();
         $title = htmlspecialchars($_POST['title']);
-        $shortDes = htmlspecialchars($_POST['short_des']);
+
+        $shortDes = urldecode($_POST['short_des']);
         $inStock = (int)$_POST['in_stock'];
         $price = (int)$_POST['price'];
         $cateId = $_POST['category_id'] ?? NULL;
       
-        $des = htmlspecialchars($_POST['description']);
+        $des = urldecode($_POST['description']);
         $error = '';
      
         if(empty($title)){
@@ -178,13 +179,13 @@ class ProductController extends BaseController{
     {
         $data = [];
         $title = htmlspecialchars($_POST['title']);
-        $shortDes = htmlspecialchars($_POST['short_des']);
+        $shortDes = urldecode($_POST['short_des']);
         $id = (int)$_POST['id'];
         $inStock = (int)$_POST['in_stock'];
         $price = (int)$_POST['price'];
         $cateId = $_POST['category_id'] ?? NULL;
       
-        $des = htmlspecialchars($_POST['description']);
+        $des = urldecode($_POST['description']);
         $error = '';
      
         if(empty($title)){

@@ -15,7 +15,6 @@
     <link rel="icon" type="image/png" href="<?= BASE_URL . 'assets/img/favicon.png' ?>">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/all.css" />
 
-
     <script src="<?= $BASE_URL . 'assets/js/kit.js' ?>"></script>
 </head>
 

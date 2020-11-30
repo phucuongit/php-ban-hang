@@ -143,3 +143,17 @@ cateDel.forEach((cate) => {
     });
   });
 });
+
+
+//text editor
+
+$(document).ready(function() {
+  $('#editor').summernote({
+    height: 300,
+    placeholder: 'Nhập mô tả',
+  });
+  $('#editor_short_des').summernote({
+    height: 300,
+    placeholder: 'Nhập mô tả ngắn',
+  });
+});

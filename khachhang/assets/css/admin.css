@@ -84,3 +84,6 @@ img[alt="image_product"]{
 .ck-content .text-huge {
   font-size: 1.8em;
 }
+.note-group-select-from-files {
+  display: none;
+}
