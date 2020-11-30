@@ -23,6 +23,37 @@ class User {
             return $e->getMessage();
         }
     }
+    
+    public static function totalUser(){
+        $db = \DB::getInstance();
+        try{
+            
+            $req = $db->prepare('select count(*) from user where is_deleted = 0');
+            $req->execute();
+            return $req->fetch();
+            
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+
+    public static function paginate($current, $limit)
+    {
+        $db = \DB::getInstance();
+        try{
+            $offset = ($current -1 ) * $limit;
+        
+            $req = $db->prepare('select * from user where is_deleted = 0 LIMIT ' . $limit . ' OFFSET ' .$offset);
+            // $req->setFetchMode(\PDO::FETCH_OBJ);
+
+            $req->execute();
+            return $req->fetchAll();
+            
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+    
     public static function findById(int $id){
         $db = \DB::getInstance();
 

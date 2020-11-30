@@ -42,6 +42,7 @@ class Order {
     public static function paginate($current, $limit, $userId = null)
     {
         $db = \DB::getInstance();
+
         try{
             $offset = ($current -1 ) * $limit;
             if(isset($userId)){

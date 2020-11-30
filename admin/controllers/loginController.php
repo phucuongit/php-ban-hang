@@ -4,12 +4,16 @@ namespace Admin\Controllers;
 use Admin\Controllers\BaseController;
 
 use KH\Models\User;
+use KH\Models\Pagination;
 
 require_once('baseController.php');
 require_once('../khachhang/models/User.php');
+require_once('../khachhang/models/Pagination.php');
 
 class LoginController extends BaseController{
 
+    use Pagination;
+    
     function __construct()
     {
         $this->folder = 'admin';
@@ -32,7 +36,29 @@ class LoginController extends BaseController{
           return $this->renderLogin($data);
         }
         
-        $data = array('title' => 'Quản lý người dùng - Cường Lê','users' => User::all());
+        $config = [
+            'total' => 0, 
+            'limit' => 10,
+            'full' => false,
+            'querystring' => 'trang' 
+        ];
+        
+        $total = User::totalUser();
+        
+        $config['total']  = $total[0] ?? 0;
+        
+        $this->setPagination($config);
+        $currentPage = $this->getCurrentPage();
+        
+        $listUsers = User::paginate($currentPage, $config['limit']);
+
+        $data = [
+            'title' => 'Quản lý người dùng - Cường Lê',
+            'users'  => $listUsers,
+            'page'      => $this->getPagination(),
+            'total' => $total[0] ?? 0
+        ];
+        
         $this->render('user', $data, 'adminLayout');
     }
 

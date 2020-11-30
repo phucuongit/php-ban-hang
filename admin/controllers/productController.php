@@ -38,7 +38,8 @@ class ProductController extends BaseController{
         return $this->productRepository = new ProductRepository();
     }
 
-    public function indexAdmin(){
+    public function indexAdmin()
+    {
     
         $config = [
             'total' => 0, 
