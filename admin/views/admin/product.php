@@ -90,6 +90,16 @@
                     <p><?= @$error ?></p>
                 </tbody>
             </table>
+
+        </div>
+        <div class="col-lg-12 pagination_admin">
+            <div class="pageination">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <?= $page ?>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </section>

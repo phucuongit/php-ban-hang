@@ -36,7 +36,7 @@ class CartController extends BaseController {
     {
         $config = [
             'total' => 0, 
-            'limit' => 5,
+            'limit' => 10,
             'full' => false,
             'querystring' => 'trang' 
         ];
@@ -54,7 +54,7 @@ class CartController extends BaseController {
             'title'     => 'Danh sách đơn hàng - Cường Lê', 
             'orders'  => $listOrder,
             'page'      => $this->getPagination(),
-            'total' => $total ?? 0
+            'total' => $total[0] ?? 0
         ];
         
         return $this->render('order', $data, 'adminLayout');

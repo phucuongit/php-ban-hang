@@ -3,6 +3,7 @@ namespace Admin\Controllers;
 
 use KH\Models\Product;
 use KH\Models\Category;
+use KH\Models\Pagination;
 
 use Admin\Controllers\BaseController;
 
@@ -12,11 +13,13 @@ require_once('baseController.php');
 
 require_once('../khachhang/models/Product.php');
 require_once('../khachhang/models/Category.php');
+require_once('../khachhang/models/Pagination.php');
 
 require_once('repositories/ProductRepository.php');
 
 class ProductController extends BaseController{
 
+    use Pagination;
     protected $productRepository;
 
     public function __construct()
@@ -36,17 +39,32 @@ class ProductController extends BaseController{
     }
 
     public function indexAdmin(){
-        $data = array();
-        if(isset($this->router[3]) && $this->router[3]  === 'them-moi'){
-            $data = array(
-                'categories' => Category::all(),
-            );
-            $this->render('product-add', $data, 'adminLayout');
-        }else{
-            $products = Product::all();
-            $data = array('title' => 'Quản lý sản phẩm - Cường Lê', 'products' => $products);
-            $this->render('product', $data, 'adminLayout');
-        }
+    
+        $config = [
+            'total' => 0, 
+            'limit' => 10,
+            'full' => false,
+            'querystring' => 'trang' 
+        ];
+        
+        $total = Product::totalProduct();
+        
+        $config['total']  = $total[0] ?? 0;
+        
+        $this->setPagination($config);
+        $currentPage = $this->getCurrentPage();
+        
+        $listProduct = Product::paginateAdmin($currentPage, $config['limit']);
+
+        $data = [
+            'title' => 'Quản lý sản phẩm - Cường Lê', 
+            'products'  => $listProduct,
+            'page'      => $this->getPagination(),
+            'total' => $total[0] ?? 0
+        ];
+        
+        $this->render('product', $data, 'adminLayout');
+        
     }
 
     public function prodDel(){

@@ -36,6 +36,31 @@ class Product {
         $req->execute();
 
     }
+
+    public static function paginateAdmin($current, $limit)
+    {
+        $db = \DB::getInstance();
+        try{
+            $offset = ($current -1 ) * $limit;
+        
+            $req = $db->prepare('select * from product where is_deleted = false LIMIT ' . $limit . ' OFFSET ' .$offset);
+            $req->setFetchMode(\PDO::FETCH_OBJ);
+
+            $req->execute();
+            return $req->fetchAll();
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+    
+    public static function totalProduct()
+    {
+        $db = \DB::getInstance();
+        $req = $db->prepare('select count(*) from product where is_deleted = false');
+        $req->execute();
+        return $req->fetch();
+    }
+
     static function updateProductByStock($id, $stock){
         $db = \DB::getInstance();
         $req = $db->prepare('update product set in_stock=:in_stock where id = :id');
