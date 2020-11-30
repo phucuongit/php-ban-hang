@@ -56,7 +56,7 @@ class LoginController extends BaseController{
 
     public function logout()
     {
-        $_SESSION['userLogin'] = null;
+        $_SESSION['adminLogin'] = null;
         $this->redirect('dang-nhap');
     }
 

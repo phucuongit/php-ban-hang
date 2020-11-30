@@ -14,6 +14,9 @@ class OrderRepository{
     const DELIVER = "Đang vận chuyển";
     const SUCCESS = "Đã giao hàng";
 
+    const TRANSFER  = "Chuyển khoản";
+    const COD       = "Thanh toán khi nhận hàng"; 
+    
     public function getListOrderByUser($userId)
     {
         $user = User::findById($userId);
@@ -24,6 +27,10 @@ class OrderRepository{
 
     }
 
+    public function getListOrder($current, $limit)
+    {
+        return Order::paginate($current, $limit);
+    }
     public function statusOrder($statusCode)
     {
         switch($statusCode){
@@ -38,6 +45,17 @@ class OrderRepository{
            
         }
 
+    }
+
+    public function methodShip($method)
+    {
+        switch($method){
+            case 0:
+                return self::TRANSFER;
+        
+            case 1:
+                return self::COD;
+        }
     }
 }  
 

@@ -31,6 +31,25 @@ class Order {
         }
     }
 
+    public static function paginate($current, $limit, $userId = null)
+    {
+        $db = \DB::getInstance();
+        try{
+            $offset = ($current -1 ) * $limit;
+            if(isset($userId)){
+                $req = $db->prepare('select p.id, p.user_id, p.status, p.total, p.created_at, u.fullname from order_item as p join user as u on p.user_id = u.id where p.user_id = :userId and p.is_deleted = 0 order by p.created_at desc  LIMIT ' . $limit . ' OFFSET ' .$offset);
+                $req->bindParam(':userId', $userId);
+              
+            }else{
+                $req = $db->prepare('select p.id, p.user_id, p.status, p.total, p.created_at, u.fullname from order_item as p join user as u on p.user_id = u.id where p.is_deleted = 0 LIMIT ' . $limit . ' OFFSET ' .$offset);
+            }
+          
+            $req->execute();
+            return $req->fetchAll();
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
     public static function myOrder($userId){
         $db = \DB::getInstance();
         try{
@@ -43,6 +62,19 @@ class Order {
         }
     }
 
+    public static function totalOrderByUser($userId)
+    { 
+        $db = \DB::getInstance();
+        try{
+            $req = $db->prepare('select count(*) from order_item as p join user as u on p.user_id = u.id where p.user_id = :userId and p.is_deleted = 0 order by p.created_at desc');
+            $req->bindParam(':userId', $userId);
+            $req->execute();
+            return $req->fetch();
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+
+    }
     public static function findById(int $id){
         $db = \DB::getInstance();
 

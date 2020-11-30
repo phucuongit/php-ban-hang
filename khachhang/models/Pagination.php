@@ -56,6 +56,7 @@ trait Pagination {
     public function getPagination(){
         
         $data = '';
+       
         if (isset($this->config['full']) && $this->config['full'] === false) {
             // nếu không thì
             $request = preg_replace("/[?&]" . $this->config['querystring'] . "=(\d)/", '' , $_SERVER['REQUEST_URI']);
@@ -81,7 +82,7 @@ trait Pagination {
                 }
             }
         }
-
+      
         return  $data ;
     }
 

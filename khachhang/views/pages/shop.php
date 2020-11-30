@@ -13,10 +13,11 @@
                                     <a href="<?= BASE_URL . 'cua-hang'?>">Tất cả danh mục</a>
                                 </li>
                                 <?php foreach($categories as $category){ ?>
-                                    <li>
-                                        <a href="<?= BASE_URL . 'cua-hang?name='.$category->slug ?>"><?= $category->name ?></a>
-                                        <span><?= $category->total_product ?></span>
-                                    </li>
+                                <li>
+                                    <a
+                                        href="<?= BASE_URL . 'cua-hang?name='.$category->slug ?>"><?= $category->name ?></a>
+                                    <span><?= $category->total_product ?></span>
+                                </li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -34,17 +35,17 @@
                     </div>
                 </div>
                 <div class="row align-items-center latest_product_inner">
-                <?php 
+                    <?php 
                     foreach($products as $product){ 
                         require('views/components/productShop.php');
                     } 
                 ?>
-           
-                  <div class="col-lg-12">
+
+                    <div class="col-lg-12">
                         <div class="pageination">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
-                                   <?= $page ?>
+                                    <?= $page ?>
                                 </ul>
                             </nav>
                         </div>

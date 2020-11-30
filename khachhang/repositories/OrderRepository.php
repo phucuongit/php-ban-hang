@@ -17,6 +17,7 @@ class OrderRepository{
 
     const TRANSFER  = "Chuyển khoản";
     const COD       = "Thanh toán khi nhận hàng"; 
+    
     public function getListOrderByUser($userId)
     {
         $user = User::findById($userId);
@@ -40,17 +41,6 @@ class OrderRepository{
                 return self::SUCCESS;
         }
 
-    }
-
-    public function methodShip($method)
-    {
-        switch($method){
-            case 0:
-                return self::TRANSFER;
-        
-            case 1:
-                return self::COD;
-        }
     }
 
     public function getDetailOrder($orderId)
@@ -84,6 +74,41 @@ class OrderRepository{
         }
     }
 
+    public function getOrder($orderId){
+        try{
+            $order = Order::findById($orderId);
+            return [
+                'status'   => 'OK',
+                'data'     => $order
+            ];
+        }catch (Exception $error){
+            return [
+                'status'    => 'ERROR',
+                'code'      => 'getTotalOrder.failed.data_error' 
+            ];
+        }
+    }
+    public function methodShip($method)
+    {
+        switch($method){
+            case 0:
+                return self::TRANSFER;
+        
+            case 1:
+                return self::COD;
+        }
+    }
+    
+    public function getListOrder($current, $limit, $user = null)
+    {
+        return Order::paginate($current, $limit, $user);
+    }
+    
+    public function totalOrderByUser($user)
+    {
+        return Order::totalOrderByUser($user);
+    }
+    
     public function getListOrderItem()
     {
         $list = [];

@@ -5,14 +5,18 @@ use Admin\Controllers\BaseController;
 
 use Admin\Repositories\OrderRepository;
 
-use KH\Models\Product;
-use KH\Models\Order;
+use KH\Models\Pagination;
 
 require_once('baseController.php');
+
 require_once(__DIR__ . '\..\repositories\OrderRepository.php');
+
+require_once('../khachhang/models/Pagination.php');
 
 class OrderController extends BaseController{
 
+    use Pagination;
+    
     protected $orderRepository;
 
     public function __construct()
@@ -47,9 +51,25 @@ class OrderController extends BaseController{
 
         $userId = $_SESSION['userLogin']['id'];
       
-        $listCart = $this->getOrderRepository()->getListOrderByUser($userId);
+       
+        $config = [
+            'total' => count($listCart), 
+            'limit' => 5,
+            'full' => false,
+            'querystring' => 'trang' 
+        ];
+  
+        $this->setPagination($config);
+        $currentPage = $this->getCurrentPage();
 
-        $data = array( 'title' => 'Danh sách đơn hàng - Cường Lê', 'products' => $listCart);
+        $listCart = $this->getOrderRepository()->getListOrder($currentPage, $config['limit']);
+        
+        $data = [
+            'title' => 'Danh sách đơn hàng - Cường Lê', 
+            'products' => $listCart,
+            'page'  => $this->getPagination(),
+            'total' => $config['total']
+        ];
 
         $this->render('order', $data);
     }

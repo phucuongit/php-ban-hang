@@ -28,18 +28,20 @@
 
                         <div class="col-sm-4 invoice-col">
                             Đến
-                            <?php //var_dump($order) ?>
                             <address>
-                                <strong><?= $order->fullname ?></strong><br>
-                                Email: <?= isset($order->email) ? $order->email : '<em>(Trống)</em>' ?><br>
+
+                                <strong><?= (isset($order->fullname) && !empty($order->fullname) )? $order->fullname : '<em>(Trống)</em>' ?></strong><br>
+                                Email:
+                                <?= isset($order->email) && !empty($order->email) ? $order->email : '<em>(Trống)</em>' ?><br>
                                 Địa chỉ giao hàng:
-                                <?= isset($order->address) ? $order->address : '<em>(Trống)</em>' ?><br>
+                                <?= isset($order->address) && !empty($order->address) ? $order->address : '<em>(Trống)</em>' ?><br>
                                 Số điện thoại:
-                                <?= isset($order->phoneNumber) ? $order->phone_number : '<em>(Trống)</em>' ?><br>
+                                <?= isset($order->phone_number) && !empty($order->phone_number) ? $order->phone_number : '<em>(Trống)</em>' ?><br>
                                 Ghi chú:
-                                <?= isset($order->note) ? $order->note : '<em>(Trống)</em>' ?><br>
+                                <?= isset($order->note) && !empty($order->note) ? $order->note : '<em>(Trống)</em>' ?><br>
                                 Phương thức thanh toán:
-                                <b><?= isset($order->paymentMethod) ? $this->orderRepository->methodShip($order->payment_method) : '(Trống)' ?></b><br>
+                                <b
+                                    class="text-primary"><?= isset($order->payment_method) ? $this->orderRepository->methodShip($order->payment_method) : '(Trống)' ?></b><br>
                             </address>
                             <p>Trạng thái đơn hàng:
                                 <b class="show_status"><?= $this->orderRepository->statusOrder($order->status) ?></b>
@@ -69,7 +71,7 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>STT</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Số lượng</th>
                                         <th>Thành tiền</th>
@@ -77,15 +79,17 @@
                                 </thead>
                                 <tbody>
 
-                                    <?php foreach($products as $product ){?>
+                                    <?php $id=1; foreach($products as $product ){?>
                                     <tr>
 
-                                        <td><?= $product['id'] ?></td>
+                                        <td><?= $id ?></td>
                                         <td><?= $product['title'] ?></td>
                                         <td><?= $product['quality'] ?></td>
                                         <td><?= $product['price']  ?> VND</td>
                                     </tr>
-                                    <?php } ?>
+                                    <?php 
+                                        $id++;
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>

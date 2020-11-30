@@ -78,7 +78,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= BASE_URL ?>dang-nhap?action=logout" class="nav-link">
+                                <a href="<?= BASE_ADMIN_URL ?>dang-nhap?action=logout" class="nav-link">
 
                                     <p>
                                         Đăng suất

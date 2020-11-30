@@ -76,8 +76,7 @@ if (updateStatus) {
       let url = getUrl();
       formData.append("id", regexp.exec(window.location.href)[1]);
       formData.append("status", status);
-      document.querySelector("p.show_status").innerHTML =
-        "<b>" + newStatus.options[status].text + "</b>";
+      document.querySelector(".show_status").innerHTML = "<b>" + newStatus.options[status].text + "</b>";
       fetch(url + '/don-hang?action=updateStatus', {
         method: "POST",
         body: formData,

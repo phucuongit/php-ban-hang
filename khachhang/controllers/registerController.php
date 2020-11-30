@@ -41,7 +41,7 @@ class RegisterController extends BaseController{
    
         $_SESSION['userLogin'] = convertArray(User::findById($newId['user']));
    
-        header('location: /');
+        $this->redirect();
        }else{
         $data = array('error' => 'Lỗi: mật khẩu và nhập lại mật khẩu không đúng');
         $this->render('register', $data);
