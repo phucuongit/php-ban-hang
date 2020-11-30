@@ -7,15 +7,20 @@ use Admin\Repositories\OrderRepository;
 
 use KH\Models\Product;
 use KH\Models\Order;
+use KH\Models\Pagination;
 
 require_once('baseController.php');
 require_once(__DIR__ . '\..\..\khachhang\models\Product.php');
 require_once(__DIR__ . '\..\..\khachhang\models\Order.php');
 require_once(__DIR__ . '\..\..\khachhang\models\User.php');
+require_once(__DIR__ . '\..\..\khachhang\models\Pagination.php');
+
 require_once('repositories/OrderRepository.php');
 
 class CartController extends BaseController {
 
+    use Pagination;
+    
     protected $orderRepository;
 
     public function __construct()
@@ -29,10 +34,29 @@ class CartController extends BaseController {
 
     public function indexAdmin()
     {
+        $config = [
+            'total' => 0, 
+            'limit' => 5,
+            'full' => false,
+            'querystring' => 'trang' 
+        ];
+        
+        $total = Order::totalOrder();
+        
+        $config['total']  = $total[0] ?? 0;
+        
+        $this->setPagination($config);
+        $currentPage = $this->getCurrentPage();
+        
+        $listOrder = Order::paginate($currentPage, $config['limit']);
 
-        $data = array('orders' => Order::all());
-        $data = array_merge($data, array('title' => 'Đơn hàng - Cường Lê'));
-    
+        $data = [
+            'title'     => 'Danh sách đơn hàng - Cường Lê', 
+            'orders'  => $listOrder,
+            'page'      => $this->getPagination(),
+            'total' => $total ?? 0
+        ];
+        
         return $this->render('order', $data, 'adminLayout');
     }
 

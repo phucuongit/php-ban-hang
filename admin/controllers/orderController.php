@@ -41,37 +41,37 @@ class OrderController extends BaseController{
         $this->orderRepository = $orderRepository;
     }
 
-    public function index()
-    {
-        if(!isAdminLogin()){
-            return $this->redirect('dang-nhap');
-        }
-        
-        $this->setOrderRepository(new OrderRepository());
+    // public function index()
+    // {
+    //     if(!isAdminLogin()){
+    //         return $this->redirect('dang-nhap');
+    //     }
+     
+    //     $this->setOrderRepository(new OrderRepository());
 
-        $userId = $_SESSION['userLogin']['id'];
+    //     $userId = $_SESSION['userLogin']['id'];
       
        
-        $config = [
-            'total' => count($listCart), 
-            'limit' => 5,
-            'full' => false,
-            'querystring' => 'trang' 
-        ];
+    //     $config = [
+    //         'total' => count($listCart), 
+    //         'limit' => 5,
+    //         'full' => false,
+    //         'querystring' => 'trang' 
+    //     ];
   
-        $this->setPagination($config);
-        $currentPage = $this->getCurrentPage();
+    //     $this->setPagination($config);
+    //     $currentPage = $this->getCurrentPage();
 
-        $listCart = $this->getOrderRepository()->getListOrder($currentPage, $config['limit']);
+    //     $listCart = $this->getOrderRepository()->getListOrder($currentPage, $config['limit']);
         
-        $data = [
-            'title' => 'Danh sách đơn hàng - Cường Lê', 
-            'products' => $listCart,
-            'page'  => $this->getPagination(),
-            'total' => $config['total']
-        ];
+    //     $data = [
+    //         'title' => 'Danh sách đơn hàng - Cường Lê', 
+    //         'products' => $listCart,
+    //         'page'  => $this->getPagination(),
+    //         'total' => $config['total']
+    //     ];
 
-        $this->render('order', $data);
-    }
+    //     $this->render('order', $data);
+    // }
 
 }

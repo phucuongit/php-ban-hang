@@ -33,11 +33,19 @@
 }
 .cart-list-item {
   overflow-x: scroll;
+  margin-bottom: 10px;
 }
 @media print {
   .updateStatus{
     display: none;
   }
+}
+.pagination_admin{
+  display: flex;
+  justify-content: flex-end;
+}
+.pagination_admin .pageination{
+  margin-right: 20px;
 }
 .sidebar{
   overflow-y: hidden;
