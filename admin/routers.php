@@ -41,8 +41,10 @@ class Router{
             $nameController = 'error';
         }
     
-        $nameController = $controllers[preg_replace("/\?(.+)/", '', $router[3] ?? '')];
-      
+
+        $key  = preg_replace("/\?(.+)/", '', isset($router[3]) ? $router[3] : '');
+        $nameController = array_key_exists($key,$controllers) ? $controllers[$key] : null;
+ 
         $arguments = array();
         foreach($router as $key => $val){
             if($key != 0 && $key != 1){

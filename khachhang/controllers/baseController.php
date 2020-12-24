@@ -38,7 +38,7 @@ class BaseController{
     }
 
     public function error(){
-        $this->render('error');
+        $this->render('404');
     }
 
     public function validateSubmit($input)

@@ -124,12 +124,16 @@ class OrderRepository{
         
         foreach($itemCart as $key => $item){
             $prod = Product::findById($key);
-            $total += ( $prod->price * $item['quality'] );
-            $prod = json_decode(json_encode($prod), true);
-
-            $prod = array_merge($prod, array('quality' => $item['quality']));
-            
-            array_push($list, $prod);
+            if($prod){
+                $total += ( $prod->price * $item['quality'] );
+                $prod = json_decode(json_encode($prod), true);
+    
+                $prod = array_merge($prod, array('quality' => $item['quality']));
+                
+                array_push($list, $prod);
+            }else{
+                unset($_SESSION['item'][$key]);
+            }
         }
         
         return [
