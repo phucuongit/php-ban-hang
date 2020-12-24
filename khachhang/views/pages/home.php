@@ -1,4 +1,3 @@
-
 <section class="product_list">
     <div class="container">
         <div class="row justify-content-center">
@@ -8,9 +7,9 @@
                 </div>
             </div>
         </div>
-	<div class="row align-items-center justify-content-between">
-		<?php foreach($products as $product){
+        <div class="row align-items-center">
+            <?php foreach($products as $product){
 			require('views/components/production.php');
 		} ?>
-	</div>
+        </div>
 </section>
