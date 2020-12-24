@@ -68,7 +68,7 @@
                                         <h5>Tổng tiền</h5>
                                     </td>
                                     <td colspan="2">
-                                        <h5><?= formatCurrency( $total )  ?></h5>
+                                        <h5 class="totalCart"><?= formatCurrency( $total )  ?></h5>
                                     </td>
                                 </tr>
 

@@ -39,27 +39,29 @@ class Router{
         if(!array_key_exists($router[3] ?? '', $controllers)){
             $nameController = 'error';
         }
-    
-        $nameController = $controllers[preg_replace("/\?(.+)/", '', $router[3] ?? '')];
-        // var_dump($nameController);
-        $arguments = array();
-        foreach($router as $key => $val){
-            if($key != 0 && $key != 1){
-                $arguments[] = $val;
+           
+            $key  = preg_replace("/\?(.+)/", '', isset($router[3]) ? $router[3] : '');
+            $nameController = array_key_exists($key,$controllers) ? $controllers[$key] : null;
+     
+            $arguments = array();
+            foreach($router as $key => $val){
+                if($key != 0 && $key != 1){
+                    $arguments[] = $val;
+                }
             }
-        }
-
-        if(!$nameController){
-            $nameController = 'error';
-        }
+    
+            if(!$nameController){
+                $nameController = 'error';
+            }
+           
+            $class = lcfirst($nameController) . 'Controller';
        
-        $class = lcfirst($nameController) . 'Controller';
-   
-        $this->setRouterRepository(new RouterRepository());
-        // var_dump($class, $action);
-        $controller = $this->getRouterRepository()->switchController($class);
-
-        $controller->$action($arguments);
+            $this->setRouterRepository(new RouterRepository());
+            // var_dump($class, $action);
+            $controller = $this->getRouterRepository()->switchController($class);
+    
+            $controller->$action($arguments);
+     
     }
 
     public function getRouterRepository(): RouterRepository{

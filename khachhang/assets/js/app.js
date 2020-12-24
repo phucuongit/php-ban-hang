@@ -131,7 +131,7 @@ buttonsDelCart.forEach(button => {
     var del = this;
     var url = getUrl();
     let id = del.parentElement.parentElement.querySelector('input[type="hidden"').value;
-    console.log(id);
+    let totalPrice = parseInt(document.querySelector('.totalCart').innerText.replace(/\.|\s|đ/g, ""));
     const formData = new FormData();
     formData.append('item_id', id);
     fetch(url + '/'+id+'?action=delCart', {
@@ -141,6 +141,7 @@ buttonsDelCart.forEach(button => {
     .then(response => response.json())
     .then((data) => {
       showAlert(data.message);
+      document.querySelector('.totalCart').innerText = data.total;
       del.parentElement.parentElement.remove();
     }).catch((error) => {
       showAlert("Xãy ra lỗi, xóa thất bại")

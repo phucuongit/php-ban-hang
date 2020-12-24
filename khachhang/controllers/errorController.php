@@ -12,11 +12,7 @@ class ErrorController extends BaseController{
 
     public function index(){
         $data = array( 'title' => '404 - Cường Lê');
-        $this->render('error', $data);
+        $this->render('404', $data);
     }
 
-    public function indexAdmin(){
-        $data = array();
-        $this->render('error', $data);
-    }
 }

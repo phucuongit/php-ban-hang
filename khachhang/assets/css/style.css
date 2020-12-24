@@ -19,7 +19,10 @@ body {
   text-align: left;
   background-color: #fff;
 }
-
+ul.list.list_info{
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 20px;
+}
 .row {
   display: -ms-flexbox;
   display: flex;
@@ -3604,12 +3607,6 @@ ul {
 
 .s_product_text .list li:last-child {
   margin-bottom: 0px;
-}
-
-.s_product_text p {
-  padding-top: 20px;
-  border-top: 1px dotted #d5d5d5;
-  margin: 20px 0;
 }
 
 .s_product_text .card_area .main_btn {

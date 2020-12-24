@@ -38,7 +38,6 @@ class CartController extends BaseController {
 
     public function update(){
         $itemCart = $_SESSION['item'];
-        $total = 0;
         $list = [];
         foreach($itemCart as $key => $item){
             $_SESSION['item'][$key]['quality'] = $_POST['quality'][$key];
@@ -51,9 +50,11 @@ class CartController extends BaseController {
         try{
             $id = $_POST['item_id'];
             unset($_SESSION['item'][$id]);
+            $result = $this->getOrderRepository()->getListOrderItem();
             echo json_encode([
                 'status'    => "OK",
-                "message"   => "Xóa thành xông sản phẩm khỏi giỏ hàng"
+                "message"   => "Xóa thành xông sản phẩm khỏi giỏ hàng",
+                "total"     => formatCurrency($result['total'])
             ]);
         }catch(Exception $error){
             echo json_encode([
