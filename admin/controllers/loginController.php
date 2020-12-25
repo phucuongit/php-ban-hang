@@ -45,7 +45,7 @@ class LoginController extends BaseController{
         
         $total = User::totalUser();
         
-        $config['total']  = $total[0] ?? 0;
+        $config['total']  = isset($total[0]) ? $total[0] : 0;
         
         $this->setPagination($config);
         $currentPage = $this->getCurrentPage();
@@ -56,7 +56,7 @@ class LoginController extends BaseController{
             'title' => 'Quản lý người dùng - Cường Lê',
             'users'  => $listUsers,
             'page'      => $this->getPagination(),
-            'total' => $total[0] ?? 0
+            'total' => isset($total[0]) ? $total[0] : 0,
         ];
         
         $this->render('user', $data, 'adminLayout');

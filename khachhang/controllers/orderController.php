@@ -83,7 +83,7 @@ class OrderController extends BaseController{
         $pattern = "/(\d+)\?action/";
         preg_match($pattern, $this->router[count($this->router) -1], $matches);
 
-        $orderId    = $matches[1] ?? null;
+        $orderId    = isset($matches[1]) ? $matches[1] : null;
         $order      = $this->getOrderRepository()->getOrder($orderId);
         $listOrder  = $this->getOrderRepository()->getDetailOrder($orderId);
 

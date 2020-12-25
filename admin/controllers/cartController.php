@@ -10,10 +10,10 @@ use KH\Models\Order;
 use KH\Models\Pagination;
 
 require_once('baseController.php');
-require_once(__DIR__ . '\..\..\khachhang\models\Product.php');
-require_once(__DIR__ . '\..\..\khachhang\models\Order.php');
-require_once(__DIR__ . '\..\..\khachhang\models\User.php');
-require_once(__DIR__ . '\..\..\khachhang\models\Pagination.php');
+require_once(__DIR__ . '/../../khachhang/models/Product.php');
+require_once(__DIR__ . '/../../khachhang/models/Order.php');
+require_once(__DIR__ . '/../../khachhang/models/User.php');
+require_once(__DIR__ . '/../../khachhang/models/Pagination.php');
 
 require_once('repositories/OrderRepository.php');
 
@@ -43,7 +43,7 @@ class CartController extends BaseController {
         
         $total = Order::totalOrder();
         
-        $config['total']  = $total[0] ?? 0;
+        $config['total']  = isset($total[0]) ? $total[0] : 0;
         
         $this->setPagination($config);
         $currentPage = $this->getCurrentPage();
@@ -54,7 +54,7 @@ class CartController extends BaseController {
             'title'     => 'Danh sách đơn hàng - Cường Lê', 
             'orders'  => $listOrder,
             'page'      => $this->getPagination(),
-            'total' => $total[0] ?? 0
+            'total' => isset($total[0]) ? $total[0] : 0,
         ];
         
         return $this->render('order', $data, 'adminLayout');

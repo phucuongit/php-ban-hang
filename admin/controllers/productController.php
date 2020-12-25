@@ -50,7 +50,7 @@ class ProductController extends BaseController{
         
         $total = Product::totalProduct();
         
-        $config['total']  = $total[0] ?? 0;
+        $config['total']  = isset($total[0]) ? $total[0] : 0;
         
         $this->setPagination($config);
         $currentPage = $this->getCurrentPage();
@@ -61,7 +61,7 @@ class ProductController extends BaseController{
             'title' => 'Quản lý sản phẩm - Cường Lê', 
             'products'  => $listProduct,
             'page'      => $this->getPagination(),
-            'total' => $total[0] ?? 0
+            'total' => isset($total[0]) ? $total[0] : 0,
         ];
         
         $this->render('product', $data, 'adminLayout');
@@ -103,7 +103,7 @@ class ProductController extends BaseController{
         $shortDes = urldecode($_POST['short_des']);
         $inStock = (int)$_POST['in_stock'];
         $price = (int)$_POST['price'];
-        $cateId = $_POST['category_id'] ?? NULL;
+        $cateId = $_POST['category_id'];
       
         $des = urldecode($_POST['description']);
         $error = '';
@@ -183,7 +183,7 @@ class ProductController extends BaseController{
         $id = (int)$_POST['id'];
         $inStock = (int)$_POST['in_stock'];
         $price = (int)$_POST['price'];
-        $cateId = $_POST['category_id'] ?? NULL;
+        $cateId = $_POST['category_id'];
       
         $des = urldecode($_POST['description']);
         $error = '';

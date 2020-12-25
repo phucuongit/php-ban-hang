@@ -74,10 +74,10 @@ class CartController extends BaseController {
             }
 
             $fullName = $_POST['fullname'];
-            $email = $_POST['email'] ?? null;
+            $email = $_POST['email'];
             $phoneNumber = $_POST['phone_number'];
             $address = $_POST['address'];
-            $note = $_POST['note'] ?? null;
+            $note = $_POST['note'];
             $paymentMethod = $_POST['payment_method'];
           
             $resultCheck = $this->validateSubmit([

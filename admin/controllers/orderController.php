@@ -9,7 +9,7 @@ use KH\Models\Pagination;
 
 require_once('baseController.php');
 
-require_once(__DIR__ . '\..\repositories\OrderRepository.php');
+require_once(__DIR__ . '/../repositories/OrderRepository.php');
 
 require_once('../khachhang/models/Pagination.php');
 
