@@ -167,6 +167,9 @@ li.page-item.active a {
   .product_slider_img {
     margin-top: 53px;
   }
+  .collapse:not(.show){
+    display: block!important;
+  }
 }
 .media {
   display: flex;
@@ -312,6 +315,5 @@ a:hover{
      fill: transparent;
     stroke-dashoffset:  -200;
   }
-   
   
 }
