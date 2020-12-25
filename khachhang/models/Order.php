@@ -96,7 +96,8 @@ class Order {
 
         return $req->fetch();
     }
-    public static function ManyToMany($id): array{
+    public static function ManyToMany($id)
+    {
         $db = \DB::getInstance();
 
         $req = $db->prepare('SELECT * FROM order_prod as orp join product as p on p.id = orp.product_id where orp.order_id = :id');

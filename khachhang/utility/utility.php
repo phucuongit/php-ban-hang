@@ -41,7 +41,7 @@
 
         return $text;
     }
-    function getStatusOrder($status): string{
+    function getStatusOrder($status){
         $result = "";
         switch($status){
             case 0:
@@ -60,18 +60,18 @@
         return $result;
       
     }
-    function convertObjectToArray(array $object): array{
+    function convertObjectToArray(array $object){
         $array = array();
         foreach($object as $obj){
             array_push($array,json_decode(json_encode($obj), true) );
         }
         return $array;
     }
-    function convertArray(object $object): array{
+    function convertArray(object $object){
         return json_decode(json_encode($object), true);
     }
 
-    function formatDate($time): string
+    function formatDate($time)
     {
         return date("d/m/Y h:i", strtotime($time) + 7*60*60);
     }

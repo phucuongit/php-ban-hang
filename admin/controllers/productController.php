@@ -31,7 +31,7 @@ class ProductController extends BaseController{
         $this->setProductRepository();
     }
 
-    public function getProductRepository(): ProductRepository{
+    public function getProductRepository(){
         return $this->productRepository;
     }
     public function setProductRepository(){

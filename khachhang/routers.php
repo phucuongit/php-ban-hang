@@ -64,7 +64,7 @@ class Router{
      
     }
 
-    public function getRouterRepository(): RouterRepository{
+    public function getRouterRepository(){
         return $this->routerRepository;
     }
 

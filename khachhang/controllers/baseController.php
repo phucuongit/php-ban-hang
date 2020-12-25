@@ -29,7 +29,7 @@ class BaseController{
      * @param $url
      * @return string
      */
-    public function redirect($url = null): string{
+    public function redirect($url = null){
      
         if(!isset($url)){
             return header('location: '. BASE_URL);
