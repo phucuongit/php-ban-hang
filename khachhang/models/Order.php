@@ -147,7 +147,7 @@ class Order {
             $req->bindParam(':note', $this->note);
             $req->bindParam(':paymentMethod', $this->paymentMethod);
             $req->execute();
-            echo $req->errorInfo();
+           
             return true;
         }catch (Exception $e){
             echo $e->getMessage();

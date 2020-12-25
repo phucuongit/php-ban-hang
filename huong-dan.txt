@@ -1,0 +1,7 @@
+Link demo: https://b1805744.000webhostapp.com/
+CSDL: 
+	dbName: banhang
+	dbuser: root
+	dbpass: ""
+Tk admin: cuongle/12345678
+Tk khách hàng: b1805744/12345678
