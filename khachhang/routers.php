@@ -57,7 +57,7 @@ class Router{
             $class = lcfirst($nameController) . 'Controller';
        
             $this->setRouterRepository(new RouterRepository());
-            // var_dump($class, $action);
+    
             $controller = $this->getRouterRepository()->switchController($class);
     
             $controller->$action($arguments);

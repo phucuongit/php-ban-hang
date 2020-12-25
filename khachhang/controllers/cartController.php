@@ -85,7 +85,12 @@ class CartController extends BaseController {
                 'phone_number'  => 'Vui lòng nhập số điện thoại',
                 'address'       => 'Vui lòng nhập địa chỉ giao hàng',
             ]);
-            
+            if(strlen($phoneNumber) != 10 && strlen($phoneNumber) != 11){
+                $resultCheck = [
+                    'status'    => 'ERROR',
+                    'message'   => 'Vui lòng nhập số điện thoại 10 hoặc 11 số'
+                ];
+            }
             $result = $this->getOrderRepository()->getListOrderItem();
             
             if($resultCheck['status'] == 'OK'){
@@ -103,11 +108,11 @@ class CartController extends BaseController {
                 
                 $order = new Order($newOrder);
     
-                $order->save();
-             
+                $resultSave = $order->save();
+           
                 $idInserted =  $order->lastInserted()['order_id'];
                 if(!$idInserted){
-                    $result =  array('products' => $result['products'],'error' => 'Mua hàng không thành công do 1 số lỗi');
+                    $result =  array('products' => $result['products'], 'total' => $result['total'], 'error' => 'Mua hàng không thành công do 1 số lỗi');
                     return $this->render('cart', $result);
                 }
                 $itemCart = $_SESSION['item'];

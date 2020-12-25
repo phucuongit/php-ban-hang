@@ -36,7 +36,7 @@ class Router{
     
         // check not exist controller return nameController error
         $router = explode('/', $routerString);
-        // var_dump($router);
+      
         if(!array_key_exists(isset($router[3]) ? $router[3] : '', $controllers)){
             $nameController = 'error';
         }
