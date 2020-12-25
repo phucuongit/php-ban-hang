@@ -42,7 +42,7 @@ class BaseController{
     }
 
     public function error(){
-        $this->render('error');
+        $this->render('404', []);
     }
 }
 ?>

@@ -31,7 +31,13 @@ class ShopController extends BaseController{
             $name = $_GET['name'];
             $name = preg_replace("/\?". $config['querystring'] ."(.+)/", '', $name);
             $numProd = Product::numProdByCate($name);
-            $config['total'] = $numProd['total_product'];
+           
+            if($numProd){
+                $config['total'] = $numProd['total_product'];
+            }else{
+                $this->render('404', []);
+            }
+          
         }else{
             $products = Product::all();
             $config['total'] = count($products);

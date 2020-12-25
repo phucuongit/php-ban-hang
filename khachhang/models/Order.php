@@ -132,6 +132,8 @@ class Order {
     public function save(){
         $db = \DB::getInstance();
         try{
+            // var_dump($this->paymentMethod);
+            // exit;
             $req = $db->prepare('insert into order_item (user_id, status, total, is_deleted, fullName, email, phone_number, address, note, payment_method) 
                                                 values (:user_id, :status, :total, :is_deleted, :fullName, :email, :phoneNumber, :address, :note, :paymentMethod)');
             $req->bindParam(':user_id', $this->user_id);

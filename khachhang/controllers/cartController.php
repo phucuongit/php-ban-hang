@@ -79,7 +79,7 @@ class CartController extends BaseController {
             $address = $_POST['address'];
             $note = $_POST['note'] ?? null;
             $paymentMethod = $_POST['payment_method'];
-            
+          
             $resultCheck = $this->validateSubmit([
                 'fullname'  => 'Vui lòng nhập họ và tên',
                 'phone_number'  => 'Vui lòng nhập số điện thoại',
