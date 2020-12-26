@@ -42,7 +42,7 @@
                                             <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
                                             <input class="input-number" type="text"
                                                 name="quality[<?= $product['id'] ?>]" value="<?= $product['quality'] ?>"
-                                                min="0" />
+                                                min="1" />
                                             <input type="hidden" name="product_id[<?= $product['id'] ?>]"
                                                 value="<?= $product['id'] ?>">
                                             <span class="input-number-increment"> <i class="ti-angle-up"></i></span>

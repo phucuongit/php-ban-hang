@@ -81,7 +81,7 @@
                                 <a href="<?= BASE_ADMIN_URL ?>dang-nhap?action=logout" class="nav-link">
 
                                     <p>
-                                        Đăng suất
+                                        Đăng xuất
                                     </p>
                                 </a>
                             </li>

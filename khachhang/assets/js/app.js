@@ -42,7 +42,7 @@ if (inputCart.length > 0) {
 
       inputDe.addEventListener("click", function (e) {
         let input = product.querySelector(".input-number");
-        if (input.value > 0) {
+        if (input.value > 1) {
           input.value = parseInt(input.value) - 1;
         }
       });

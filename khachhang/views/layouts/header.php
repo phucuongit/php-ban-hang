@@ -31,7 +31,7 @@
                             <?php } ?>
                             <?php if(isLogin()){ ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= BASE_URL . 'dang-nhap?action=logout' ?>">Đăng suất</a>
+                                <a class="nav-link" href="<?= BASE_URL . 'dang-nhap?action=logout' ?>">Đăng xuất</a>
                             </li>
                             <?php }else{ ?>
                             <li class="nav-item">

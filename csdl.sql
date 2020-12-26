@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 25, 2020 lúc 04:54 PM
+-- Thời gian đã tạo: Th12 25, 2020 lúc 05:18 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.5
 
@@ -188,30 +188,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `is_admin`, `is_deleted`) VALUES
 (1, 'cuongle', '25d55ad283aa400af464c76d713c07ad', 'cuong dep trai 1234', 1, 0),
-(2, 'admin', '202cb962ac59075b964b07152d234b70', 'Họ tên', 0, 1),
-(3, 'admin1', '8b18ab890a7f379ee3d1055e2fde9a1e', 'cuong dep trai', 0, 1),
-(4, 'testabc', 'ca2b67db58c83f0e184663098bcb74b8', 'Test admin', 0, 1),
-(5, '121', '121212', 'sdfsdf', 1, 1),
-(6, 'username', '14c4b06b824ec593239362517f538b29', 'hho gten', 1, 1),
-(7, 'hfvhjvjv', 'b498481a20e60b1c6402cf0d9eb75cf1', 'bbhjbhj', 0, 1),
-(8, 'fsdfs', '4135a6f12bd7b1007140f6c4deec37dc', 'hihi', 0, 1),
-(9, 'dfsfsddsfss', 'a5a7158118e59ee590424b55bb9aed17', 'sdfdfs', 0, 1),
-(10, 'dsfdf', '202cb962ac59075b964b07152d234b70', 'sdsd', 0, 1),
-(11, 'sđ', '202cb962ac59075b964b07152d234b70', 'dsfs', 0, 1),
-(12, 'sdfs', 'test', 'test full name', 1, 1),
-(13, 'vbfbcv', '202cb962ac59075b964b07152d234b70', 'dsvdv', 0, 1),
-(14, 'sád', '202cb962ac59075b964b07152d234b70', 'ád', 0, 1),
-(15, 'fgfhnfb', '202cb962ac59075b964b07152d234b70', 'ád', 0, 1),
-(16, 'sfdsdf', '202cb962ac59075b964b07152d234b70', 'fvfdv', 0, 1),
-(17, 'fe', '202cb962ac59075b964b07152d234b70', '234', 0, 1),
-(18, 'hihi1234', 'c51935ff17f1881f0d5ae99c1ab0cec2', 'cuongle123', 1, 1),
-(19, '45345cuongle', '38a9af11f6c74980584bd922a37dae8e', 'test doi ten1231', 0, 1),
-(20, '1234', '25d55ad283aa400af464c76d713c07ad', 'cuong dep tai', 0, 1),
-(21, 'andevct96', '18cae0987af13aa44e5afe968cdd02dd', 'Cao Tú An', 0, 1),
-(22, 'avc', '8b18ab890a7f379ee3d1055e2fde9a1e', 'scvs', 0, 1),
-(23, 'test add', '25d55ad283aa400af464c76d713c07ad', 'haha 1234', 0, 1),
-(24, 'haha123', '8b18ab890a7f379ee3d1055e2fde9a1e', 'cuong đep trai', 0, 1),
-(25, 'b1805744', '25d55ad283aa400af464c76d713c07ad', 'LePhuCuong', 0, 0);
+(26, 'b1805744', '25d55ad283aa400af464c76d713c07ad', 'LePhuCuong', 0, 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -279,7 +256,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

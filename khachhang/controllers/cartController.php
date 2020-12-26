@@ -40,7 +40,9 @@ class CartController extends BaseController {
         $itemCart = $_SESSION['item'];
         $list = [];
         foreach($itemCart as $key => $item){
-            $_SESSION['item'][$key]['quality'] = $_POST['quality'][$key];
+            if($_POST['quality'][$key] > 0){
+                $_SESSION['item'][$key]['quality'] = $_POST['quality'][$key];
+            }
         }
         $this->redirect('gio-hang');
     }
