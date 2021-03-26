@@ -1,7 +1,14 @@
-Link demo: https://b1805744.000webhostapp.com/
+﻿Link demo: https://b1805744.000webhostapp.com/
+
 CSDL: 
 	dbName: banhang
 	dbuser: root
 	dbpass: ""
+File cấu hình: C:\xampp\htdocs\b1805744\khachhang\utility\connection.php
+
 Tk admin: cuongle/12345678
-Tk kh�ch h�ng: b1805744/12345678
+Tk khách hàng: b1805744/12345678
+
+Yêu cầu:
+- Đảm bảo đường dẫn 2 thu mục admin, khachhang, .htaccess nằm đúng đường dẫn C:\xampp\htdocs\b1805744
+- Xampp: v3.2.4
